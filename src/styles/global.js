@@ -4,13 +4,14 @@ export const GlobalStyle = createGlobalStyle`
 
 html {
   font-size: 62.5%;
-  --font-family: "Times New Roman", Times, serif;
+  --font-family: "Helvetica", Times, serif;
   --font-size: 2rem;
   --line-height: 2.4rem;
   --topbottom: calc(var(--line-height) * 2);
   --leftright: calc(var(--line-height) * 1.5);
   --primary: white;
-  --secondary: yellow;
+  --secondary: beige;
+  --color: black;
 }
 
 body {
@@ -38,7 +39,13 @@ a:active,
 a:visited {
   font-size: var(--font-size);
   line-height: var(--line-height);
+  color: var(--color)
+}
+
+ul {
+  font-size: var(--font-size);
+  line-height: calc(var(--line-height) * 2);
+  list-style-type:none;
 }
 
 `;
-
