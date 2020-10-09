@@ -36,28 +36,3 @@ class Firebase {
 }
 
 export default Firebase;
-
-/*   <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDDH0ahbfYc2FIm76cwizTLTyfr5AqznlI",
-    authDomain: "eight-soups.firebaseapp.com",
-    databaseURL: "https://eight-soups.firebaseio.com",
-    projectId: "eight-soups",
-    storageBucket: "eight-soups.appspot.com",
-    messagingSenderId: "1052602479925",
-    appId: "1:1052602479925:web:cde8a7348a21e1eacf887c",
-    measurementId: "G-1TY8YYWWNM"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script> */
