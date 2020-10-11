@@ -46,6 +46,7 @@ ul {
   font-size: var(--font-size);
   line-height: calc(var(--line-height) * 2);
   list-style-type:none;
+  margin: 0;
 }
 
 `;

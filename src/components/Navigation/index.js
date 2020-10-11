@@ -9,7 +9,7 @@ import { AuthUserContext } from "../Session";
 
 const Nav = styled.nav`
   background-color: var(--secondary);
-  marin: 0;
+  margin: 0;
 `;
 
 const Navigation = () => (

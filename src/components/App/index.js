@@ -16,13 +16,17 @@ import { GlobalStyle } from "../../styles/global";
 import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
+const Main = styled.main`
+  margin: 0;
+  width: 100vw;
+`;
+
 const App = () => (
   <>
     <GlobalStyle />
     <Router>
-      <div>
+      <Main>
         <Navigation />
-
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
         <Route path={ROUTES.SIGN_IN} component={SignInPage} />
@@ -30,7 +34,7 @@ const App = () => (
         <Route path={ROUTES.HOME} component={HomePage} />
         <Route path={ROUTES.ACCOUNT} component={AccountPage} />
         <Route path={ROUTES.ADMIN} component={AdminPage} />
-      </div>
+      </Main>
     </Router>
   </>
 );
