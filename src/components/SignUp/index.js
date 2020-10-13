@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { compose } from "recompose";
 
-import FirebaseContext, { withFirebase } from "../Firebase";
+import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = () => (
@@ -20,11 +20,22 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const SignUpFormBase = () => {
+const SignUpFormBase = (props) => {
   const [input, setInput] = useState({ ...INITIAL_STATE });
+  const [error, setError] = useState(null);
   const history = useHistory();
-  const firebase = React.useContext(FirebaseContext);
-  console.log(React.useContext(FirebaseContext));
+  const firebase = props.firebase;
+
+  const isInvalid =
+    input.passwordOne !== input.passwordTwo ||
+    input.passwordOne === "" ||
+    input.email === "" ||
+    input.username === "";
+
+  const onChange = (event) => {
+    setInput({ ...input, [event.target.name]: event.target.value });
+  };
+
   const onSubmit = (event) => {
     const { username, email, passwordOne } = input;
 
@@ -42,26 +53,13 @@ const SignUpFormBase = () => {
         history.push(ROUTES.HOME);
       })
       .catch((error) => {
-        setInput({ error });
+        setError(error);
       });
 
     event.preventDefault();
-    
   };
 
-
-
-  const onChange = (event) => {
-    setInput({ [event.target.name]: event.target.value });
-  };
-
-  const isInvalid =
-    input.passwordOne !== input.passwordTwo ||
-    input.passwordOne === "" ||
-    input.email === "" ||
-    input.username === "";
-  
-return (
+  return (
     <form onSubmit={onSubmit}>
       <input
         name="username"
@@ -95,7 +93,7 @@ return (
         Sign Up
       </button>
 
-      {input.error && <p>{firebase.error.message}</p>}
+      {error && <p>{error.message}</p>}
     </form>
   );
 };

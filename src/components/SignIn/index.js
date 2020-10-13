@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter, useHistory } from "react-router-dom";
 import { compose } from "recompose";
 
 import { SignUpLink } from "../SignUp";
@@ -19,66 +19,60 @@ const SignInPage = () => (
 const INITIAL_STATE = {
   email: "",
   password: "",
-  error: null,
 };
 
-class SignInFormBase extends Component {
-  constructor(props) {
-    super(props);
+const SignInFormBase = (props) => {
+  const [input, setInput] = useState({ ...INITIAL_STATE });
+  const [error, setError] = useState(null);
+  const history = useHistory();
+  const firebase = props.firebase;
 
-    this.state = { ...INITIAL_STATE };
-  }
+  const isInvalid = input.password === "" || input.email === "";
 
-  onSubmit = (event) => {
-    const { email, password } = this.state;
+  const onChange = (event) => {
+    setInput({ ...input, [event.target.name]: event.target.value });
+  };
 
-    this.props.firebase
+  const onSubmit = (event) => {
+    const { email, password } = input;
+
+    firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        setInput({ ...INITIAL_STATE });
+        history.push(ROUTES.HOME);
       })
       .catch((error) => {
-        this.setState({ error });
+        setError(error);
       });
 
     event.preventDefault();
   };
 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        name="email"
+        value={input.email}
+        onChange={onChange}
+        type="text"
+        placeholder="Email Address"
+      />
+      <input
+        name="password"
+        value={input.password}
+        onChange={onChange}
+        type="password"
+        placeholder="Password"
+      />
+      <button disabled={isInvalid} type="submit">
+        Sign In
+      </button>
 
-  render() {
-    const { email, password, error } = this.state;
-
-    const isInvalid = password === "" || email === "";
-
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
-    );
-  }
-}
+      {error && <p>{error.message}</p>}
+    </form>
+  );
+};
 
 const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
 
