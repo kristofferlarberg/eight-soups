@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
@@ -18,8 +18,6 @@ const withAuthorization = (condition) => (Component) => {
         }
       });
     }, [firebase]);
-
-    console.log(props);
 
     return (
       <AuthUserContext.Consumer>

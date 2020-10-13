@@ -1,9 +1,9 @@
 import React from "react";
-import MenuItem from "./MenuItem";
+import Menu from "./Menu";
 import { withAuthorization } from "../Session";
 
 const HomePage = () => (
-<MenuItem/>
+<Menu/>
 );
 
 const condition = (authUser) => !!authUser;

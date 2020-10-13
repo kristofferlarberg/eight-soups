@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { withFirebase } from "../Firebase";
@@ -16,55 +16,49 @@ const INITIAL_STATE = {
   error: null,
 };
 
-class PasswordForgetFormBase extends Component {
-  constructor(props) {
-    super(props);
+const PasswordForgetFormBase = (props) => {
+  const [input, setInput] = useState({ ...INITIAL_STATE });
+  const [error, setError] = useState(null);
+  const firebase = props.firebase;
 
-    this.state = { ...INITIAL_STATE };
-  }
+  const isInvalid = input.email === "";
 
-  onSubmit = (event) => {
-    const { email } = this.state;
+  const onChange = (event) => {
+    setInput({ ...input, [event.target.name]: event.target.value });
+  };
 
-    this.props.firebase
+  const onSubmit = (event) => {
+    const { email } = input;
+
+    firebase
       .doPasswordReset(email)
       .then(() => {
-        this.setState({ ...INITIAL_STATE });
+        setInput({ ...INITIAL_STATE });
       })
       .catch((error) => {
-        this.setState({ error });
+        setError(error);
       });
 
     event.preventDefault();
   };
 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        name="email"
+        value={input.email}
+        onChange={onChange}
+        type="text"
+        placeholder="Email Address"
+      />
+      <button disabled={isInvalid} type="submit">
+        Reset My Password
+      </button>
 
-  render() {
-    const { email, error } = this.state;
-
-    const isInvalid = email === "";
-
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={this.state.email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
-    );
-  }
-}
+      {error && <p>{error.message}</p>}
+    </form>
+  );
+};
 
 const PasswordForgetLink = () => (
   <p>
