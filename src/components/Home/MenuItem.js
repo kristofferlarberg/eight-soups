@@ -20,19 +20,16 @@ const FigCaption = styled.figcaption`
   height: auto;
 `;
 
-const Button = styled.button``;
 
-const MenuItem = () => (
-  <Figure>
-    <FigCaption>
-      <h1>Roasted Tomato and Quinoa</h1>
-      <p>
-        Tomatsoppa med quinoa, vitlök och lök toppad med färsk basilika och
-        krispiga krutonger.
-      </p>
-      <h2>69kr</h2>
-      <Button>Välj</Button>
-    </FigCaption>
-  </Figure>
-);
+
+const MenuItem = (props) => {
+
+  return (
+    <Figure key={props.id}>
+      <FigCaption>
+        {props.name}: {props.price}kr
+      </FigCaption>
+    </Figure>
+  );
+};
 export default MenuItem;
