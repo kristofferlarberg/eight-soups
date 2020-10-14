@@ -8,7 +8,9 @@ const Figure = styled.figure`
   width: 100%;
   height: 40rem;
   box-sizing: border-box;
-  background: no-repeat center/100% url(${img1});
+  background-image: url(${(props) => props.image});
+  background-repeat: no-repeat; 
+  background-position: center/100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,9 +25,9 @@ const FigCaption = styled.figcaption`
 
 
 const MenuItem = (props) => {
-
+console.log(props.image);
   return (
-    <Figure key={props.id}>
+    <Figure key={props.id} image={props.image} >
       <FigCaption>
         {props.name}: {props.price}kr
       </FigCaption>

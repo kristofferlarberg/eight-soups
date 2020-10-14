@@ -52,6 +52,7 @@ const Menu = (props) => {
             key={item.id}
             name={item.name}
             price={item.price}
+            image={item.image}
             id={item.id}
           />
           <Button type="submit" onClick={() => addToCart(item)}>
@@ -76,7 +77,7 @@ const Menu = (props) => {
           </Button> */}
         </>
       ))}
-      
+
       <div>Total: {cartTotal}</div>
 
       <Button type="submit" onClick={() => setCart([])}>
