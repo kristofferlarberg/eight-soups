@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import img1 from "../../images/roastedtomato.jpg";
-
 const Figure = styled.figure`
   margin: 0;
   width: 100%;
   height: 40rem;
   box-sizing: border-box;
-  background-image: url(${(props) => props.image});
-  background-repeat: no-repeat; 
-  background-position: center/100%;
+  background: url(${(props) => props.image}) no-repeat center/100%;
   display: flex;
   align-items: center;
   justify-content: center;

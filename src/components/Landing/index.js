@@ -6,8 +6,6 @@ import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
 
-import img1 from "../../images/roastedtomato.jpg";
-
 const Container = styled.div`
   margin: 0;
 `;
@@ -17,7 +15,6 @@ const Section = styled.section`
   width: 100%;
   height: 40rem;
   box-sizing: border-box;
-  background: no-repeat center/100% url(${img1});
   display: flex;
   align-items: center;
   justify-content: center;
