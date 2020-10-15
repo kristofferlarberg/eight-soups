@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import { withAuthorization } from "../Session";
 import { menuData } from "../../data/menuData";
@@ -6,7 +6,7 @@ import { menuData } from "../../data/menuData";
 const HomePage = () => {
   const [menu, setMenu] = useState(menuData);
 
-  return <Menu menu={menu} />;
+  return <Menu menu={menu}/>;
   
 };
 

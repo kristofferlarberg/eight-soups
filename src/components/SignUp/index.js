@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { compose } from "recompose";
 

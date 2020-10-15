@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AddButton, CartContext } from "../Cart";
 
 const Figure = styled.figure`
   margin: 0;
@@ -18,15 +19,16 @@ const FigCaption = styled.figcaption`
   height: auto;
 `;
 
-
-
 const MenuItem = (props) => {
-console.log(props.image);
+  const { cart, setCart } = useContext(CartContext);
+  const addToCart = (item) => setCart((currentCart) => [...currentCart, item]);
+
   return (
-    <Figure key={props.id} image={props.image} >
+    <Figure key={props.id} image={props.image}>
       <FigCaption>
         {props.name}: {props.price}kr
       </FigCaption>
+      <AddButton key={props.id} onClick={addToCart} />
     </Figure>
   );
 };
