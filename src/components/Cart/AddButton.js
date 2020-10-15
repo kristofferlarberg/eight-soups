@@ -1,18 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import CartContext from "./CartContext";
 
 const Button = styled.button``;
 
-
-
 const AddButton = (props) => {
-  console.log(props);
-  return (
-    <Button onClick={() => {props.onClick()}}>
-      Välj
-    </Button>
-  );
+  return <Button onClick={props.addToCart}>{props.title}</Button>;
 };
 
 export default AddButton;
