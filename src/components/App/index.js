@@ -24,7 +24,6 @@ const Main = styled.main`
 `;
 
 const App = () => {
-  
 const [cart, setCart] = useState([]);
 console.log("CART STATE");
 console.log(cart)
