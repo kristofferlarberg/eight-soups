@@ -12,15 +12,12 @@ const Popup = styled.div`
   right: 0;
   bottom: 0;
   margin: auto;
+  background-color: rgb(232, 232, 232, 0.5);
 `;
 
 const PopupContainer = styled.div`
   position: absolute;
-  left: 5%;
-  right: 5%;
-  top: 25%;
-  bottom: 25%;
-  margin: auto;
+  margin: 1rem;
   background-color: white;
 `;
 
@@ -54,8 +51,15 @@ const Close = styled(Button)`
 const MenuItemPop = (props) => {
   const { cart, setCart } = useContext(CartContext);
 
+  const thisSoup = {
+    id: props.id,
+    name: props.name,
+    price: props.price,
+    cookingtime: props.cookingtime,
+  };
+
   const addToCart = (item) => setCart((currentCart) => [...currentCart, item]);
-  
+
   return (
     <Popup key={props.id}>
       <PopupContainer>
@@ -67,7 +71,7 @@ const MenuItemPop = (props) => {
           <h2>{props.name}</h2>
           <h2>{props.price}kr</h2>
         </TextContainer>
-        <Button onClick={() => addToCart()} text="Lägg till" />
+        <Button onClick={() => addToCart(thisSoup)} text="Lägg till" />
       </PopupContainer>
     </Popup>
   );

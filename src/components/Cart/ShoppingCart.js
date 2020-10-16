@@ -37,10 +37,11 @@ const ShoppingCart = (props) => {
       return cart.push(item);
     });
   }; */
+
   return (
     <>
       {props.menu.map((item) => (
-        <>
+        <div key={item.id}>
           <CartItem
             key={item.id}
             name={item.name}
@@ -54,7 +55,7 @@ const ShoppingCart = (props) => {
           {/*           <Button type="submit" onClick={() => moreItems(item)}>
             +
           </Button> */}
-        </>
+        </div>
       ))}
       <div>Total: {cartTotal}</div>
 

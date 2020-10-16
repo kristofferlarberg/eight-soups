@@ -84,6 +84,7 @@ const MenuItem = (props) => {
           price={props.price}
           image={props.image}
           id={props.id}
+          cookingtime={props.cookingtime}
           togglePopup={() => togglePopup()}
         />
       ) : null}

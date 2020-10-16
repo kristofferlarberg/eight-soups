@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const menuData = [
   {
     name: "Tomat",
@@ -8,8 +10,7 @@ export const menuData = [
     gluten: false,
     lactose: true,
     cookingtime: 15,
-    id: 1,
-    uid: "tomato",
+    id: uuidv4(),
   },
   {
     name: "Sötpotatis",
@@ -20,8 +21,7 @@ export const menuData = [
     gluten: true,
     lactose: true,
     cookingtime: 20,
-    id: 2,
-    uid: "potato",
+    id: uuidv4(),
   },
   {
     name: "Grön",
@@ -32,8 +32,7 @@ export const menuData = [
     gluten: true,
     lactose: true,
     cookingtime: 20,
-    id: 3,
-    uid: "green",
+    id: uuidv4(),
   },
   {
     name: "Morot",
@@ -44,8 +43,7 @@ export const menuData = [
     gluten: true,
     lactose: false,
     cookingtime: 15,
-    id: 4,
-    uid: "green",
+    id: uuidv4(),
   },
   {
     name: "Butternut",
@@ -56,8 +54,7 @@ export const menuData = [
     gluten: false,
     lactose: false,
     cookingtime: 20,
-    id: 5,
-    uid: "butternut",
+    id: uuidv4(),
   },
   {
     name: "Röd Curry",
@@ -68,7 +65,6 @@ export const menuData = [
     gluten: true,
     lactose: true,
     cookingtime: 20,
-    id: 6,
-    uid: "curry",
+    id: uuidv4(),
   },
 ];

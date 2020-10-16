@@ -10,7 +10,7 @@ html {
   --halfspace: calc(var(--line-height) * 0.5);
   --topbottom: calc(var(--line-height) * 2);
   --leftright: calc(var(--line-height) * 1.5);
-  --grey: #e8e8e8;
+  --grey: rgb(232, 232, 232);
   --green: #9ab54a;
 }
 
