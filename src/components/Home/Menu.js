@@ -22,7 +22,6 @@ const Menu = (props) => {
             gluten={item.gluten}
             cookingtime={item.cookingtime}
           />
-
         </>
       ))}
 

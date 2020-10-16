@@ -7,46 +7,49 @@ import Button from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0;
+  margin: 0 0 var(--line-height) 0;
   padding: var(--leftright);
   width: 100%;
-  height: 40rem;
+  height: 50rem;
   box-sizing: border-box;
   background: url(${(props) => props.image}) no-repeat center/100%;
-  display: flex;
-  align-items: flex-end;
-  /* justify-content: center; */
 `;
 
 const FigCaption = styled.figcaption`
   margin: 0;
   width: 100%;
-  height: auto;
-  display: flex;
-  align-items: flex-start;
-`;
-
-const First = styled.div`
-  margin: 0;
-  width: 50%;
-  height: auto;
-`;
-
-const Second = styled(First)`
-  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: flex-end;
 `;
 
-const Time = styled.div`
+const Text = styled.div`
+  margin: 0;
+  height: auto;
+`;
+
+const Time = styled(Text)`
   display: flex;
+  justify-content: right;
+  align-items: center;
+  justify-self: flex-start; 
+  height: auto;
+`;
+
+const TimeText = styled.h3`
+  margin: 0;
 `;
 
 const Clock = styled.img`
-  margin: 0 0.5rem 0.4rem 0;
+  margin: 0 0.5rem 0 0;
   width: 20px;
-  height: auto;
+  height: 20px;
+`;
+
+const Title = styled(Text)`
+  display: flex;
+  justify-content: left;
 `;
 
 const MenuItem = (props) => {
@@ -58,22 +61,22 @@ const MenuItem = (props) => {
 
   return (
     <Figure key={props.id} image={props.image}>
+      <Time>
+        <Clock src={clock} alt="Klocka" />
+        <TimeText>{props.cookingtime} min</TimeText>
+      </Time>
       <FigCaption>
-        <First>
+        <Title>
           <h1>{props.name}</h1>
-          <p>{props.description}</p>
-          <h2>{props.price}kr</h2>
-        </First>
-        <Second>
-          <Time>
-            <Clock src={clock} alt="Klocka" />
-            <h3>{props.cookingtime} min</h3>
-          </Time>
           {props.gluten ? <Gluten /> : null}
           {props.lactose ? <Lactose /> : null}
-        </Second>
+        </Title>
+        <Text>
+          <p>{props.description}</p>
+          <h2>{props.price}kr</h2>
+        </Text>
+        <Button onClick={togglePopup} text="Läs mer" />
       </FigCaption>
-      <Button onClick={togglePopup} text="Läs mer"/>
       {popup ? (
         <MenuItemPop
           key={props.id}

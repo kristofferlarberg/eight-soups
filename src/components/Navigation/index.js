@@ -8,7 +8,7 @@ import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 
 const Nav = styled.nav`
-  background-color: var(--secondary);
+  background-color: var(--grey);
   margin: 0;
 `;
 

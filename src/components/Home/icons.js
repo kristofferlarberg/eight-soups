@@ -4,8 +4,9 @@ import gluten from "./gluten.svg";
 import lactose from "./lactose.svg";
 
 const Icon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 1.5rem 0 0 1.5rem;
 `;
 
 export const Gluten = () => <Icon src={gluten} alt="Glutenfri" />;

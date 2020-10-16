@@ -7,11 +7,11 @@ html {
   --font-family: "Helvetica", Times, serif;
   --font-size: 1.5rem;
   --line-height: 2.4rem;
+  --halfspace: calc(var(--line-height) * 0.5);
   --topbottom: calc(var(--line-height) * 2);
   --leftright: calc(var(--line-height) * 1.5);
-  --primary: white;
-  --secondary: beige;
-  --color: black;
+  --grey: #e8e8e8;
+  --green: #9ab54a;
 }
 
 body {
@@ -33,7 +33,6 @@ h2 {
 h3 {
   font-size: calc(var(--font-size) * 1.2);
   font-weight: 400;
-
 }
 
 p {
@@ -48,7 +47,7 @@ a:active,
 a:visited {
   font-size: var(--font-size);
   line-height: var(--line-height);
-  color: var(--color)
+  color: grey;
 }
 
 ul {
