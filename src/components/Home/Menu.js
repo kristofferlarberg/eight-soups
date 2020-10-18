@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import MenuItem from "./MenuItem";
-import { ShoppingCart } from "../Cart";
 
 const Menu = (props) => {
+
   return (
     <>
       {props.menu.map((item) => (
@@ -20,7 +20,6 @@ const Menu = (props) => {
           cookingtime={item.cookingtime}
         />
       ))}
-      <ShoppingCart menu={props.menu} />
     </>
   );
 };

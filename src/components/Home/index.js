@@ -6,8 +6,7 @@ import { menuData } from "../../data/menuData";
 const HomePage = () => {
   const [menu, setMenu] = useState(menuData);
 
-  return <Menu menu={menu}/>;
-  
+  return <Menu menu={menu} />;
 };
 
 const condition = (authUser) => !!authUser;

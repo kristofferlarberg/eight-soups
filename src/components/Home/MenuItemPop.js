@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "../misc/Button";
-import CartContext from "../Cart/CartContext";
+import CartContext from "../Cart/context";
 
 const Popup = styled.div`
   position: fixed;
