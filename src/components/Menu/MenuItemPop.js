@@ -48,6 +48,7 @@ const Close = styled(Button)`
   text-align: right;
 `;
 
+// todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
   const { cart, setCart } = useContext(CartContext);
 
@@ -56,9 +57,20 @@ const MenuItemPop = (props) => {
     name: props.name,
     price: props.price,
     cookingtime: props.cookingtime,
+    amount: 1,
   };
 
-  const addToCart = (item) => setCart((currentCart) => [...currentCart, item]);
+  /* const oldAddToCart = (item) => setCart((currentCart) => [...currentCart, item]); */
+
+  const addToCart = (item) =>
+    setCart((currentCart) => {
+      if (currentCart.some((item) => item.id == props.id)) {
+        currentCart.find((item) => item.id == props.id).amount += 1;
+        return [...currentCart];
+      } else {
+        return [...currentCart, item];
+      }
+    });
 
   return (
     <Popup key={props.id}>

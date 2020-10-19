@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import MenuItem from "./MenuItem";
+import { withAuthorization } from "../Session";
 
-const Menu = (props) => {
+const Menu = ({ menu }) => {
 
   return (
-    <>
-      {props.menu.map((item) => (
+    <div>
+{/*     <>
+      {menu.map((item) => (
         <MenuItem
           key={item.id}
           name={item.name}
@@ -20,8 +22,19 @@ const Menu = (props) => {
           cookingtime={item.cookingtime}
         />
       ))}
-    </>
+    </> */}
+    <>
+    {menu && menu.map((item) => (
+      <MenuItem
+        key={item.id}
+        {...item}
+      />
+    ))}
+  </>
+  </div>
   );
 };
 
-export default Menu;
+const condition = (authUser) => !!authUser;
+
+export default withAuthorization(condition)(Menu);
