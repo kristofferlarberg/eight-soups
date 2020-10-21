@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Button from "../misc/Button";
+import { ButtonGreen, ButtonGrey } from "../misc/Button";
 import CartContext from "../Cart/context";
 
 const Popup = styled.div`
@@ -41,16 +41,9 @@ const TextContainer = styled.section`
   justify-content: space-between;
 `;
 
-//hur justera stil?
-const Close = styled(Button)`
-  background-color: white;
-  color: black;
-  text-align: right;
-`;
-
 // todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const { setCart } = useContext(CartContext);
 
   const thisSoup = {
     id: props.id,
@@ -60,12 +53,30 @@ const MenuItemPop = (props) => {
     amount: 1,
   };
 
-  /* const oldAddToCart = (item) => setCart((currentCart) => [...currentCart, item]); */
+  const lessItems = (item) =>
+    setCart((currentCart) => {
+      if (currentCart.some((item) => item.id === props.id)) {
+        currentCart.find((item) => item.id === props.id).amount -= 1;
+        return [...currentCart];
+      } else {
+        return [...currentCart, item];
+      }
+    });
+
+  const moreItems = (item) =>
+    setCart((currentCart) => {
+      if (currentCart.some((item) => item.id === props.id)) {
+        currentCart.find((item) => item.id === props.id).amount += 1;
+        return [...currentCart];
+      } else {
+        return [...currentCart, item];
+      }
+    });
 
   const addToCart = (item) =>
     setCart((currentCart) => {
-      if (currentCart.some((item) => item.id == props.id)) {
-        currentCart.find((item) => item.id == props.id).amount += 1;
+      if (currentCart.some((item) => item.id === props.id)) {
+        /* currentCart.find((item) => item.id === props.id).amount += 1; */
         return [...currentCart];
       } else {
         return [...currentCart, item];
@@ -75,7 +86,7 @@ const MenuItemPop = (props) => {
   return (
     <Popup key={props.id}>
       <PopupContainer>
-        <Close onClick={() => props.togglePopup()} text="X" />
+        <ButtonGrey onClick={() => props.togglePopup()} text="X" />
         <ImageContainer>
           <Image src={props.image} alt="Soup Image" />
         </ImageContainer>
@@ -83,7 +94,23 @@ const MenuItemPop = (props) => {
           <h2>{props.name}</h2>
           <h2>{props.price}kr</h2>
         </TextContainer>
-        <Button onClick={() => addToCart(thisSoup)} text="Lägg till" />
+        <ButtonGrey
+          text="-"
+          type="submit"
+          onClick={() => lessItems(thisSoup)}
+        />
+        <ButtonGrey
+          text="+"
+          type="submit"
+          onClick={() => moreItems(thisSoup)}
+        />
+        <ButtonGreen
+          onClick={() => {
+            addToCart(thisSoup);
+            props.togglePopup();
+          }}
+          text="Lägg till"
+        />
       </PopupContainer>
     </Popup>
   );

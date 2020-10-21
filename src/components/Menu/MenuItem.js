@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { Gluten, Lactose } from "./icons";
 import MenuItemPop from "./MenuItemPop";
-import Button from "../misc/Button";
+import { ButtonGreen } from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0 0 var(--line-height) 0;
+  margin: 0 0 var(--lineheight) 0;
   padding: var(--leftright);
   width: 100%;
   height: 50rem;
@@ -75,7 +75,7 @@ const MenuItem = (props) => {
           <p>{props.description}</p>
           <h2>{props.price}kr</h2>
         </Text>
-        <Button onClick={togglePopup} text="Läs mer" />
+        <ButtonGreen onClick={togglePopup} text="Läs mer" />
       </FigCaption>
       {popup ? (
         <MenuItemPop

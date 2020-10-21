@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import CartContext from "./context";
 import CartItem from "./CartItem";
-import Button from "../misc/Button";
-import MenuItem from "../Menu/MenuItem";
+import { ButtonRed } from "../misc/Button";
 
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -33,41 +32,19 @@ const Cart = () => {
   };
  */
 
-  const lessItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id == cart.id)) {
-        currentCart.find((item) => item.id == cart.id).amount -= 1;
-        return [...currentCart];
-      } else {
-        return [...currentCart, item];
-      }
-    });
-
-  const moreItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id == cart.id)) {
-        currentCart.find((item) => item.id == cart.id).amount += 1;
-        return [...currentCart];
-      } else {
-        return [...currentCart, item];
-      }
-    });
-
   return (
     <>
       {cart.map((item) => (
-        <>
-          <CartItem key={item.id} {...item} />
-          <Button text="-" type="submit" onClick={() => lessItems(item)} />
-          <Button text="+" type="submit" onClick={() => moreItems(item)} />
-        </>
+          <CartItem {...item} key={item.id} />
       ))}
 
       <div>Total: {cartTotal}</div>
 
-      <Button text="Ta bort alla" type="submit" onClick={() => setCart([])}>
-        Ta bort alla
-      </Button>
+      <ButtonRed
+        text="Ta bort alla"
+        type="submit"
+        onClick={() => setCart([])}
+      />
     </>
   );
 };

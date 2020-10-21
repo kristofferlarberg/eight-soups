@@ -6,12 +6,13 @@ html {
   font-size: 62.5%;
   --font-family: "Helvetica", Times, serif;
   --font-size: 1.5rem;
-  --line-height: 2.4rem;
-  --halfspace: calc(var(--line-height) * 0.5);
-  --topbottom: calc(var(--line-height) * 2);
-  --leftright: calc(var(--line-height) * 1.5);
+  --lineheight: 2.4rem;
+  --halfspace: calc(var(--lineheight) * 0.5);
+  --topbottom: calc(var(--lineheight) * 2);
+  --leftright: calc(var(--lineheight) * 1.5);
   --grey: rgb(232, 232, 232);
   --green: #9ab54a;
+  --forestgreen: #23591e;
 }
 
 body {
@@ -37,7 +38,7 @@ h3 {
 
 p {
   font-size: var(--font-size);
-  line-height: var(--line-height);
+  line-height: var(--lineheight);
   font-weight: 400;
 }
 
@@ -46,13 +47,13 @@ a:hover,
 a:active,
 a:visited {
   font-size: var(--font-size);
-  line-height: var(--line-height);
+  line-height: var(--lineheight);
   color: grey;
 }
 
 ul {
   font-size: var(--font-size);
-  line-height: calc(var(--line-height) * 2);
+  line-height: calc(var(--lineheight) * 2);
   list-style-type:none;
   margin: 0;
 }

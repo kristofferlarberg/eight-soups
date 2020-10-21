@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 
@@ -19,12 +19,13 @@ import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
 const Main = styled.main`
-  margin: 0;
-  width: 100vw;
+  margin: 15rem 0;
+  width: auto;
+  box-sizing: border-box;
 `;
 
 const App = (props) => {
-  const [menu, setMenu] = useState(menuData);
+  const [menu] = useState(menuData);
   const [cart, setCart] = useState([]);
 
   console.log("---------------------------------");
@@ -42,8 +43,8 @@ const App = (props) => {
       <GlobalStyle />
       <CartContext.Provider value={{ cart, setCart }}>
         <Router>
+          <Navigation />
           <Main>
-            <Navigation />
             <Route exact path={ROUTES.LANDING} component={LandingPage} />
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
             <Route path={ROUTES.SIGN_IN} component={SignInPage} />
