@@ -5,6 +5,8 @@ import CartContext from "./context";
 import CartItem from "./CartItem";
 import { ButtonRed } from "../misc/Button";
 
+import { withAuthorization } from "../Session";
+
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
 
