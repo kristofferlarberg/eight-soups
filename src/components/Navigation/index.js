@@ -11,18 +11,12 @@ import * as ROUTES from "../../constants/routes";
 import { AuthUserContext } from "../Session";
 import Hamburger from "./HamburgerIcon";
 
+//Animera till mindre format efter scroll
 const Nav = styled.nav`
   position: fixed;
-  width: auto;
-  height: auto;
   top: 0;
-  left: 0;
   right: 0;
-  margin: auto;
-`;
-
-//Animera till mindre format efter scroll
-const NavContent = styled.nav`
+  left: 0;
   height: 15rem;
   margin: 0;
   display: flex;
@@ -83,18 +77,16 @@ const NavigationAuth = (props) => {
         />
       ) : null}
       <Nav>
-        <NavContent>
-          <Hamburger onClick={() => props.toggleBurger()} />
-          <LogoContainer>
-            <TitleContainer>
-              <Title>Eight</Title>
-              <Title>Soups</Title>
-            </TitleContainer>
-            <Link to={ROUTES.CART}>
-              <SoupIcon />
-            </Link>
-          </LogoContainer>
-        </NavContent>
+        <Hamburger onClick={() => props.toggleBurger()} />
+        <LogoContainer>
+          <TitleContainer>
+            <Title>Eight</Title>
+            <Title>Soups</Title>
+          </TitleContainer>
+          <Link to={ROUTES.CART}>
+            <SoupIcon />
+          </Link>
+        </LogoContainer>
       </Nav>
     </>
   );
@@ -109,7 +101,6 @@ const NavigationNonAuth = (props) => (
       />
     ) : null}
     <Nav>
-      <NavContent>
         <Hamburger onClick={() => props.toggleBurger()} />
         <LogoContainer>
           <TitleContainer>
@@ -118,7 +109,6 @@ const NavigationNonAuth = (props) => (
           </TitleContainer>
           <SoupIcon />
         </LogoContainer>
-      </NavContent>
     </Nav>
   </>
 );

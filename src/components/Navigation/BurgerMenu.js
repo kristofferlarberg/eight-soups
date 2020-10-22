@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { ButtonRound2 } from "../misc/Button";
 import SignOutButton from "../SignOut";
 import * as ROUTES from "../../constants/routes";
 
@@ -16,7 +17,7 @@ const BurgerMenuContainer = styled.div`
   right: 0;
   bottom: 0;
   margin: auto;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const BurgerMenuContent = styled.nav`
@@ -25,6 +26,13 @@ const BurgerMenuContent = styled.nav`
   padding: var(--topbottom) var(--leftright);
   width: 50vw;
   height: 100vh;
+`;
+
+const ButtonContainer = styled.div`
+margin: 0;
+width: 100%;
+display: flex;
+justify-content: flex-end;
 `;
 
 const BurgerMenu = (props) => (
@@ -50,7 +58,9 @@ const BurgerMenu = (props) => (
 const BurgerMenuAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
-      <button onClick={() => props.toggleBurger()}>X</button>
+      <ButtonContainer>
+        <ButtonRound2 text="X" onClick={() => props.toggleBurger()} />
+      </ButtonContainer>
       <ul>
         <li>
           <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
@@ -83,7 +93,9 @@ const BurgerMenuAuth = (props) => (
 const BurgerMenuNonAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
-      <button onClick={() => props.toggleBurger()}>X</button>
+      <ButtonContainer>
+        <ButtonRound2 text="X" onClick={() => props.toggleBurger()} />
+      </ButtonContainer>{" "}
       <ul>
         <li>
           <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>

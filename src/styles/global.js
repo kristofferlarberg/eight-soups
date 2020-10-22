@@ -17,7 +17,7 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--primary);
+  background-color: white;
   font-family: var(--font-family);
 }
 
@@ -56,6 +56,7 @@ ul {
   line-height: calc(var(--lineheight) * 2);
   list-style-type:none;
   margin: 0;
+  padding: 0;
 }
 
 `;
