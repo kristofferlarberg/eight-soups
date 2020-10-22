@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import * as ROUTES from "../../constants/routes";
-
 import { AuthUserContext } from "../Session";
+import SignIn from "../SignIn"
+
+import Menu from "../Menu";
 
 const Container = styled.div`
   margin: 0;
@@ -22,29 +24,25 @@ const Section = styled.section`
 const Landing = () => (
   <Container>
     <AuthUserContext.Consumer>
-      {(authUser) => (authUser ? <LandingAuth /> : <LandingNonAuth />)}
+      {(authUser) => (authUser ? <Menu /> : <OnBoarding />)}
     </AuthUserContext.Consumer>
   </Container>
 );
 
-const LandingAuth = () => (
+const OnBoarding = () => (
   <Section>
-    <h1>You are logged in.</h1>
-  </Section>
-);
 
-const LandingNonAuth = () => (
-  <Section>
-      <form /* onSubmit={this.onSubmit} */>
-        <input
-          name="address"
-          /* value={address} */
-          /*  onChange={this.onChange} */
-          type="text"
-          placeholder="Enter your address"
-        />
-        <button /* disabled={isInvalid}  */ type="submit">Ok</button>
-      </form>
+<SignIn/>
+
+
+{/*     <form onSubmit={this.onSubmit}>
+      <input
+        name="address"
+        type="text"
+        placeholder="Enter your address"
+      />
+      <button disabled={isInvalid}  type="submit">Ok</button>
+    </form> */}
   </Section>
 );
 export default Landing;

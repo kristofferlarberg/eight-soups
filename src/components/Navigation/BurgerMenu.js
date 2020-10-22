@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { ButtonRound } from "../misc/Button";
-import Logo from "./Logo"
+import Logo from "./Logo";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -30,10 +30,10 @@ const BurgerMenuContent = styled.nav`
 `;
 
 const ButtonContainer = styled.div`
-margin: 0;
-width: 100%;
-display: flex;
-justify-content: flex-end;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const BurgerMenu = (props) => (
@@ -45,12 +45,7 @@ const BurgerMenu = (props) => (
             burger={props.burger}
             toggleBurger={() => props.toggleBurger()}
           />
-        ) : (
-          <BurgerMenuNonAuth
-            burger={props.burger}
-            toggleBurger={() => props.toggleBurger()}
-          />
-        )
+        ) : null
       }
     </AuthUserContext.Consumer>
   </div>
@@ -62,18 +57,8 @@ const BurgerMenuAuth = (props) => (
       <ButtonContainer>
         <ButtonRound text="X" onClick={() => props.toggleBurger()} />
       </ButtonContainer>
-      <Logo/>
+      <Logo />
       <ul>
-        <li>
-          <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
-            Landing
-          </Link>
-        </li>
-        <li>
-          <Link to={ROUTES.HOME} onClick={() => props.toggleBurger()}>
-            Home
-          </Link>
-        </li>
         <li>
           <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
             Account
@@ -82,28 +67,6 @@ const BurgerMenuAuth = (props) => (
         <li>
           <Link to={ROUTES.ADMIN} onClick={() => props.toggleBurger()}>
             Admin
-          </Link>
-        </li>
-      </ul>
-    </BurgerMenuContent>
-  </BurgerMenuContainer>
-);
-
-const BurgerMenuNonAuth = (props) => (
-  <BurgerMenuContainer>
-    <BurgerMenuContent>
-      <ButtonContainer>
-        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
-      </ButtonContainer>{" "}
-      <ul>
-        <li>
-          <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
-            Landing
-          </Link>
-        </li>
-        <li>
-          <Link to={ROUTES.SIGN_IN} onClick={() => props.toggleBurger()}>
-            Sign In
           </Link>
         </li>
       </ul>

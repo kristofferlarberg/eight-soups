@@ -71,16 +71,9 @@ const NavigationAuth = (props) => {
   );
 };
 
-const NavigationNonAuth = (props) => (
+const NavigationNonAuth = () => (
   <>
-    {props.burger ? (
-      <BurgerMenu
-        burger={props.burger}
-        toggleBurger={() => props.toggleBurger()}
-      />
-    ) : null}
     <Nav>
-      <Hamburger onClick={() => props.toggleBurger()} />
       <Logo />
     </Nav>
   </>
