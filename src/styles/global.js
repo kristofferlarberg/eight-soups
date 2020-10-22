@@ -10,7 +10,8 @@ html {
   --halfspace: calc(var(--lineheight) * 0.5);
   --topbottom: calc(var(--lineheight) * 2);
   --leftright: calc(var(--lineheight) * 1.5);
-  --grey: rgb(232, 232, 232);
+  --grey: #e8e8e8;
+  --darkgrey: #ccc;
   --green: #9ab54a;
   --forestgreen: #23591e;
 }
@@ -49,6 +50,7 @@ a:visited {
   font-size: var(--font-size);
   line-height: var(--lineheight);
   color: grey;
+  text-decoration: none;
 }
 
 ul {

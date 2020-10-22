@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import CartContext from "./context";
-import { ButtonGrey } from "../misc/Button";
+import { ButtonGrey, ButtonRoundSmall } from "../misc/Button";
 
 const Container = styled.section`
   width: 100%;
@@ -43,8 +43,8 @@ const CartItem = (props) => {
     <Container>
       {`(${props.amount} x ${props.price}kr) ${props.name}`}
       <Buttons>
-        <ButtonGrey text="-" type="submit" onClick={() => lessItems(props)} />
-        <ButtonGrey text="+" type="submit" onClick={() => moreItems(props)} />
+        <ButtonRoundSmall text="-" type="submit" onClick={() => lessItems(props)} />
+        <ButtonRoundSmall text="+" type="submit" onClick={() => moreItems(props)} />
       </Buttons>
     </Container>
   );

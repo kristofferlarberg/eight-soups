@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ButtonRound2 } from "../misc/Button";
-import SignOutButton from "../SignOut";
+import { ButtonRound } from "../misc/Button";
+import Logo from "./Logo"
+
 import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
@@ -59,8 +60,9 @@ const BurgerMenuAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
       <ButtonContainer>
-        <ButtonRound2 text="X" onClick={() => props.toggleBurger()} />
+        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
       </ButtonContainer>
+      <Logo/>
       <ul>
         <li>
           <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
@@ -82,9 +84,6 @@ const BurgerMenuAuth = (props) => (
             Admin
           </Link>
         </li>
-        <li>
-          <SignOutButton />
-        </li>
       </ul>
     </BurgerMenuContent>
   </BurgerMenuContainer>
@@ -94,7 +93,7 @@ const BurgerMenuNonAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
       <ButtonContainer>
-        <ButtonRound2 text="X" onClick={() => props.toggleBurger()} />
+        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
       </ButtonContainer>{" "}
       <ul>
         <li>

@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import {
   ButtonGreen,
-  ButtonGrey,
-  ButtonRound,
+  ButtonRoundFixed,
   ButtonRoundSmall,
 } from "../misc/Button";
 import CartContext from "../Cart/context";
@@ -109,7 +108,7 @@ const MenuItemPop = (props) => {
     <Popup key={props.id}>
       <PopupContainer>
         <ButtonContainer>
-          <ButtonRound
+          <ButtonRoundFixed
             text="X"
             type="submit"
             onClick={() => props.togglePopup()}
