@@ -14,6 +14,7 @@ html {
   --darkgrey: #ccc;
   --green: #9ab54a;
   --forestgreen: #23591e;
+  --red: #c83f49;
 }
 
 body {

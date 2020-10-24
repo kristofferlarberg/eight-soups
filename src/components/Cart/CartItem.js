@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import CartContext from "./context";
+import CartContext from "./CartContext";
 import { ButtonGrey, ButtonRoundSmall } from "../misc/Button";
 
 const Container = styled.section`

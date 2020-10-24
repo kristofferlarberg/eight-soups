@@ -5,7 +5,8 @@ import {
   ButtonRoundFixed,
   ButtonRoundSmall,
 } from "../misc/Button";
-import CartContext from "../Cart/context";
+import CartContext from "../Cart/CartContext";
+import TotalContext from "../Cart/TotalContext";
 
 const Popup = styled.div`
   position: fixed;
@@ -62,6 +63,7 @@ const AddContainer = styled.section`
 // todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
   const { cart, setCart } = useContext(CartContext);
+  const { total, setTotal } = useContext(TotalContext);
 
   const thisSoup = {
     id: props.id,
@@ -70,8 +72,6 @@ const MenuItemPop = (props) => {
     cookingtime: props.cookingtime,
     amount: 1,
   };
-
-  
 
   const lessItems = (item) =>
     setCart((currentCart) => {
@@ -127,7 +127,7 @@ const MenuItemPop = (props) => {
             type="submit"
             onClick={() => lessItems(thisSoup)}
           />
-          <h2>{thisSoup.amount}</h2>
+          <h2>{total.amount}</h2>
           <ButtonRoundSmall
             text="+"
             type="submit"

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { AuthUserContext } from "../Session";
 import OnBoarding from "../OnBoarding"
 
-
 import Menu from "../Menu";
 
 const Container = styled.div`

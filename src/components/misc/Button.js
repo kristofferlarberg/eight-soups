@@ -11,7 +11,7 @@ const Green = styled.button`
 `;
 
 const Red = styled(Green)`
-  background-color: red;
+  background-color: var(--red);
 `;
 
 const Round = styled.button`

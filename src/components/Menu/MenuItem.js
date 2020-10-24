@@ -79,12 +79,7 @@ const MenuItem = (props) => {
       </FigCaption>
       {popup ? (
         <MenuItemPop
-          key={props.id}
-          name={props.name}
-          price={props.price}
-          image={props.image}
-          id={props.id}
-          cookingtime={props.cookingtime}
+          {...props}
           togglePopup={() => togglePopup()}
         />
       ) : null}
