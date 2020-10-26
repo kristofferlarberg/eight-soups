@@ -3,14 +3,16 @@ import styled from "styled-components";
 
 import SignIn from "../SignIn";
 
+
 const Section = styled.section`
   margin: 0;
   width: 100%;
-  height: 40rem;
+  height: 100vh;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("images/green.jpg") no-repeat center/100%;
 `;
 
 const OnBoarding = () => (

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import {
   ButtonGreen,
@@ -64,43 +64,33 @@ const AddContainer = styled.section`
 const MenuItemPop = (props) => {
   const { cart, setCart } = useContext(CartContext);
   const { total, setTotal } = useContext(TotalContext);
+  const [soupAmount, setSoupAmount] = useState(1);
 
   const thisSoup = {
     id: props.id,
     name: props.name,
     price: props.price,
     cookingtime: props.cookingtime,
-    amount: 1,
+    amount: soupAmount,
   };
 
-  const lessItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id === props.id)) {
-        currentCart.find((item) => item.id === props.id).amount -= 1;
-        console.log(props.amount);
-        return [...currentCart];
-      } else {
-        return [...currentCart, item];
-      }
-    });
+  const lessItems = () => {
+    if (soupAmount >= 1) {
+      setSoupAmount(soupAmount - 1);
+    } else setSoupAmount(soupAmount);
+  };
 
-  const moreItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id === props.id)) {
-        currentCart.find((item) => item.id === props.id).amount += 1;
-        return [...currentCart];
-      } else {
-        return [...currentCart, item];
-      }
-    });
+  const moreItems = () => {
+    setSoupAmount(soupAmount + 1);
+  };
 
   const addToCart = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id === props.id)) {
-        /* currentCart.find((item) => item.id === props.id).amount += 1; */
-        return [...currentCart];
+    setCart((items) => {
+      if (items.some((item) => item.id === props.id)) {
+        items.find((item) => item.id === props.id).amount += soupAmount;
+        return [...items];
       } else {
-        return [...currentCart, item];
+        return [...items, item];
       }
     });
 
@@ -125,13 +115,13 @@ const MenuItemPop = (props) => {
           <ButtonRoundSmall
             text="-"
             type="submit"
-            onClick={() => lessItems(thisSoup)}
+            onClick={() => lessItems()}
           />
-          <h2>{total.amount}</h2>
+          <h2>{soupAmount}</h2>
           <ButtonRoundSmall
             text="+"
             type="submit"
-            onClick={() => moreItems(thisSoup)}
+            onClick={() => moreItems()}
           />
           <ButtonGreen
             onClick={() => {

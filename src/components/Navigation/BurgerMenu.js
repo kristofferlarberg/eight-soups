@@ -33,7 +33,7 @@ const ButtonContainer = styled.div`
   margin: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 const BurgerMenu = (props) => (
@@ -45,7 +45,12 @@ const BurgerMenu = (props) => (
             burger={props.burger}
             toggleBurger={() => props.toggleBurger()}
           />
-        ) : null
+        ) : (
+          <BurgerMenuNonAuth
+            burger={props.burger}
+            toggleBurger={() => props.toggleBurger()}
+          />
+        )
       }
     </AuthUserContext.Consumer>
   </div>
@@ -55,10 +60,28 @@ const BurgerMenuAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
       <ButtonContainer>
+        <Link to={ROUTES.HOME} onClick={() => props.toggleBurger()}>
+          <Logo />
+        </Link>
         <ButtonRound text="X" onClick={() => props.toggleBurger()} />
       </ButtonContainer>
-      <Logo />
+
       <ul>
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Om oss
+          </Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Villkor
+          </Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Hör av dig!
+          </Link>
+        </li>
         <li>
           <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
             Account
@@ -67,6 +90,38 @@ const BurgerMenuAuth = (props) => (
         <li>
           <Link to={ROUTES.ADMIN} onClick={() => props.toggleBurger()}>
             Admin
+          </Link>
+        </li>
+      </ul>
+    </BurgerMenuContent>
+  </BurgerMenuContainer>
+);
+
+const BurgerMenuNonAuth = (props) => (
+  <BurgerMenuContainer>
+    <BurgerMenuContent>
+      <ButtonContainer>
+        <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
+          <Logo />
+        </Link>
+
+        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
+      </ButtonContainer>
+      <ul>
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Om oss
+          </Link>
+        </li>
+
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Villkor
+          </Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
+            Hör av dig!
           </Link>
         </li>
       </ul>

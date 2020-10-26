@@ -8,20 +8,26 @@ import clock from "./clock.svg";
 
 const Figure = styled.figure`
   margin: 0 0 var(--lineheight) 0;
-  padding: var(--leftright);
   width: 100%;
   height: 50rem;
   box-sizing: border-box;
   background: url(${(props) => props.image}) no-repeat center/100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const FigCaption = styled.figcaption`
   margin: 0;
+  padding: var(--halfspace);
   width: 100%;
-  height: 100%;
+  height: auto;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background-color: rgb(255, 255, 255, 0.5);
 `;
 
 const Text = styled.div`
@@ -33,7 +39,7 @@ const Time = styled(Text)`
   display: flex;
   justify-content: right;
   align-items: center;
-  justify-self: flex-start; 
+  justify-self: flex-start;
   height: auto;
 `;
 
@@ -75,13 +81,11 @@ const MenuItem = (props) => {
           <p>{props.description}</p>
           <h2>{props.price}kr</h2>
         </Text>
-        <ButtonGreen onClick={togglePopup} text="Läs mer" />
+        <ButtonGreen onClick={togglePopup} text="Välj" />
       </FigCaption>
+
       {popup ? (
-        <MenuItemPop
-          {...props}
-          togglePopup={() => togglePopup()}
-        />
+        <MenuItemPop {...props} togglePopup={() => togglePopup()} />
       ) : null}
     </Figure>
   );

@@ -14,7 +14,7 @@ const withAuthorization = (condition) => (Component) => {
     useEffect(() => {
       const listener = firebase.auth.onAuthStateChanged((authUser) => {
         if (!condition(authUser)) {
-          history.push(ROUTES.SIGN_IN);
+          history.push(ROUTES.LANDING);
         }
       });
     }, [firebase]);

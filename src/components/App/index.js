@@ -19,7 +19,7 @@ import * as ROUTES from "../../constants/routes";
 import { withAuthentication } from "../Session";
 
 const Main = styled.main`
-  margin: 15rem 0;
+  margin: 10rem 0 0 0;
   width: auto;
   box-sizing: border-box;
 `;

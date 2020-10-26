@@ -6,19 +6,18 @@ import BurgerMenu from "./BurgerMenu";
 import SignOutButton from "../SignOut";
 import HamburgerIcon from "./HamburgerIcon";
 import SoupIcon from "./SoupIcon";
-import Logo from "./Logo"
+import Bowl from "./Bowl";
 import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
 import Hamburger from "./HamburgerIcon";
 
-//Animera till mindre format efter scroll
 const Nav = styled.nav`
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  height: 15rem;
+  height: 10rem;
   margin: 0;
   display: flex;
   align-items: center;
@@ -65,16 +64,23 @@ const NavigationAuth = (props) => {
       ) : null}
       <Nav>
         <Hamburger onClick={() => props.toggleBurger()} />
-       <Logo/>
+        <Bowl />
       </Nav>
     </>
   );
 };
 
-const NavigationNonAuth = () => (
+const NavigationNonAuth = (props) => (
   <>
+    {props.burger ? (
+      <BurgerMenu
+        burger={props.burger}
+        toggleBurger={() => props.toggleBurger()}
+      />
+    ) : null}
     <Nav>
-      <Logo />
+      <Hamburger onClick={() => props.toggleBurger()} />
+      <Bowl />
     </Nav>
   </>
 );
