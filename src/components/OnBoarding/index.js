@@ -59,7 +59,7 @@ const OnBoarding = () => {
       <StyledForm onSubmit={handleSubmit}>
         <StyledInput
           type="text"
-          value={customerAddress}
+          name={customerAddress}
           placeholder="Skriv in din adress"
           onChange={handleInputChange}
         />

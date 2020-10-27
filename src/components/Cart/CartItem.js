@@ -29,6 +29,11 @@ const CartItem = (props) => {
       }
     });
 
+/* //få in detta ovanför
+  if (soupAmount >= 1) {
+    setSoupAmount(soupAmount - 1);
+  } else setSoupAmount(soupAmount); */
+
   const moreItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
@@ -42,10 +47,22 @@ const CartItem = (props) => {
   return (
     <Container>
       {`(${props.amount} x ${props.price}kr) ${props.name}`}
+
       <Buttons>
-        <ButtonRoundSmall text="-" type="submit" onClick={() => lessItems(props)} />
-        <ButtonRoundSmall text="+" type="submit" onClick={() => moreItems(props)} />
+        <ButtonRoundSmall
+          text="-"
+          type="submit"
+          onClick={() => lessItems(props)}
+        />
+        <ButtonRoundSmall
+          text="+"
+          type="submit"
+          onClick={() => moreItems(props)}
+        />
       </Buttons>
+      <div>
+        {props.extra[0]}, {props.extra[1]}
+      </div>
     </Container>
   );
 };

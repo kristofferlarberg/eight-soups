@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import MenuItem from "./MenuItem";
-import { withAuthorization } from "../Session";
 
 const Menu = ({ menu }) => {
   return (
@@ -10,6 +9,4 @@ const Menu = ({ menu }) => {
   );
 };
 
-const condition = (authUser) => !!authUser;
-
-export default withAuthorization(condition)(Menu);
+export default Menu;

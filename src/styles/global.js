@@ -12,14 +12,14 @@ html {
   --leftright: calc(var(--lineheight) * 1.5);
   --grey: #e8e8e8;
   --darkgrey: #ccc;
-  --green: #9ab54a;
+  --green: #46b03c;
   --forestgreen: #23591e;
   --red: #d92e3a;
 }
 
 body {
   margin: 0;
-  background-color: white;
+  background-color: var(--grey);
   font-family: var(--font-family);
 }
 

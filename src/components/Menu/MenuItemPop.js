@@ -65,6 +65,15 @@ const MenuItemPop = (props) => {
   const { cart, setCart } = useContext(CartContext);
   const { total, setTotal } = useContext(TotalContext);
   const [soupAmount, setSoupAmount] = useState(1);
+  const [bread, setBread] = useState("Inget bröd");
+  const [beverage, setBeverage] = useState("Ingen dryck");
+  const [breadAmount, setBreadAmount] = useState(0);
+  const [beverageAmount, setBeverageAmount] = useState(0);
+
+  console.log(bread);
+  console.log(beverage);
+
+  const limit = 1;
 
   const thisSoup = {
     id: props.id,
@@ -72,6 +81,7 @@ const MenuItemPop = (props) => {
     price: props.price,
     cookingtime: props.cookingtime,
     amount: soupAmount,
+    extra: [bread, beverage],
   };
 
   const lessItems = () => {
@@ -94,6 +104,36 @@ const MenuItemPop = (props) => {
       }
     });
 
+  const breadSelection = (e) => {
+    if (e.target.checked) {
+      if (breadAmount < limit) {
+        setBreadAmount(1);
+        setBread(e.target.name);
+      } else {
+        e.preventDefault();
+        e.currentTarget.checked = false;
+      }
+    } else {
+      setBreadAmount(0);
+      setBread("Inget bröd");
+    }
+  };
+
+  const beverageSelection = (e) => {
+    if (e.target.checked) {
+      if (beverageAmount < limit) {
+        setBeverageAmount(1);
+        setBeverage(e.target.name);
+      } else {
+        e.preventDefault();
+        e.currentTarget.checked = false;
+      }
+    } else {
+      setBeverageAmount(0);
+      setBeverage("Ingen dryck");
+    }
+  };
+
   return (
     <Popup key={props.id}>
       <PopupContainer>
@@ -111,6 +151,42 @@ const MenuItemPop = (props) => {
           <h2>{props.name}</h2>
           <h2>{props.price}kr</h2>
         </TextContainer>
+        <label>
+          <input type="checkbox" onChange={breadSelection} name="Surdegsbröd" />
+          Surdegsbröd
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={breadSelection}
+            name="Fullkornsbröd"
+          />
+          Fullkornsbröd
+        </label>
+        <label>
+          <input type="checkbox" onChange={breadSelection} name="Focaccia" />
+          Focaccia
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={beverageSelection}
+            name="San Pellegrino"
+          />
+          San Pellegrino
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={beverageSelection}
+            name="Ubuntu Cola"
+          />
+          Ubuntu Cola
+        </label>
+        <label>
+          <input type="checkbox" onChange={beverageSelection} name="Te" />
+          Te
+        </label>
         <AddContainer>
           <ButtonRoundSmall
             text="-"

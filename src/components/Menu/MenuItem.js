@@ -7,7 +7,7 @@ import { ButtonGreen } from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0 0 var(--lineheight) 0;
+  margin: 0 0 var(--halfspace) 0;
   width: 100%;
   height: 50rem;
   box-sizing: border-box;
@@ -20,7 +20,7 @@ const Figure = styled.figure`
 
 const FigCaption = styled.figcaption`
   margin: 0;
-  padding: var(--halfspace);
+  padding: var(--halfspace) var(--halfspace) var(--lineheight) var(--halfspace);
   width: 100%;
   height: auto;
   box-sizing: border-box;
