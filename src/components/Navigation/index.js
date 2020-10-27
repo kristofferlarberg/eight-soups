@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import BurgerMenu from "./BurgerMenu";
-import SignOutButton from "../SignOut";
-import HamburgerIcon from "./HamburgerIcon";
-import SoupIcon from "./SoupIcon";
+import LogoText from "./LogoText";
 import Bowl from "./Bowl";
+import Hamburger from "./HamburgerIcon";
 import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
-import Hamburger from "./HamburgerIcon";
 
 const Nav = styled.nav`
   position: fixed;
@@ -64,6 +62,9 @@ const NavigationAuth = (props) => {
       ) : null}
       <Nav>
         <Hamburger onClick={() => props.toggleBurger()} />
+        <Link to={ROUTES.HOME}>
+          <LogoText />
+        </Link>
         <Bowl />
       </Nav>
     </>
@@ -80,6 +81,9 @@ const NavigationNonAuth = (props) => (
     ) : null}
     <Nav>
       <Hamburger onClick={() => props.toggleBurger()} />
+      <Link to={ROUTES.HOME}>
+        <LogoText />
+      </Link>
       <Bowl />
     </Nav>
   </>

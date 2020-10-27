@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const LogoStyle = styled.svg`
   fill: var(--forestgreen);
-  width: 150px;
+  width: 100px;
   height: auto;
   margin: 0;
 `;
