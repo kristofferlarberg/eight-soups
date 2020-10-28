@@ -22,6 +22,7 @@ const Popup = styled.div`
 
 const PopupContainer = styled.div`
   margin: var(--topbottom) var(--leftright);
+  padding-bottom: var(--lineheight); 
   background-color: white;
   overflow: auto;
 `;
@@ -40,10 +41,36 @@ const Image = styled.img`
   box-sizing: border-box;
 `;
 
-const TextContainer = styled.section`
-  margin: var(--halfspace);
+const Header = styled.header`
+  padding: var(--lineheight) var(--leftright);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const HeadText = styled.h2`
+  margin: 0;
+`;
+
+const Price = styled.h3`
+  margin: 0 var(--halfspace);
+  color: var(--darkgrey);
+`;
+
+const Subheader = styled(Header)`
+  padding: var(--halfspace) var(--leftright);
+  background-color: var(--grey);
+  color: var(--darkgrey);
+`;
+
+const SubheadText = styled.h3`
+  margin: 0;
+`;
+
+const Selection = styled.section`
+  padding: var(--lineheight) var(--leftright);
+  display: flex;
+  flex-direction: column;
 `;
 
 const ButtonContainer = styled.div`
@@ -57,7 +84,15 @@ const AddContainer = styled.section`
   margin: var(--halfspace) var(--leftright);
   height: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+`;
+
+const AmountContainer = styled.div`
+  margin: 0 var(--leftright) 0 0;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 `;
 
 // todo: om tid finnes, destructura
@@ -139,7 +174,7 @@ const MenuItemPop = (props) => {
       <PopupContainer>
         <ButtonContainer>
           <ButtonRoundFixed
-            text="X"
+            text="x"
             type="submit"
             onClick={() => props.togglePopup()}
           />
@@ -147,58 +182,74 @@ const MenuItemPop = (props) => {
         <ImageContainer>
           <Image src={props.image} alt="Soup Image" />
         </ImageContainer>
-        <TextContainer>
-          <h2>{props.name}</h2>
-          <h2>{props.price}kr</h2>
-        </TextContainer>
-        <label>
-          <input type="checkbox" onChange={breadSelection} name="Surdegsbröd" />
-          Surdegsbröd
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            onChange={breadSelection}
-            name="Fullkornsbröd"
-          />
-          Fullkornsbröd
-        </label>
-        <label>
-          <input type="checkbox" onChange={breadSelection} name="Focaccia" />
-          Focaccia
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            onChange={beverageSelection}
-            name="San Pellegrino"
-          />
-          San Pellegrino
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            onChange={beverageSelection}
-            name="Ubuntu Cola"
-          />
-          Ubuntu Cola
-        </label>
-        <label>
-          <input type="checkbox" onChange={beverageSelection} name="Te" />
-          Te
-        </label>
+        <Header>
+          <HeadText>{props.name}</HeadText>
+          <Price>{props.price}kr</Price>
+        </Header>
+        <Subheader>
+          <SubheadText>Välj bröd</SubheadText>
+        </Subheader>
+        <Selection>
+          <label>
+            <input
+              type="checkbox"
+              onChange={breadSelection}
+              name="Surdegsbröd"
+            />
+            Surdegsbröd
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={breadSelection}
+              name="Fullkornsbröd"
+            />
+            Fullkornsbröd
+          </label>
+          <label>
+            <input type="checkbox" onChange={breadSelection} name="Focaccia" />
+            Focaccia
+          </label>
+        </Selection>
+        <Subheader>
+          <SubheadText>Välj dryck</SubheadText>
+        </Subheader>
+        <Selection>
+          <label>
+            <input
+              type="checkbox"
+              onChange={beverageSelection}
+              name="San Pellegrino"
+            />
+            San Pellegrino
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              onChange={beverageSelection}
+              name="Ubuntu Cola"
+            />
+            Ubuntu Cola
+          </label>
+          <label>
+            <input type="checkbox" onChange={beverageSelection} name="Te" />
+            Te
+          </label>
+        </Selection>
         <AddContainer>
-          <ButtonRoundSmall
-            text="-"
-            type="submit"
-            onClick={() => lessItems()}
-          />
-          <h2>{soupAmount}</h2>
-          <ButtonRoundSmall
-            text="+"
-            type="submit"
-            onClick={() => moreItems()}
-          />
+          <AmountContainer>
+            <ButtonRoundSmall
+              text="-"
+              type="submit"
+              onClick={() => lessItems()}
+            />
+            <Price>{soupAmount}</Price>
+            <ButtonRoundSmall
+              text="+"
+              type="submit"
+              onClick={() => moreItems()}
+            />
+          </AmountContainer>
           <ButtonGreen
             onClick={() => {
               addToCart(thisSoup);

@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ButtonRound } from "../misc/Button";
+import { ButtonRound, ButtonRoundWide } from "../misc/Button";
 import Logo from "./Logo";
+import SignOutButton from "../SignOut";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -63,7 +64,7 @@ const BurgerMenuAuth = (props) => (
         <Link to={ROUTES.HOME} onClick={() => props.toggleBurger()}>
           <Logo />
         </Link>
-        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
+        <ButtonRound text="x" onClick={() => props.toggleBurger()} />
       </ButtonContainer>
 
       <ul>
@@ -92,6 +93,9 @@ const BurgerMenuAuth = (props) => (
             Admin
           </Link>
         </li>
+        <li>
+          <SignOutButton />
+        </li>
       </ul>
     </BurgerMenuContent>
   </BurgerMenuContainer>
@@ -105,7 +109,7 @@ const BurgerMenuNonAuth = (props) => (
           <Logo />
         </Link>
 
-        <ButtonRound text="X" onClick={() => props.toggleBurger()} />
+        <ButtonRound text="x" onClick={() => props.toggleBurger()} />
       </ButtonContainer>
       <ul>
         <li>
@@ -113,7 +117,6 @@ const BurgerMenuNonAuth = (props) => (
             Om oss
           </Link>
         </li>
-
         <li>
           <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
             Villkor
@@ -122,6 +125,11 @@ const BurgerMenuNonAuth = (props) => (
         <li>
           <Link to={ROUTES.ACCOUNT} onClick={() => props.toggleBurger()}>
             Hör av dig!
+          </Link>
+        </li>
+        <li>
+          <Link to={ROUTES.SIGN_IN} onClick={() => props.toggleBurger()}>
+            <ButtonRoundWide text="Logga in"/>
           </Link>
         </li>
       </ul>

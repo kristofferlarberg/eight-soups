@@ -3,7 +3,6 @@ import React from "react";
 import { PasswordForgetForm } from "../PasswordForget";
 import PasswordChangeForm from "../PasswordChange";
 import { AuthUserContext, withAuthorization } from "../Session";
-import SignOutButton from "../SignOut";
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
@@ -11,7 +10,6 @@ const AccountPage = () => (
       <div>
         <h1>Account: {authUser.email}</h1> <PasswordForgetForm />
         <PasswordChangeForm />
-        <SignOutButton />
       </div>
     )}
   </AuthUserContext.Consumer>

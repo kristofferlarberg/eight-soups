@@ -30,32 +30,38 @@ const FigCaption = styled.figcaption`
   background-color: rgb(255, 255, 255, 0.5);
 `;
 
-const Text = styled.div`
+const FigCaptionTitleContainer = styled.section`
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: auto;
 `;
 
-const Time = styled(Text)`
+const FigCaptionTitleFlex = styled.div`
+  margin: 0;
   display: flex;
-  justify-content: right;
   align-items: center;
   justify-self: flex-start;
   height: auto;
 `;
 
-const TimeText = styled.h3`
+const Heading = styled.h1`
+  margin: var(--lineheight) 0 var(--lineheight) 0;
+`;
+
+const Description = styled.p`
   margin: 0;
+`;
+
+const ClockText = styled.h3`
+  margin: 0.2rem 0 0 0;
 `;
 
 const Clock = styled.img`
   margin: 0 0.5rem 0 0;
   width: 20px;
   height: 20px;
-`;
-
-const Title = styled(Text)`
-  display: flex;
-  justify-content: left;
 `;
 
 const MenuItem = (props) => {
@@ -67,21 +73,21 @@ const MenuItem = (props) => {
 
   return (
     <Figure key={props.id} image={props.image}>
-      <Time>
-        <Clock src={clock} alt="Klocka" />
-        <TimeText>{props.cookingtime} min</TimeText>
-      </Time>
       <FigCaption>
-        <Title>
-          <h1>{props.name}</h1>
-          {props.gluten ? <Gluten /> : null}
-          {props.lactose ? <Lactose /> : null}
-        </Title>
-        <Text>
-          <p>{props.description}</p>
-          <h2>{props.price}kr</h2>
-        </Text>
-        <ButtonGreen onClick={togglePopup} text="Välj" />
+        <FigCaptionTitleContainer>
+          <FigCaptionTitleFlex>
+            <Heading>{props.name}</Heading>
+            {props.gluten ? <Gluten /> : null}
+            {props.lactose ? <Lactose /> : null}
+          </FigCaptionTitleFlex>
+          <FigCaptionTitleFlex>
+            <Clock src={clock} alt="Klocka" />
+            <ClockText>{props.cookingtime} min</ClockText>
+          </FigCaptionTitleFlex>
+        </FigCaptionTitleContainer>
+        <Description>{props.description}</Description>
+        <h3>{props.price}kr</h3>
+        <ButtonGreen onClick={togglePopup} text="Lägg till" />
       </FigCaption>
 
       {popup ? (

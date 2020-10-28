@@ -14,10 +14,11 @@ const Container = styled.section`
 
 const Buttons = styled.div`
   margin-left: var(--lineheight);
+  display: flex;
 `;
 
 const CartItem = (props) => {
-  const { setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const lessItems = (item) =>
     setCart((currentCart) => {

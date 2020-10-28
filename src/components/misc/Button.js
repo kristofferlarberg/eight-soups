@@ -8,10 +8,12 @@ const Green = styled.button`
   background-color: var(--green);
   color: white;
   border: 0;
+  font-size: var(--default);
 `;
 
 const Red = styled(Green)`
   background-color: var(--red);
+  font-size: var(--default);
 `;
 
 const Round = styled.button`
@@ -22,8 +24,14 @@ const Round = styled.button`
   background-color: white;
   border-radius: 30px;
   color: black;
-  padding: 0;
+  padding: 0.9rem 1rem 1rem 1rem;
   margin: var(--halfspace);
+  font-size: var(--default);
+`;
+
+const RoundWide = styled(Round)`
+  width: auto;
+  margin: var(--lineheight) 0 0 0;
 `;
 
 const RoundFixed = styled(Round)`
@@ -34,9 +42,12 @@ const RoundSmall = styled(Round)`
   ${ButtonTemplate}
   height: 30px;
   width: 30px;
+  padding: 0.9rem 1rem 1rem 1rem;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: var(--default);
 `;
 
 export const ButtonGreen = (props) => {
@@ -49,6 +60,10 @@ export const ButtonRed = (props) => {
 
 export const ButtonRound = (props) => {
   return <Round onClick={props.onClick}>{props.text}</Round>;
+};
+
+export const ButtonRoundWide = (props) => {
+  return <RoundWide onClick={props.onClick}>{props.text}</RoundWide>;
 };
 
 export const ButtonRoundFixed = (props) => {

@@ -6,7 +6,7 @@ import lactose from "./lactose.svg";
 const Icon = styled.img`
   width: 35px;
   height: 35px;
-  margin: 1.5rem 0 0 1.5rem;
+  margin: -0.5rem 0 0 1.5rem;
 `;
 
 export const Gluten = () => <Icon src={gluten} alt="Glutenfri" />;
