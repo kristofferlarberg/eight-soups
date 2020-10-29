@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import BurgerMenu from "./BurgerMenu";
 import LogoText from "./LogoText";
+import Logo from "./Logo";
 import Bowl from "./Bowl";
 import Hamburger from "./HamburgerIcon";
 import * as ROUTES from "../../constants/routes";
-
-import { AuthUserContext } from "../Session";
+import { AddressContext } from "../OnBoarding";
 
 const Nav = styled.nav`
   position: fixed;
@@ -20,38 +20,40 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--grey);
+  background-color: ${(address) => address === true? "var(--grey)" : "transparent"};
+`;
+
+const LogoContainer = styled.div`
+  height: 10rem;
+  padding: 5rem 2rem 2rem 2rem;
 `;
 
 const Navigation = () => {
   const [burger, setBurger] = useState(false);
+  const {address} = useContext(AddressContext);
 
   const toggleBurger = () => {
     setBurger(!burger);
   };
 
   return (
-    <div>
-      <AuthUserContext.Consumer>
-        {(authUser) =>
-          authUser ? (
-            <NavigationAuth
-              burger={burger}
-              toggleBurger={() => toggleBurger()}
-            />
-          ) : (
-            <NavigationNonAuth
-              burger={burger}
-              toggleBurger={() => toggleBurger()}
-            />
-          )
-        }
-      </AuthUserContext.Consumer>
-    </div>
+    <>
+      {address ? (
+        <NavigationAddress
+          burger={burger}
+          toggleBurger={() => toggleBurger()}
+        />
+      ) : (
+        <NavigationNoAddress
+          burger={burger}
+          toggleBurger={() => toggleBurger()}
+        />
+      )}
+    </>
   );
 };
 
-const NavigationAuth = (props) => {
+const NavigationAddress = (props) => {
   return (
     <>
       {props.burger ? (
@@ -71,7 +73,7 @@ const NavigationAuth = (props) => {
   );
 };
 
-const NavigationNonAuth = (props) => (
+const NavigationNoAddress = (props) => (
   <>
     {props.burger ? (
       <BurgerMenu
@@ -79,12 +81,12 @@ const NavigationNonAuth = (props) => (
         toggleBurger={() => props.toggleBurger()}
       />
     ) : null}
+
     <Nav>
       <Hamburger onClick={() => props.toggleBurger()} />
-      <Link to={ROUTES.HOME}>
-        <LogoText />
-      </Link>
-      <Bowl />
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
     </Nav>
   </>
 );

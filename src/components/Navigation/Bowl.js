@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext  } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 import SoupIcon from "./SoupIcon";
 import * as ROUTES from "../../constants/routes";
-import CartContext from "../Cart/CartContext";
-import TotalContext from "../Cart/TotalContext";
+import { TotalContext } from "../Cart/context";
 
 const BowlContainer = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ const BowlContainer = styled.div`
 const bounce = keyframes`
   0%   { transform: scale(1,1)      translateY(0); }
   10%  { transform: scale(1.1,.9)   translateY(0); }
-  30%  { transform: scale(.9,1.1)   translateY(-100px); }
+  30%  { transform: scale(.9,1.1)   translateY(-20px); }
   50%  { transform: scale(1.05,.95) translateY(0); }
   57%  { transform: scale(1,1)      translateY(-7px); }
   64%  { transform: scale(1,1)      translateY(0); }
@@ -24,7 +23,7 @@ const bounce = keyframes`
 
 const AmountContainer = styled.div`
   position: fixed;
-  top: 6.7rem;
+  top: 4.2rem;
   right: 4rem;
   width: 25px;
   height: 25px;
@@ -34,7 +33,7 @@ const AmountContainer = styled.div`
   align-items: center;
 `;
 
-const Amount = styled.h2`
+const Amount = styled.h3`
   margin: 0;
   color: var(--red);
   text-align: center;
@@ -46,10 +45,8 @@ const Amount = styled.h2`
   transform-origin: bottom;
 `;
 
-const Bowl = (props) => {
-  const { cart, setCart } = useContext(CartContext);
-  const { total, setTotal } = useContext(TotalContext);
-  const [bounceAmount, setBounceAmount] = useState(false);
+const Bowl = () => {
+  const { total } = useContext(TotalContext);
 
   return (
     <BowlContainer>

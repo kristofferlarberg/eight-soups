@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import TotalContext from "./TotalContext";
-import CartContext from "./CartContext";
+import {CartContext, TotalContext} from "./context";
 import CartItem from "./CartItem";
-import { ButtonRed, ButtonRoundSmall } from "../misc/Button";
+import { ButtonRoundSmall } from "../misc/Button";
 
 import * as ROUTES from "../../constants/routes";
-
-import { withAuthorization } from "../Session";
 
 const Popup = styled.div`
   position: fixed;
@@ -30,14 +27,14 @@ const PopupContainer = styled.div`
   overflow: auto;
 `;
 
-const Header = styled.header`
+/* const Header = styled.header`
   padding: var(--lineheight) var(--leftright);
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`; */
 
-const HeadText = styled.h2`
+/* const HeadText = styled.h2`
   margin: 0;
 `;
 
@@ -75,18 +72,12 @@ const AddContainer = styled.section`
   display: flex;
   justify-content: space-between;
 `;
+ */
 
-const AmountContainer = styled.div`
-  margin: 0 var(--leftright) 0 0;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-`;
 
 const Cart = (props) => {
   const { cart, setCart } = useContext(CartContext);
-  const { total, setTotal } = useContext(TotalContext);
+  const { total } = useContext(TotalContext);
 
   return (
     <Popup key={props.id}>

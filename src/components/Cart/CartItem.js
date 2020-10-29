@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import CartContext from "./CartContext";
-import { ButtonGrey, ButtonRoundSmall } from "../misc/Button";
+import { CartContext } from "./context";
+
+import { ButtonRoundSmall } from "../misc/Button";
 
 const Container = styled.section`
   width: 100%;
@@ -18,7 +19,7 @@ const Buttons = styled.div`
 `;
 
 const CartItem = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const { setCart } = useContext(CartContext);
 
   const lessItems = (item) =>
     setCart((currentCart) => {

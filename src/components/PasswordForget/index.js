@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { withFirebase } from "../Firebase";
+import { MainTemplate } from "../../styles/templates";
+
 import * as ROUTES from "../../constants/routes";
+
+const Main = styled.main`
+  ${MainTemplate}
+`;
 
 const PasswordForgetPage = () => (
   <div>
@@ -43,20 +50,22 @@ const PasswordForgetFormBase = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="email"
-        value={input.email}
-        onChange={onChange}
-        type="text"
-        placeholder="Email Address"
-      />
-      <button disabled={isInvalid} type="submit">
-        Reset My Password
-      </button>
+    <Main>
+      <form onSubmit={onSubmit}>
+        <input
+          name="email"
+          value={input.email}
+          onChange={onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <button disabled={isInvalid} type="submit">
+          Reset My Password
+        </button>
 
-      {error && <p>{error.message}</p>}
-    </form>
+        {error && <p>{error.message}</p>}
+      </form>
+    </Main>
   );
 };
 

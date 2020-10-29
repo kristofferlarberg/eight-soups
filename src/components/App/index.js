@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import styled from "styled-components";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import Navigation from "../Navigation";
 import LandingPage from "../Landing";
@@ -12,22 +11,18 @@ import AccountPage from "../Account";
 import AdminPage from "../Admin";
 import Cart, { CartContext, TotalContext } from "../Cart";
 import { menuData } from "../../data/menuData";
-
+import { withAuthentication } from "../Session";
+import { AddressContext } from "../OnBoarding";
 import { GlobalStyle } from "../../styles/global";
 
 import * as ROUTES from "../../constants/routes";
-import { withAuthentication } from "../Session";
 
-const Main = styled.main`
-  margin: 10rem 0 0 0;
-  width: auto;
-  box-sizing: border-box;
-`;
 
 const App = () => {
   const [menu] = useState(menuData);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState([]);
+  const [address, setAddress] = useState(null);
 
   console.log("---------------------------------");
   console.log("CART STATE");
@@ -35,13 +30,13 @@ const App = () => {
   console.log("---------------------------------");
 
   console.log("---------------------------------");
-  console.log("MENU STATE");
-  console.log(menu);
+  console.log("TOTAL STATE");
+  console.log(total);
   console.log("---------------------------------");
 
   console.log("---------------------------------");
-  console.log("TOTAL STATE");
-  console.log(total);
+  console.log("ADDRESS STATE");
+  console.log(address);
   console.log("---------------------------------");
 
   useEffect(() => {
@@ -56,30 +51,35 @@ const App = () => {
     });
   }, [cart]);
 
+  useEffect(() => {
+    setAddress(() => {
+      let address = JSON.parse(localStorage.getItem("customerAddress"));
+      return address;
+    });
+  }, []);
+
   return (
-    <>
-      <GlobalStyle />
+    <AddressContext.Provider value={{ address }}>
       <CartContext.Provider value={{ cart, setCart }}>
         <TotalContext.Provider value={{ total, setTotal }}>
+          <GlobalStyle />
           <Router>
             <Navigation />
-            <Main>
-              <Route exact path={ROUTES.LANDING} component={LandingPage} />
-              <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-              <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-              <Route
-                path={ROUTES.PASSWORD_FORGET}
-                component={PasswordForgetPage}
-              />
-              <Route path={ROUTES.HOME} render={() => <Menu menu={menu} />} />
-              <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-              <Route path={ROUTES.ADMIN} component={AdminPage} />
-              <Route path={ROUTES.CART} component={Cart} />
-            </Main>
+            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+            <Route
+              path={ROUTES.PASSWORD_FORGET}
+              component={PasswordForgetPage}
+            />
+            <Route path={ROUTES.HOME} render={() => <Menu menu={menu} />} />
+            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+            <Route path={ROUTES.ADMIN} component={AdminPage} />
+            <Route path={ROUTES.CART} component={Cart} />
           </Router>
         </TotalContext.Provider>
       </CartContext.Provider>
-    </>
+    </AddressContext.Provider>
   );
 };
 

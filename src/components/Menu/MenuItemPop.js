@@ -5,8 +5,7 @@ import {
   ButtonRoundFixed,
   ButtonRoundSmall,
 } from "../misc/Button";
-import CartContext from "../Cart/CartContext";
-import TotalContext from "../Cart/TotalContext";
+import { CartContext } from "../Cart/context";
 
 const Popup = styled.div`
   position: fixed;
@@ -97,16 +96,12 @@ const AmountContainer = styled.div`
 
 // todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
-  const { cart, setCart } = useContext(CartContext);
-  const { total, setTotal } = useContext(TotalContext);
+  const { setCart } = useContext(CartContext);
   const [soupAmount, setSoupAmount] = useState(1);
   const [bread, setBread] = useState("Inget bröd");
   const [beverage, setBeverage] = useState("Ingen dryck");
   const [breadAmount, setBreadAmount] = useState(0);
   const [beverageAmount, setBeverageAmount] = useState(0);
-
-  console.log(bread);
-  console.log(beverage);
 
   const limit = 1;
 

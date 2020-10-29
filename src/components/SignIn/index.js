@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import { compose } from "recompose";
+import styled from "styled-components";
 
 import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
+import { MainTemplate } from "../../styles/templates";
+
 import * as ROUTES from "../../constants/routes";
 
+const Main = styled.main`
+  ${MainTemplate}
+`;
+
 const SignInPage = () => (
-  <div>
+  <Main>
     <h1>SignIn</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
-  </div>
+  </Main>
 );
 
 const INITIAL_STATE = {

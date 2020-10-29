@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { compose } from "recompose";
+import styled from "styled-components";
 
 import { withFirebase } from "../Firebase";
+import { MainTemplate } from "../../styles/templates";
+
 import * as ROUTES from "../../constants/routes";
 
+const Main = styled.main`
+  ${MainTemplate}
+`;
+
 const SignUpPage = () => (
-  <div>
+  <Main>
     <h1>SignUp</h1>
     <SignUpForm />
-  </div>
+  </Main>
 );
 
 const INITIAL_STATE = {

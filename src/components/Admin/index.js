@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import { withFirebase } from "../Firebase";
 import { withAuthorization } from "../Session";
+import { MainTemplate } from "../../styles/templates";
 
+const Main = styled.main`
+  ${MainTemplate}
+`;
 
 class AdminPage extends Component {
   constructor(props) {
@@ -40,13 +45,13 @@ class AdminPage extends Component {
         const { users, loading } = this.state;
 
     return (
-      <div>
+      <Main>
         <h1>Admin</h1>
 
         {loading && <div>Loading ...</div>}
 
         <UserList users={users} />
-      </div>
+      </Main>
     );
   }
 }

@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import { withFirebase } from "../Firebase";
+import { MainTemplate } from "../../styles/templates";
+
+const Main = styled.main`
+  ${MainTemplate}
+`;
 
 const INITIAL_STATE = {
   passwordOne: "",
@@ -35,6 +41,7 @@ const PasswordChangeForm = (props) => {
   };
 
   return (
+    <Main>
     <form onSubmit={onSubmit}>
       <input
         name="passwordOne"
@@ -56,6 +63,7 @@ const PasswordChangeForm = (props) => {
 
       {error && <p>{error.message}</p>}
     </form>
+    </Main>
   );
 };
 

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { MainTemplate } from "../../styles/templates";
 
 import * as ROUTES from "../../constants/routes";
 
+import { AddressContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
+
+const Main = styled.main`
+  ${MainTemplate}
+`;
 
 const Section = styled.section`
   margin: 0;
@@ -38,8 +44,10 @@ const StyledInput = styled.input`
 const OnBoarding = () => {
   const [customerAddress, setCustomerAddress] = useLocalStorage(
     "customerAddress",
-    ""
+    null
   );
+
+  console.log(customerAddress)
 
   const history = useHistory();
 
@@ -55,17 +63,19 @@ const OnBoarding = () => {
   };
 
   return (
-    <Section>
-      <StyledForm onSubmit={handleSubmit}>
-        <StyledInput
-          type="text"
-          name={customerAddress}
-          placeholder="Skriv in din adress"
-          onChange={handleInputChange}
-        />
-        <ButtonGreen text="Fortsätt" type="submit" />
-      </StyledForm>
-    </Section>
+    <Main>
+      <Section>
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledInput
+            type="text"
+            name={customerAddress}
+            placeholder="Skriv in din adress"
+            onChange={handleInputChange}
+          />
+          <ButtonGreen text="Fortsätt" type="submit" />
+        </StyledForm>
+      </Section>
+    </Main>
   );
 };
 
@@ -123,3 +133,5 @@ function useLocalStorage(key, initialValue) {
 }
 
 export default OnBoarding;
+
+export { AddressContext };

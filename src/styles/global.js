@@ -45,7 +45,7 @@ h3 {
   font-weight: 700;
 }
 
-h3 {
+h4 {
   font-size: var(--xsmall);
   font-weight: 700;
 }
