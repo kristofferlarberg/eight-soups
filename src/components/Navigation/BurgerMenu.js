@@ -105,7 +105,7 @@ const BurgerMenuNonAuth = (props) => (
   <BurgerMenuContainer>
     <BurgerMenuContent>
       <ButtonContainer>
-        <Link to={ROUTES.LANDING} onClick={() => props.toggleBurger()}>
+        <Link to={ROUTES.HOME} onClick={() => props.toggleBurger()}>
           <Logo />
         </Link>
 

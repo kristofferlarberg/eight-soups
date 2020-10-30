@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
@@ -20,7 +20,7 @@ const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url("images/green.jpg") no-repeat center/100%;
+  background: url("eight-soups/images/green.jpg") no-repeat center/100%;
 `;
 
 const StyledForm = styled.form`
@@ -46,8 +46,7 @@ const OnBoarding = () => {
     "customerAddress",
     null
   );
-
-  console.log(customerAddress)
+  const { address, setAddress } = useContext(AddressContext);
 
   const history = useHistory();
 
@@ -58,8 +57,13 @@ const OnBoarding = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (customerAddress) {
-      history.push(ROUTES.HOME);
+      setAddress(() => {
+        let localStorageAddress = localStorage.getItem("customerAddress");
+        JSON.parse(localStorageAddress);
+        return localStorageAddress;
+      });
     }
+    history.push(ROUTES.HOME);
   };
 
   return (

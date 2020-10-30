@@ -67,10 +67,6 @@ export const ButtonRoundWide = (props) => {
   return <RoundWide onClick={props.onClick}>{props.text}</RoundWide>;
 };
 
-export const ButtonRoundFixed = (props) => {
-  return <RoundFixed onClick={props.onClick}>{props.text}</RoundFixed>;
-};
-
 export const ButtonRoundSmall = (props) => {
   return <RoundSmall onClick={props.onClick}>{props.text}</RoundSmall>;
 };

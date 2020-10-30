@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 import BurgerMenu from "./BurgerMenu";
 import LogoText from "./LogoText";
@@ -20,7 +20,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${(address) => address === true? "var(--grey)" : "transparent"};
+  background-color: ${address => address ? "var(--grey)" : "transparent"};
 `;
 
 const LogoContainer = styled.div`
@@ -30,7 +30,9 @@ const LogoContainer = styled.div`
 
 const Navigation = () => {
   const [burger, setBurger] = useState(false);
-  const {address} = useContext(AddressContext);
+  const { address } = useContext(AddressContext);
+
+  console.log(address.length)
 
   const toggleBurger = () => {
     setBurger(!burger);
@@ -41,11 +43,13 @@ const Navigation = () => {
       {address ? (
         <NavigationAddress
           burger={burger}
+          address={address}
           toggleBurger={() => toggleBurger()}
         />
       ) : (
         <NavigationNoAddress
           burger={burger}
+          address={address}
           toggleBurger={() => toggleBurger()}
         />
       )}
@@ -62,7 +66,7 @@ const NavigationAddress = (props) => {
           toggleBurger={() => props.toggleBurger()}
         />
       ) : null}
-      <Nav>
+      <Nav address={props.address}>
         <Hamburger onClick={() => props.toggleBurger()} />
         <Link to={ROUTES.HOME}>
           <LogoText />
@@ -82,7 +86,7 @@ const NavigationNoAddress = (props) => (
       />
     ) : null}
 
-    <Nav>
+    <Nav address={props.address}>
       <Hamburger onClick={() => props.toggleBurger()} />
       <LogoContainer>
         <Logo />

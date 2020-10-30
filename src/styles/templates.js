@@ -7,7 +7,7 @@ export const ButtonTemplate = css`
 `;
 
 export const MainTemplate = css`
-  margin: ${(address) => (address === true ? "10rem 0 0 0" : "0")};
+  margin: ${address => address ? "10rem 0 0 0" : "0"};
   width: auto;
   box-sizing: border-box;
 `;

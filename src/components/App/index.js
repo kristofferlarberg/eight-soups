@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navigation from "../Navigation";
-import LandingPage from "../Landing";
 import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
 import PasswordForgetPage from "../PasswordForget";
-import Menu from "../Menu";
+import Home from "../Home";
 import AccountPage from "../Account";
 import AdminPage from "../Admin";
 import Cart, { CartContext, TotalContext } from "../Cart";
@@ -17,12 +16,11 @@ import { GlobalStyle } from "../../styles/global";
 
 import * as ROUTES from "../../constants/routes";
 
-
 const App = () => {
   const [menu] = useState(menuData);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState([]);
-  const [address, setAddress] = useState(null);
+  const [address, setAddress] = useState("");
 
   console.log("---------------------------------");
   console.log("CART STATE");
@@ -53,29 +51,40 @@ const App = () => {
 
   useEffect(() => {
     setAddress(() => {
-      let address = JSON.parse(localStorage.getItem("customerAddress"));
-      return address;
+      let address = localStorage.getItem("customerAddress");
+      if (address) {
+        JSON.parse(address);
+        return address;
+      } else {
+        return "";
+      }
     });
   }, []);
 
   return (
-    <AddressContext.Provider value={{ address }}>
+    <AddressContext.Provider value={{ address, setAddress }}>
       <CartContext.Provider value={{ cart, setCart }}>
         <TotalContext.Provider value={{ total, setTotal }}>
           <GlobalStyle />
           <Router>
             <Navigation />
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-            <Route
-              path={ROUTES.PASSWORD_FORGET}
-              component={PasswordForgetPage}
-            />
-            <Route path={ROUTES.HOME} render={() => <Menu menu={menu} />} />
-            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-            <Route path={ROUTES.ADMIN} component={AdminPage} />
-            <Route path={ROUTES.CART} component={Cart} />
+            <Switch>
+              <Route
+                exact
+                path={ROUTES.HOME}
+                render={() => <Home menu={menu} />}
+              />
+              <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+              <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+              <Route
+                exact
+                path={ROUTES.PASSWORD_FORGET}
+                component={PasswordForgetPage}
+              />
+              <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
+              <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+              <Route exact path={ROUTES.CART} component={Cart} />
+            </Switch>
           </Router>
         </TotalContext.Provider>
       </CartContext.Provider>

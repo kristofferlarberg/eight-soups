@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import {
   ButtonGreen,
-  ButtonRoundFixed,
+  ButtonRound,
   ButtonRoundSmall,
 } from "../misc/Button";
 import { CartContext } from "../Cart/context";
@@ -17,27 +17,26 @@ const Popup = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgb(232, 232, 232, 0.8);
+  overflow-y: scroll;
 `;
 
 const PopupContainer = styled.div`
   margin: var(--topbottom) var(--leftright);
-  padding-bottom: var(--lineheight); 
+  padding-bottom: var(--lineheight);
   background-color: white;
   overflow: auto;
 `;
 
-const ImageContainer = styled.div`
+const Figure = styled.figure`
   width: 100%;
   height: 20rem;
+  margin: 0;
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
-  align-items: center;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  box-sizing: border-box;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background: url(${(props) => props.image}) no-repeat center/100%;
 `;
 
 const Header = styled.header`
@@ -70,13 +69,6 @@ const Selection = styled.section`
   padding: var(--lineheight) var(--leftright);
   display: flex;
   flex-direction: column;
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const AddContainer = styled.section`
@@ -167,16 +159,15 @@ const MenuItemPop = (props) => {
   return (
     <Popup key={props.id}>
       <PopupContainer>
-        <ButtonContainer>
-          <ButtonRoundFixed
-            text="x"
-            type="submit"
-            onClick={() => props.togglePopup()}
-          />
-        </ButtonContainer>
-        <ImageContainer>
-          <Image src={props.image} alt="Soup Image" />
-        </ImageContainer>
+        <Figure image={props.image} alt="Soup">
+    
+            <ButtonRound
+              text="x"
+              type="submit"
+              onClick={() => props.togglePopup()}
+            />
+    
+        </Figure>
         <Header>
           <HeadText>{props.name}</HeadText>
           <Price>{props.price}kr</Price>
