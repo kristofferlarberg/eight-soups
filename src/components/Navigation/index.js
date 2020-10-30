@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 
 import BurgerMenu from "./BurgerMenu";
 import LogoText from "./LogoText";
@@ -20,7 +20,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${address => address ? "var(--grey)" : "transparent"};
+  background-color: ${props => props.address ? "var(--grey)" : "transparent"};
 `;
 
 const LogoContainer = styled.div`
@@ -31,8 +31,6 @@ const LogoContainer = styled.div`
 const Navigation = () => {
   const [burger, setBurger] = useState(false);
   const { address } = useContext(AddressContext);
-
-  console.log(address.length)
 
   const toggleBurger = () => {
     setBurger(!burger);

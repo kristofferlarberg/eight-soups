@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
+import {useLocalStorage} from "../functions/useLocalStorage"
 
 import * as ROUTES from "../../constants/routes";
 
@@ -46,28 +47,28 @@ const OnBoarding = () => {
     "customerAddress",
     null
   );
-  const { address, setAddress } = useContext(AddressContext);
+  const { address } = useContext(AddressContext);
 
   const history = useHistory();
 
   const handleInputChange = (e) => {
     setCustomerAddress(e.target.value);
-  };
+  }; 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+/*     e.preventDefault();
     if (customerAddress) {
       setAddress(() => {
         let localStorageAddress = localStorage.getItem("customerAddress");
         JSON.parse(localStorageAddress);
         return localStorageAddress;
       });
-    }
+    } */
     history.push(ROUTES.HOME);
   };
 
   return (
-    <Main>
+    <Main address={address}>
       <Section>
         <StyledForm onSubmit={handleSubmit}>
           <StyledInput
@@ -82,59 +83,6 @@ const OnBoarding = () => {
     </Main>
   );
 };
-
-// Hook
-
-function useLocalStorage(key, initialValue) {
-  // State to store our value
-
-  // Pass initial state function to useState so logic is only executed once
-
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      // Get from local storage by key
-
-      const item = window.localStorage.getItem(key);
-
-      // Parse stored json or if none return initialValue
-
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      // If error also return initialValue
-
-      console.log(error);
-
-      return initialValue;
-    }
-  });
-
-  // Return a wrapped version of useState's setter function that ...
-
-  // ... persists the new value to localStorage.
-
-  const setValue = (value) => {
-    try {
-      // Allow value to be a function so we have same API as useState
-
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-
-      // Save state
-
-      setStoredValue(valueToStore);
-
-      // Save to local storage
-
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      // A more advanced implementation would handle the error case
-
-      console.log(error);
-    }
-  };
-
-  return [storedValue, setValue];
-}
 
 export default OnBoarding;
 

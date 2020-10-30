@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Home = ({ menu }) => {
-  const { address, setAddress } = useContext(AddressContext);
+  const { address } = useContext(AddressContext);
 
   return (
     <Main>

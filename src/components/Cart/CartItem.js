@@ -4,23 +4,46 @@ import styled from "styled-components";
 import { CartContext } from "./context";
 
 import { ButtonRoundSmall } from "../misc/Button";
+import MoreLess from "../misc/MoreLess";
 
 const Container = styled.section`
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin: var(--halfspace) 0;
+  padding: var(--lineheight) var(--leftright);
 `;
 
-const Buttons = styled.div`
-  margin-left: var(--lineheight);
+const Info = styled.div`
   display: flex;
+`;
+
+const OrderTitleContainer = styled.header`
+  display: flex;
+  flex-direction: column;
+`;
+
+const OrderItemTitle = styled.h4`
+  margin: 0;
+`;
+
+const OrderItemExtras = styled.h4`
+  margin: 0;
+  color: var(--darkgrey);
+  font-weight: 400;
+`;
+
+const AdjustAmount = styled.div`
+  margin-top: font-variant(--lineheight);
+  display: flex;
+  justify-content: space-between;
 `;
 
 const CartItem = (props) => {
   const { setCart } = useContext(CartContext);
 
+  //add changes to localstorage
   const lessItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
@@ -31,11 +54,12 @@ const CartItem = (props) => {
       }
     });
 
-/* //få in detta ovanför
+  /* //få in detta ovanför
   if (soupAmount >= 1) {
     setSoupAmount(soupAmount - 1);
   } else setSoupAmount(soupAmount); */
 
+  //add changes to localstorage
   const moreItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
@@ -48,23 +72,23 @@ const CartItem = (props) => {
 
   return (
     <Container>
-      {`(${props.amount} x ${props.price}kr) ${props.name}`}
-
-      <Buttons>
-        <ButtonRoundSmall
-          text="-"
-          type="submit"
-          onClick={() => lessItems(props)}
+      <Info>
+        <OrderTitleContainer>
+          <OrderItemTitle>{props.name}</OrderItemTitle>
+          <OrderItemExtras>
+            {props.extra[0]}, {props.extra[1]}
+          </OrderItemExtras>
+        </OrderTitleContainer>
+        <OrderItemExtras>{props.price}kr</OrderItemExtras>
+      </Info>
+      <AdjustAmount>
+        <MoreLess
+          onClickLess={() => lessItems()}
+          onClickMore={() => moreItems()}
+          amount={props.amount}
         />
-        <ButtonRoundSmall
-          text="+"
-          type="submit"
-          onClick={() => moreItems(props)}
-        />
-      </Buttons>
-      <div>
-        {props.extra[0]}, {props.extra[1]}
-      </div>
+        <ButtonRoundSmall text="x" type="submit" onClick={() => setCart([])} />
+      </AdjustAmount>
     </Container>
   );
 };

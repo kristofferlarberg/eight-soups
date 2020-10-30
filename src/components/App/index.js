@@ -38,18 +38,6 @@ const App = () => {
   console.log("---------------------------------");
 
   useEffect(() => {
-    setTotal(() => {
-      let totalItems = 0;
-      cart.forEach((item) => {
-        totalItems += item.amount;
-      });
-      let categorySum = cart.map((item) => item.price * item.amount);
-      let totalSum = categorySum.reduce((a, b) => a + b, 0);
-      return { sum: totalSum, amount: totalItems };
-    });
-  }, [cart]);
-
-  useEffect(() => {
     setAddress(() => {
       let address = localStorage.getItem("customerAddress");
       if (address) {
@@ -60,6 +48,29 @@ const App = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    let order = localStorage.getItem("order");
+    if (order) {
+      setCart(() => {
+        let parse = JSON.parse(localStorage.getItem("order"));
+        return parse
+      });
+    }
+    return;
+  }, []);
+
+  useEffect(() => {
+    setTotal(() => {
+      let totalItems = 0;
+      cart.forEach((item) => {
+        totalItems += item.amount;
+      });
+      let categorySum = cart.map((item) => item.price * item.amount);
+      let totalSum = categorySum.reduce((a, b) => a + b, 0);
+      return { sum: totalSum, amount: totalItems };
+    });
+  }, [cart]);
 
   return (
     <AddressContext.Provider value={{ address, setAddress }}>

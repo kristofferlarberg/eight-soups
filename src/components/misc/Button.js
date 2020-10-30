@@ -34,10 +34,6 @@ const RoundWide = styled(Round)`
   margin: var(--lineheight) 0 0 0;
 `;
 
-const RoundFixed = styled(Round)`
-  position: fixed;
-`;
-
 const RoundSmall = styled(Round)`
   ${ButtonTemplate}
   height: 30px;

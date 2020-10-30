@@ -1,11 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  ButtonGreen,
-  ButtonRound,
-  ButtonRoundSmall,
-} from "../misc/Button";
-import { CartContext } from "../Cart/context";
+import { ButtonGreen, ButtonRound, ButtonRoundSmall } from "../misc/Button";
+import { useLocalStorage } from "../functions/useLocalStorage";
 
 const Popup = styled.div`
   position: fixed;
@@ -88,7 +84,7 @@ const AmountContainer = styled.div`
 
 // todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
-  const { setCart } = useContext(CartContext);
+  const [order, setOrder] = useLocalStorage("order", []);
   const [soupAmount, setSoupAmount] = useState(1);
   const [bread, setBread] = useState("Inget bröd");
   const [beverage, setBeverage] = useState("Ingen dryck");
@@ -117,7 +113,7 @@ const MenuItemPop = (props) => {
   };
 
   const addToCart = (item) =>
-    setCart((items) => {
+    setOrder((items) => {
       if (items.some((item) => item.id === props.id)) {
         items.find((item) => item.id === props.id).amount += soupAmount;
         return [...items];
@@ -160,13 +156,11 @@ const MenuItemPop = (props) => {
     <Popup key={props.id}>
       <PopupContainer>
         <Figure image={props.image} alt="Soup">
-    
-            <ButtonRound
-              text="x"
-              type="submit"
-              onClick={() => props.togglePopup()}
-            />
-    
+          <ButtonRound
+            text="x"
+            type="submit"
+            onClick={() => props.togglePopup()}
+          />
         </Figure>
         <Header>
           <HeadText>{props.name}</HeadText>

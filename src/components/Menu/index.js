@@ -12,10 +12,10 @@ const Main = styled.main`
 
 const Menu = ({ menu }) => {
   const { address } = useContext(AddressContext);
-  const [loaded, setLoaded] = useState(false);
-  const [allLoaded, setAllLoaded] = useState([])
+/*   const [loaded, setLoaded] = useState(false);
+  const [allLoaded, setAllLoaded] = useState([]) */
 
-  useEffect(() => {
+/*   useEffect(() => {
     function handleLoad(item) {
       setAllLoaded(item);
       if (allLoaded.length === item.length) {
@@ -25,7 +25,7 @@ const Menu = ({ menu }) => {
       }
     }
     handleLoad(menu);
-  }, []);
+  }, []); */
 
 
 

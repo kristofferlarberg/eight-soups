@@ -18,6 +18,7 @@ const Popup = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgb(232, 232, 232, 0.8);
+  overflow-y: scroll;
 `;
 
 const PopupContainer = styled.div`
@@ -90,8 +91,6 @@ const Cart = (props) => {
         ))}
 
         <div>Total: {total.sum}</div>
-
-        <ButtonRoundSmall text="x" type="submit" onClick={() => setCart([])} />
       </PopupContainer>
     </Popup>
   );
