@@ -13,14 +13,15 @@ import { menuData } from "../../data/menuData";
 import { withAuthentication } from "../Session";
 import { AddressContext } from "../OnBoarding";
 import { GlobalStyle } from "../../styles/global";
+import {useLocalStorage} from "../functions/useLocalStorage"
 
 import * as ROUTES from "../../constants/routes";
 
 const App = () => {
   const [menu] = useState(menuData);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useLocalStorage("cart", []);
   const [total, setTotal] = useState([]);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useLocalStorage("address", null);
 
   console.log("---------------------------------");
   console.log("CART STATE");
@@ -37,7 +38,7 @@ const App = () => {
   console.log(address);
   console.log("---------------------------------");
 
-  useEffect(() => {
+/*   useEffect(() => {
     setAddress(() => {
       let address = localStorage.getItem("customerAddress");
       if (address) {
@@ -47,9 +48,9 @@ const App = () => {
         return "";
       }
     });
-  }, []);
+  }, []); */
 
-  useEffect(() => {
+/*   useEffect(() => {
     let order = localStorage.getItem("order");
     if (order) {
       setCart(() => {
@@ -58,7 +59,7 @@ const App = () => {
       });
     }
     return;
-  }, []);
+  }, []); */
 
   useEffect(() => {
     setTotal(() => {

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import {CartContext, TotalContext} from "./context";
+import { CartContext, TotalContext } from "./context";
 import CartItem from "./CartItem";
 import { ButtonRoundSmall } from "../misc/Button";
 
@@ -22,86 +22,97 @@ const Popup = styled.div`
 `;
 
 const PopupContainer = styled.div`
-  margin: var(--topbottom) var(--leftright);
-  padding-bottom: var(--lineheight);
+  height: 100vh;
+  margin: 0;
+  padding: var(--lineheight) var(--leftright);
   background-color: white;
   overflow: auto;
 `;
 
-/* const Header = styled.header`
+const CartNav = styled.nav`
   padding: var(--lineheight) var(--leftright);
   display: flex;
   justify-content: space-between;
   align-items: center;
-`; */
+`;
 
-/* const HeadText = styled.h2`
+const CartHeader = styled.header`
   margin: 0;
-`;
-
-const Price = styled.h3`
-  margin: 0 var(--halfspace);
-  color: var(--darkgrey);
-`;
-
-const Subheader = styled(Header)`
-  padding: var(--halfspace) var(--leftright);
-  background-color: var(--grey);
-  color: var(--darkgrey);
-`;
-
-const SubheadText = styled.h3`
-  margin: 0;
-`;
-
-const Selection = styled.section`
-  padding: var(--lineheight) var(--leftright);
   display: flex;
-  flex-direction: column;
-`;
-
-const ButtonContainer = styled.div`
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: flex-end;
+  box-sizing: border-box;
 `;
 
-const AddContainer = styled.section`
-  margin: var(--halfspace) var(--leftright);
-  height: auto;
+const CartHeading = styled.h1`
+  margin: 0;
+  color: var(--forestgreen);
+`;
+
+const Back = styled.h1`
+  margin: 0;
+  display: flex;
+  justify-self: left;
+`;
+
+const AmountContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
- */
 
+const TotalAmount = styled.h4``;
+
+const Amounts = styled.h4`
+  font-weight: 400;
+`;
+
+const Orders = styled.section`
+  margin-bottom: var(--lineheight);
+`;
 
 const Cart = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
+
+  const totalSum =  total.sum + 39;
+
+console.log(totalSum);
 
   return (
     <Popup key={props.id}>
       <PopupContainer>
-        <Link to={ROUTES.HOME}>
-          <p>Back</p>
-        </Link>
-        {cart.map((item) => (
-          <CartItem {...item} key={item.id} />
-        ))}
-
-        <div>Total: {total.sum}</div>
+        <CartNav>
+          <CartHeader>
+            <Link to={ROUTES.HOME}>
+              <Back>Back</Back>
+            </Link>
+            <CartHeading>Din varukorg</CartHeading>
+          </CartHeader>
+        </CartNav>
+        <Orders>
+          <Link to={ROUTES.HOME}></Link>
+          {cart.map((item) => (
+            <CartItem {...item} key={item.id} />
+          ))}
+        </Orders>
+        <AmountContainer>
+          <Amounts>Delsumma</Amounts>
+          <Amounts>{total.sum}kr</Amounts>
+        </AmountContainer>
+        <AmountContainer>
+          <Amounts>Leveransavgift</Amounts>
+          <Amounts>39kr</Amounts>
+        </AmountContainer>
+        <AmountContainer>
+          <TotalAmount>Totalbelopp</TotalAmount>
+          <TotalAmount>{totalSum}kr</TotalAmount>
+        </AmountContainer>
       </PopupContainer>
     </Popup>
   );
 };
 
-
 export default Cart;
 
 export { CartContext, TotalContext };
-
-
-
-
-

@@ -30,10 +30,8 @@ body {
 
 h1 {
   font-size: var(--large);
-  font-weight: 700;
+  font-weight: 400;
 }
-
-
 
 h2 {
   font-size: var(--medium);
@@ -48,6 +46,7 @@ h3 {
 h4 {
   font-size: var(--xsmall);
   font-weight: 700;
+  color: var(--darkgrey);
 }
 
 p {

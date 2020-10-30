@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { ButtonGreen, ButtonRound, ButtonRoundSmall } from "../misc/Button";
-import { useLocalStorage } from "../functions/useLocalStorage";
+import { CartContext } from "../Cart/context";
 
 const Popup = styled.div`
   position: fixed;
@@ -84,7 +84,7 @@ const AmountContainer = styled.div`
 
 // todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
-  const [order, setOrder] = useLocalStorage("order", []);
+  const {cart, setCart} = useContext(CartContext);
   const [soupAmount, setSoupAmount] = useState(1);
   const [bread, setBread] = useState("Inget bröd");
   const [beverage, setBeverage] = useState("Ingen dryck");
@@ -113,7 +113,7 @@ const MenuItemPop = (props) => {
   };
 
   const addToCart = (item) =>
-    setOrder((items) => {
+    setCart((items) => {
       if (items.some((item) => item.id === props.id)) {
         items.find((item) => item.id === props.id).amount += soupAmount;
         return [...items];

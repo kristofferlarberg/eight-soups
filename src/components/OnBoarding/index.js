@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
-import {useLocalStorage} from "../functions/useLocalStorage"
+import { useLocalStorage } from "../functions/useLocalStorage";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -43,28 +43,25 @@ const StyledInput = styled.input`
 `;
 
 const OnBoarding = () => {
-  const [customerAddress, setCustomerAddress] = useLocalStorage(
-    "customerAddress",
-    null
-  );
-  const { address } = useContext(AddressContext);
+  const [addressInput, setAddressInput] = useState(null);
+  const { address, setAddress } = useContext(AddressContext);
 
-  const history = useHistory();
+  /* const history = useHistory(); */
 
   const handleInputChange = (e) => {
-    setCustomerAddress(e.target.value);
-  }; 
+    setAddressInput(e.target.value);
+  };
+
+  console.log(addressInput);
 
   const handleSubmit = (e) => {
-/*     e.preventDefault();
-    if (customerAddress) {
+    e.preventDefault();
+    if (addressInput) {
       setAddress(() => {
-        let localStorageAddress = localStorage.getItem("customerAddress");
-        JSON.parse(localStorageAddress);
-        return localStorageAddress;
+        return addressInput;
       });
-    } */
-    history.push(ROUTES.HOME);
+    }
+    /* history.push(ROUTES.HOME); */
   };
 
   return (
@@ -73,7 +70,7 @@ const OnBoarding = () => {
         <StyledForm onSubmit={handleSubmit}>
           <StyledInput
             type="text"
-            name={customerAddress}
+            name={address}
             placeholder="Skriv in din adress"
             onChange={handleInputChange}
           />

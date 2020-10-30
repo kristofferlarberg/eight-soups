@@ -35,9 +35,9 @@ const AmountContainer = styled.div`
 
 const Amount = styled.h3`
   margin: 0;
-  color: var(--red);
+  color: var(--green);
   text-align: center;
-  margin-top: 3px;
+  margin-top: 2px;
   animation: ${bounce};
   animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
   animation-duration: 2s;

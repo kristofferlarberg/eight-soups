@@ -11,12 +11,13 @@ const Container = styled.section`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: var(--halfspace) 0;
-  padding: var(--lineheight) var(--leftright);
+  padding: var(--lineheight) 0;
+  border-bottom: 1px solid var(--grey);
 `;
 
 const Info = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const OrderTitleContainer = styled.header`
@@ -30,20 +31,18 @@ const OrderItemTitle = styled.h4`
 
 const OrderItemExtras = styled.h4`
   margin: 0;
-  color: var(--darkgrey);
   font-weight: 400;
 `;
 
 const AdjustAmount = styled.div`
-  margin-top: font-variant(--lineheight);
   display: flex;
   justify-content: space-between;
+  margin-top: var(--lineheight);
 `;
 
 const CartItem = (props) => {
   const { setCart } = useContext(CartContext);
 
-  //add changes to localstorage
   const lessItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
@@ -54,12 +53,9 @@ const CartItem = (props) => {
       }
     });
 
-  /* //få in detta ovanför
-  if (soupAmount >= 1) {
-    setSoupAmount(soupAmount - 1);
-  } else setSoupAmount(soupAmount); */
+  //få in detta ovanför
+  //if (cart.soupAmount >= 1) {
 
-  //add changes to localstorage
   const moreItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
@@ -69,6 +65,17 @@ const CartItem = (props) => {
         return [item];
       }
     });
+
+    //get working
+      const deleteItems = (item) =>
+        setCart((currentCart) => {
+          if (currentCart.some((item) => item.id === props.id)) {
+            currentCart.splice(1, props.id);
+            return [...currentCart];
+          } else {
+            return [item];
+          }
+        });
 
   return (
     <Container>
@@ -87,7 +94,7 @@ const CartItem = (props) => {
           onClickMore={() => moreItems()}
           amount={props.amount}
         />
-        <ButtonRoundSmall text="x" type="submit" onClick={() => setCart([])} />
+        <ButtonRoundSmall text="x" type="submit" onClick={() => deleteItems()} />
       </AdjustAmount>
     </Container>
   );
