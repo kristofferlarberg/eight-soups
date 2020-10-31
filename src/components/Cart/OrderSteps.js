@@ -24,60 +24,41 @@ const Orders = styled.section`
   margin-bottom: var(--lineheight);
 `;
 
-const OrderSteps = () => {
-  const [orderPage, setOrderPage] = useState(1);
-
-  console.log(orderPage);
-
-  const nextPage = () => {
-    setOrderPage(orderPage + 1);
-  };
-
-  const previousPage = () => {
-    if (orderPage > 1) {
-      setOrderPage(orderPage - 1);
-    }
-  };
-
+const OrderSteps = ({ orderPage }) => {
   return (
     <>
       {orderPage === 1 ? (
         <>
           <Order
-            nextPage={() => nextPage()}
-            previousPage={() => previousPage()}
+         
           />
         </>
       ) : null}
       {orderPage === 2 ? (
         <>
           <Address
-            nextPage={() => nextPage()}
-            previousPage={() => previousPage()}
+         
           />
         </>
       ) : null}
       {orderPage === 3 ? (
         <>
           <Payment
-            nextPage={() => nextPage()}
-            previousPage={() => previousPage()}
+      
           />
         </>
       ) : null}
       {orderPage === 4 ? (
         <>
           <Summary
-            nextPage={() => nextPage()}
-            previousPage={() => previousPage()}
+         
           />
         </>
       ) : null}
       {orderPage === 5 ? (
         <>
           <Exit
-            nextPage={() => nextPage()}
-            previousPage={() => previousPage()}
+ 
           />
         </>
       ) : null}
@@ -112,8 +93,7 @@ const Order = (props) => {
         <TotalAmount>Totalbelopp</TotalAmount>
         <TotalAmount>{totalSum}kr</TotalAmount>
       </AmountContainer>
-      <ButtonGreen text="Nästa" onClick={() => props.nextPage()} />
-      <ButtonGreen text="Tillbaka" onClick={() => props.previousPage()} />
+    
     </>
   );
 };
@@ -162,8 +142,6 @@ const Address = (props) => {
           onChange={handleInputChange}
           placeholder={address}
         />
-        <ButtonGreen text="Nästa" onClick={() => props.nextPage()} />
-        <ButtonGreen text="Tillbaka" onClick={() => props.previousPage()} />
       </StyledForm>
     </>
   );
@@ -177,8 +155,6 @@ const Payment = (props) => {
 
   return (
     <>
-      <ButtonGreen text="Nästa" onClick={() => props.nextPage()} />
-      <ButtonGreen text="Tillbaka" onClick={() => props.previousPage()} />
     </>
   );
 };
@@ -205,10 +181,7 @@ const Exit = (props) => {
 
   return (
     <>
-      <ButtonGreen
-        text="Avsluta"
-        /* onClick LINK HOME */
-      />
+  
     </>
   );
 };

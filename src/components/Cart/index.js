@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import { CartContext, TotalContext } from "./context";
 import OrderSteps from "./OrderSteps";
 
 import * as ROUTES from "../../constants/routes";
+import { ButtonRound } from "../misc/Button";
 
 const Popup = styled.div`
   position: fixed;
@@ -56,6 +57,17 @@ const Back = styled.h1`
 `;
 
 const Cart = (props) => {
+  const [orderPage, setOrderPage] = useState(1);
+
+  const nextPage = () => {
+    setOrderPage(orderPage + 1);
+  };
+
+  const previousPage = () => {
+    if (orderPage > 1) {
+      setOrderPage(orderPage - 1);
+    }
+  };
 
   return (
     <Popup key={props.id}>
@@ -63,12 +75,19 @@ const Cart = (props) => {
         <CartNav>
           <CartHeader>
             <Link to={ROUTES.HOME}>
-              <Back>Back</Back>
+              <ButtonRound text="x" />
             </Link>
             <CartHeading>Din varukorg</CartHeading>
           </CartHeader>
         </CartNav>
-        <OrderSteps/>
+        <OrderSteps orderPage={orderPage} />
+        <ButtonRound text="<" onClick={() => previousPage()} />
+        <ButtonRound text=">" onClick={() => nextPage()} />
+
+        {/*   <ButtonGreen
+          text="Avsluta"
+          
+        /> */}
       </PopupContainer>
     </Popup>
   );
