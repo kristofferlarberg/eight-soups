@@ -27,7 +27,7 @@ const FigCaption = styled.figcaption`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: rgb(255, 255, 255, 0.8);
 `;
 
 const FigCaptionTitleContainer = styled.section`
@@ -54,14 +54,15 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const ClockText = styled.h3`
+const ClockText = styled.h4`
   margin: 0.2rem 0 0 0;
+  color: black;
 `;
 
 const Clock = styled.img`
   margin: 0 0.5rem 0 0;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 `;
 
 const MenuItem = (props) => {

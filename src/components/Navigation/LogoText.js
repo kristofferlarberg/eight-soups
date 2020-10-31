@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 const LogoStyle = styled.svg`
   fill: var(--forestgreen);
-  width: 250px;
-  height: 10rem;
+  width: 18rem;
+  height: 8rem;
   margin: 0;
 `;
 
 const LogoText = () => (
-  <LogoStyle viewBox="220 8 100 100">
+  <LogoStyle viewBox="220 7.5 100 100">
     <path
       d="M183.8,73.6c-0.6,0-0.9-0.1-1.1-0.4c-0.2-0.2-0.3-0.6-0.3-1V58.3c0-2.2-0.8-3.9-2.6-5c-1.8-1.1-4.1-1.6-6.9-1.6
 		c-2.4,0-4.6,0.5-6.4,1.7c-1.9,1.2-2.8,3.2-2.9,6.2h3.7c0.2-1.2,0.5-2.2,1-2.8c0.9-1.1,2.4-1.7,4.5-1.7c1.8,0,3.2,0.3,4.2,0.9

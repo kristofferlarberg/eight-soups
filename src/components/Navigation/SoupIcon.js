@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const SoupStyle = styled.svg`
   fill: var(--forestgreen);
-  width: 60px;
-  height: 60px;
-  margin: var(--lineheight);
+  width: 4rem;
+  height: 4rem;
+  margin: var(--halfspace);
 `;
 
 const SoupIcon = () => (

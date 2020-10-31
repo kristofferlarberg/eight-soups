@@ -5,12 +5,12 @@ export const GlobalStyle = createGlobalStyle`
 html {
   font-size: 62.5%;
   --font-family: "Helvetica", Times, serif;
-  --default: 1.5rem;
-  --large: calc(var(--default) * 2);
-  --medium:calc(var(--default) * 1.3);
-  --small:calc(var(--default) * 1.1);
-  --xsmall:calc(var(--default) * 0.8);
-  --lineheight: 2.4rem;
+  --default: 1.4rem;
+  --large: calc(var(--default) * 1.9);
+  --medium: calc(var(--default) * 1.3);
+  --small: var(--default);
+  --xsmall: calc(var(--default) * 0.8);
+  --lineheight: 2rem;
   --halfspace: calc(var(--lineheight) * 0.5);
   --topbottom: calc(var(--lineheight) * 2);
   --leftright: calc(var(--lineheight) * 1.5);

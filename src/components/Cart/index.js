@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { CartContext, TotalContext } from "./context";
-import CartItem from "./CartItem";
-import { ButtonRoundSmall } from "../misc/Button";
+import OrderSteps from "./OrderSteps";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -56,28 +55,7 @@ const Back = styled.h1`
   justify-self: left;
 `;
 
-const AmountContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const TotalAmount = styled.h4``;
-
-const Amounts = styled.h4`
-  font-weight: 400;
-`;
-
-const Orders = styled.section`
-  margin-bottom: var(--lineheight);
-`;
-
 const Cart = (props) => {
-  const { cart } = useContext(CartContext);
-  const { total } = useContext(TotalContext);
-
-  const totalSum =  total.sum + 39;
-
-console.log(totalSum);
 
   return (
     <Popup key={props.id}>
@@ -90,24 +68,7 @@ console.log(totalSum);
             <CartHeading>Din varukorg</CartHeading>
           </CartHeader>
         </CartNav>
-        <Orders>
-          <Link to={ROUTES.HOME}></Link>
-          {cart.map((item) => (
-            <CartItem {...item} key={item.id} />
-          ))}
-        </Orders>
-        <AmountContainer>
-          <Amounts>Delsumma</Amounts>
-          <Amounts>{total.sum}kr</Amounts>
-        </AmountContainer>
-        <AmountContainer>
-          <Amounts>Leveransavgift</Amounts>
-          <Amounts>39kr</Amounts>
-        </AmountContainer>
-        <AmountContainer>
-          <TotalAmount>Totalbelopp</TotalAmount>
-          <TotalAmount>{totalSum}kr</TotalAmount>
-        </AmountContainer>
+        <OrderSteps/>
       </PopupContainer>
     </Popup>
   );

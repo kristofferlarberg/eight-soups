@@ -1,10 +1,7 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
-import { useLocalStorage } from "../functions/useLocalStorage";
 
-import * as ROUTES from "../../constants/routes";
 
 import { AddressContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
@@ -24,16 +21,16 @@ const Section = styled.section`
   background: url("eight-soups/images/green.jpg") no-repeat center/100%;
 `;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   box-sizing: border-box;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   background-color: rgb(232, 232, 232, 0.8);
   border-radius: 25px;
   border: 0;
@@ -45,8 +42,6 @@ const StyledInput = styled.input`
 const OnBoarding = () => {
   const [addressInput, setAddressInput] = useState(null);
   const { address, setAddress } = useContext(AddressContext);
-
-  /* const history = useHistory(); */
 
   const handleInputChange = (e) => {
     setAddressInput(e.target.value);
@@ -61,7 +56,6 @@ const OnBoarding = () => {
         return addressInput;
       });
     }
-    /* history.push(ROUTES.HOME); */
   };
 
   return (

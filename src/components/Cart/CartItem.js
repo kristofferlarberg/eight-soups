@@ -41,20 +41,19 @@ const AdjustAmount = styled.div`
 `;
 
 const CartItem = (props) => {
-  const { setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const lessItems = (item) =>
     setCart((currentCart) => {
       if (currentCart.some((item) => item.id === props.id)) {
-        currentCart.find((item) => item.id === props.id).amount -= 1;
+        if (currentCart.find((item) => item.id === props.id).amount > 0) {
+          currentCart.find((item) => item.id === props.id).amount -= 1;
+        }
         return [...currentCart];
       } else {
         return [...currentCart, item];
       }
     });
-
-  //få in detta ovanför
-  //if (cart.soupAmount >= 1) {
 
   const moreItems = (item) =>
     setCart((currentCart) => {
@@ -62,20 +61,19 @@ const CartItem = (props) => {
         currentCart.find((item) => item.id === props.id).amount += 1;
         return [...currentCart];
       } else {
-        return [item];
+        return [...currentCart, item];
       }
     });
 
-    //get working
-      const deleteItems = (item) =>
-        setCart((currentCart) => {
-          if (currentCart.some((item) => item.id === props.id)) {
-            currentCart.splice(1, props.id);
-            return [...currentCart];
-          } else {
-            return [item];
-          }
-        });
+  const deleteItems = (item) =>
+    setCart((currentCart) => {
+      if (currentCart.some((item) => item.id === props.id)) {
+        currentCart.splice(item, 1);
+        return [...currentCart];
+      } else {
+        return [...currentCart, item];
+      }
+    });
 
   return (
     <Container>
@@ -94,7 +92,7 @@ const CartItem = (props) => {
           onClickMore={() => moreItems()}
           amount={props.amount}
         />
-        <ButtonRoundSmall text="x" type="submit" onClick={() => deleteItems()} />
+        <ButtonRoundSmall text="x" onClick={() => deleteItems()} cart={cart} />
       </AdjustAmount>
     </Container>
   );

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const HamburgerButton = styled.button`
   height: auto;
   width: auto;
-  margin: var(--lineheight);
+  margin: 0 var(--lineheight) 0 var(--halfspace);
   padding: 0;
   border: 0;
   background-color: transparent;

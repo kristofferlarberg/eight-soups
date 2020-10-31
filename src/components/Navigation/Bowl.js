@@ -14,28 +14,27 @@ const BowlContainer = styled.div`
 const bounce = keyframes`
   0%   { transform: scale(1,1)      translateY(0); }
   10%  { transform: scale(1.1,.9)   translateY(0); }
-  30%  { transform: scale(.9,1.1)   translateY(-20px); }
+  30%  { transform: scale(.9,1.1)   translateY(-30px); }
   50%  { transform: scale(1.05,.95) translateY(0); }
-  57%  { transform: scale(1,1)      translateY(-7px); }
+  57%  { transform: scale(1,1)      translateY(-1px); }
   64%  { transform: scale(1,1)      translateY(0); }
   100% { transform: scale(1,1)      translateY(0); }
 `;
 
 const AmountContainer = styled.div`
   position: fixed;
-  top: 4.2rem;
-  right: 4rem;
+  top: 40px;
+  right: 16px;
   width: 25px;
   height: 25px;
-  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const Amount = styled.h3`
+const Amount = styled.h4`
   margin: 0;
-  color: var(--green);
+  color: var(--forestgreen);
   text-align: center;
   margin-top: 2px;
   animation: ${bounce};
