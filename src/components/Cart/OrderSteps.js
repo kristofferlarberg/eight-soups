@@ -43,8 +43,10 @@ const OrderSteps = () => {
     <>
       {orderPage === 1 ? (
         <>
-          <Order nextPage={() => nextPage()} />
-          <Order previousPage={() => previousPage()} />
+          <Order
+            nextPage={() => nextPage()}
+            previousPage={() => previousPage()}
+          />
         </>
       ) : null}
       {orderPage === 2 ? (
