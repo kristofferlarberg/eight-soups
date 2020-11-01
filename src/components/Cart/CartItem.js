@@ -20,16 +20,16 @@ const Info = styled.div`
   justify-content: space-between;
 `;
 
-const OrderTitleContainer = styled.header`
+export const OrderTitleContainer = styled.header`
   display: flex;
   flex-direction: column;
 `;
 
-const OrderItemTitle = styled.h4`
+export const OrderItemTitle = styled.h4`
   margin: 0;
 `;
 
-const OrderItemExtras = styled.h4`
+export const OrderItemExtras = styled.h4`
   margin: 0;
   font-weight: 400;
 `;

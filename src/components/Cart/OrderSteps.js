@@ -2,12 +2,35 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { AddressContext } from "../OnBoarding/context";
+import { CustomerDetailsContext } from "../OnBoarding";
 import { StyledForm, StyledInput } from "../OnBoarding";
-import { ButtonGreen } from "../misc/Button";
+import { Subheader, SubheadText } from "../Menu/MenuItemPop";
+import {
+  OrderTitleContainer,
+  OrderItemTitle,
+  OrderItemExtras,
+} from "./CartItem";
+
+import * as ROUTES from "../../constants/routes";
 
 import { CartContext, TotalContext } from "../Cart/context";
 import CartItem from "./CartItem";
+import { ButtonRoundSmallWide } from "../misc/Button";
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--topbottom);
+  width: 100%;
+`;
+
+const PriceContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: var(--topbottom);
+`;
 
 const AmountContainer = styled.div`
   display: flex;
@@ -20,49 +43,40 @@ const Amounts = styled.h4`
   font-weight: 400;
 `;
 
-const Orders = styled.section`
+const Orders = styled.div`
   margin-bottom: var(--lineheight);
+  width: 100%;
 `;
 
 const OrderSteps = ({ orderPage }) => {
   return (
-    <>
+    <Container>
       {orderPage === 1 ? (
         <>
-          <Order
-         
-          />
+          <Order />
         </>
       ) : null}
       {orderPage === 2 ? (
         <>
-          <Address
-         
-          />
+          <Address />
         </>
       ) : null}
       {orderPage === 3 ? (
         <>
-          <Payment
-      
-          />
+          <Payment />
         </>
       ) : null}
       {orderPage === 4 ? (
         <>
-          <Summary
-         
-          />
+          <Summary />
         </>
       ) : null}
       {orderPage === 5 ? (
         <>
-          <Exit
- 
-          />
+          <Exit />
         </>
       ) : null}
-    </>
+    </Container>
   );
 };
 
@@ -81,35 +95,33 @@ const Order = (props) => {
           <CartItem {...item} key={item.id} />
         ))}
       </Orders>
-      <AmountContainer>
-        <Amounts>Delsumma</Amounts>
-        <Amounts>{total.sum}kr</Amounts>
-      </AmountContainer>
-      <AmountContainer>
-        <Amounts>Leveransavgift</Amounts>
-        <Amounts>39kr</Amounts>
-      </AmountContainer>
-      <AmountContainer>
-        <TotalAmount>Totalbelopp</TotalAmount>
-        <TotalAmount>{totalSum}kr</TotalAmount>
-      </AmountContainer>
-    
+      <Link to={ROUTES.HOME}>
+        <ButtonRoundSmallWide text="Lägg till fler" />
+      </Link>
+      <PriceContainer>
+        <AmountContainer>
+          <Amounts>Delsumma</Amounts>
+          <Amounts>{total.sum}kr</Amounts>
+        </AmountContainer>
+        <AmountContainer>
+          <Amounts>Leveransavgift</Amounts>
+          <Amounts>39kr</Amounts>
+        </AmountContainer>
+        <AmountContainer>
+          <TotalAmount>Totalbelopp</TotalAmount>
+          <TotalAmount>{totalSum}kr</TotalAmount>
+        </AmountContainer>
+      </PriceContainer>
     </>
   );
 };
 
 const Address = (props) => {
-  const { address, setAddress } = useContext(AddressContext);
+  const { customerDetails, setCustomerDetails } = useContext(
+    CustomerDetailsContext
+  );
 
-  const INITIAL_STATE = {
-    firstname: "",
-    lastname: "",
-    updatedaddress: "",
-  };
-
-  const [customerDetails, setCustomerDetails] = useState(INITIAL_STATE);
-
-  const { firstname, lastname, updatedaddress } = customerDetails;
+  const { firstname, lastname, address } = customerDetails;
 
   const handleInputChange = (e) => {
     setCustomerDetails({
@@ -122,25 +134,27 @@ const Address = (props) => {
 
   return (
     <>
-      <StyledForm address={address}>
+      <StyledForm customerDetails={customerDetails}>
         <h4>Förnamn</h4>
         <StyledInput
           name="firstname"
           value={firstname}
           onChange={handleInputChange}
+          placeholder={customerDetails.firstname}
         />
         <h4>Efternamn</h4>
         <StyledInput
           name="lastname"
           value={lastname}
           onChange={handleInputChange}
+          placeholder={customerDetails.lastname}
         />
         <h4>Adress</h4>
         <StyledInput
-          name="updatedaddress"
-          value={updatedaddress}
+          name="address"
+          value={address}
           onChange={handleInputChange}
-          placeholder={address}
+          placeholder={customerDetails.address}
         />
       </StyledForm>
     </>
@@ -148,27 +162,41 @@ const Address = (props) => {
 };
 
 const Payment = (props) => {
-  const { cart } = useContext(CartContext);
-  const { total } = useContext(TotalContext);
-
-  const totalSum = total.sum + 39;
-
-  return (
-    <>
-    </>
-  );
+  return <>Val av betalmetod, fyll i kortuppgifter</>;
 };
 
 const Summary = (props) => {
   const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
-
+  const { customerDetails, setCustomerDetails } = useContext(
+    CustomerDetailsContext
+  );
   const totalSum = total.sum + 39;
 
   return (
     <>
-      <ButtonGreen text="Nästa" onClick={() => props.nextPage()} />
-      <ButtonGreen text="Tillbaka" onClick={() => props.previousPage()} />
+      <Subheader>
+        <SubheadText>Din beställning</SubheadText>
+      </Subheader>
+      {cart.map((item) => (
+        <OrderTitleContainer {...item} key={item.id}>
+          <OrderItemTitle>{item.name}</OrderItemTitle>
+          <OrderItemExtras>
+            {item.extra[0]}, {item.extra[1]}
+          </OrderItemExtras>
+        </OrderTitleContainer>
+      ))}
+      <Subheader>
+        <SubheadText>Levereras till</SubheadText>
+      </Subheader>
+      <h4>
+        {customerDetails.firstname} {customerDetails.lastname}
+      </h4>
+      <Amounts>{customerDetails.address}</Amounts>
+      <Subheader>
+        <SubheadText>Betalning</SubheadText>
+      </Subheader>
+      <Amounts>Kortnummer</Amounts><h4>{totalSum}kr</h4>
     </>
   );
 };
@@ -179,9 +207,5 @@ const Exit = (props) => {
 
   const totalSum = total.sum + 39;
 
-  return (
-    <>
-  
-    </>
-  );
+  return <></>;
 };

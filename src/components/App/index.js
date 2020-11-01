@@ -11,17 +11,26 @@ import AdminPage from "../Admin";
 import Cart, { CartContext, TotalContext } from "../Cart";
 import { menuData } from "../../data/menuData";
 import { withAuthentication } from "../Session";
-import { AddressContext } from "../OnBoarding";
+import { CustomerDetailsContext } from "../OnBoarding";
 import { GlobalStyle } from "../../styles/global";
-import {useLocalStorage} from "../functions/useLocalStorage"
+import { useLocalStorage } from "../functions/useLocalStorage";
 
 import * as ROUTES from "../../constants/routes";
 
 const App = () => {
+  const INITIAL_STATE = {
+    firstname: "",
+    lastname: "",
+    address: "",
+  };
+
   const [menu] = useState(menuData);
   const [cart, setCart] = useLocalStorage("cart", []);
   const [total, setTotal] = useState([]);
-  const [address, setAddress] = useLocalStorage("address", null);
+  const [customerDetails, setCustomerDetails] = useLocalStorage(
+    "customerDetails",
+    INITIAL_STATE
+  );
 
   console.log("---------------------------------");
   console.log("CART STATE");
@@ -34,11 +43,11 @@ const App = () => {
   console.log("---------------------------------");
 
   console.log("---------------------------------");
-  console.log("ADDRESS STATE");
-  console.log(address);
+  console.log("customerDetails STATE");
+  console.log(customerDetails);
   console.log("---------------------------------");
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     setAddress(() => {
       let address = localStorage.getItem("customerAddress");
       if (address) {
@@ -50,7 +59,7 @@ const App = () => {
     });
   }, []); */
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     let order = localStorage.getItem("order");
     if (order) {
       setCart(() => {
@@ -74,7 +83,9 @@ const App = () => {
   }, [cart]);
 
   return (
-    <AddressContext.Provider value={{ address, setAddress }}>
+    <CustomerDetailsContext.Provider
+      value={{ customerDetails, setCustomerDetails }}
+    >
       <CartContext.Provider value={{ cart, setCart }}>
         <TotalContext.Provider value={{ total, setTotal }}>
           <GlobalStyle />
@@ -100,7 +111,7 @@ const App = () => {
           </Router>
         </TotalContext.Provider>
       </CartContext.Provider>
-    </AddressContext.Provider>
+    </CustomerDetailsContext.Provider>
   );
 };
 

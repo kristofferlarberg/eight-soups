@@ -51,13 +51,14 @@ const Price = styled.h3`
   color: var(--darkgrey);
 `;
 
-const Subheader = styled(Header)`
+export const Subheader = styled(Header)`
   padding: var(--halfspace) var(--leftright);
   background-color: var(--grey);
   color: var(--darkgrey);
+  width: 100%;
 `;
 
-const SubheadText = styled.h3`
+export const SubheadText = styled.h3`
   margin: 0;
 `;
 

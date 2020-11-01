@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
-import { AddressContext } from "../OnBoarding";
+import { CustomerDetailsContext } from "../OnBoarding";
 
 import MenuItem from "./MenuItem";
 
@@ -11,7 +11,7 @@ const Main = styled.main`
 `;
 
 const Menu = ({ menu }) => {
-  const { address } = useContext(AddressContext);
+  const { customerDetails } = useContext(CustomerDetailsContext);
 /*   const [loaded, setLoaded] = useState(false);
   const [allLoaded, setAllLoaded] = useState([]) */
 

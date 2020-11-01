@@ -1,4 +1,4 @@
-import React, { useContext  } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -47,15 +47,28 @@ const Amount = styled.h4`
 const Bowl = () => {
   const { total } = useContext(TotalContext);
 
+  console.log(total)
+
   return (
-    <BowlContainer>
-      <Link to={ROUTES.CART}>
-        <AmountContainer>
-          {total.amount > 0 ? <Amount>{total.amount}</Amount> : null}
-        </AmountContainer>
-        <SoupIcon />
-      </Link>
-    </BowlContainer>
+    <>
+      {total.amount > 0 ? (
+        <BowlContainer>
+          <Link to={ROUTES.CART}>
+            <AmountContainer>
+              {total.amount > 0 ? <Amount>{total.amount}</Amount> : null}
+            </AmountContainer>
+            <SoupIcon />
+          </Link>
+        </BowlContainer>
+      ) : (
+        <BowlContainer>
+          <AmountContainer>
+            {total.amount > 0 ? <Amount>{total.amount}</Amount> : null}
+          </AmountContainer>
+          <SoupIcon />
+        </BowlContainer>
+      )}
+    </>
   );
 };
 

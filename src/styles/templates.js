@@ -7,7 +7,7 @@ export const ButtonTemplate = css`
 `;
 
 export const MainTemplate = css`
-  margin: ${props => props.address ? "10rem 0 0 0" : "0"};
+  margin: ${() => "props.customerDetails.address" ? "10rem 0 0 0" : "0"};
   width: auto;
   box-sizing: border-box;
 `;

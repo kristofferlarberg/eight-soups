@@ -2,8 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { MainTemplate } from "../../styles/templates";
 
-
-import { AddressContext } from "./context";
+import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
 
 const Main = styled.main`
@@ -23,7 +22,7 @@ const Section = styled.section`
 
 export const StyledForm = styled.form`
   box-sizing: border-box;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,10 +40,17 @@ export const StyledInput = styled.input`
 
 const OnBoarding = () => {
   const [addressInput, setAddressInput] = useState(null);
-  const { address, setAddress } = useContext(AddressContext);
+  const { customerDetails, setCustomerDetails } = useContext(
+    CustomerDetailsContext
+  );
+
+  const { firstname, lastname, address } = customerDetails;
 
   const handleInputChange = (e) => {
-    setAddressInput(e.target.value);
+    setAddressInput({
+      ...customerDetails,
+      [e.target.name]: e.target.value,
+    });
   };
 
   console.log(addressInput);
@@ -52,21 +58,21 @@ const OnBoarding = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (addressInput) {
-      setAddress(() => {
+      setCustomerDetails(() => {
         return addressInput;
       });
     }
   };
 
   return (
-    <Main address={address}>
+    <Main>
       <Section>
-        <StyledForm onSubmit={handleSubmit}>
+        <StyledForm customerDetails={customerDetails} onSubmit={handleSubmit}>
           <StyledInput
-            type="text"
-            name={address}
-            placeholder="Skriv in din adress"
+            name="address"
+            /* value={address} */
             onChange={handleInputChange}
+            placeholder="Skriv in din adress"
           />
           <ButtonGreen text="Fortsätt" type="submit" />
         </StyledForm>
@@ -77,4 +83,4 @@ const OnBoarding = () => {
 
 export default OnBoarding;
 
-export { AddressContext };
+export { CustomerDetailsContext };

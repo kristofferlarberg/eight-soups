@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AddressContext = React.createContext({
+export const CustomerDetailsContext = React.createContext({
   address: "",
-  setAddress: () => "",
+  setAddress: () => {},
 });

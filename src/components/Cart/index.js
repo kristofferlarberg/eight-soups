@@ -6,7 +6,7 @@ import { CartContext, TotalContext } from "./context";
 import OrderSteps from "./OrderSteps";
 
 import * as ROUTES from "../../constants/routes";
-import { ButtonRound } from "../misc/Button";
+import { ButtonRoundWide, ButtonRoundNoMargin } from "../misc/Button";
 
 const Popup = styled.div`
   position: fixed;
@@ -30,30 +30,33 @@ const PopupContainer = styled.div`
 `;
 
 const CartNav = styled.nav`
-  padding: var(--lineheight) var(--leftright);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
 `;
 
 const CartHeader = styled.header`
   margin: 0;
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-items: flex-end;
+  width: 90%;
   box-sizing: border-box;
 `;
 
 const CartHeading = styled.h1`
   margin: 0;
   color: var(--forestgreen);
+  width: 100%;
 `;
 
-const Back = styled.h1`
-  margin: 0;
+const BigButtonsContainer = styled.div`
+  margin: var(--topbottom) 0 0 0;
+  width: 100%;
   display: flex;
-  justify-self: left;
+  justify-content: center;
 `;
 
 const Cart = (props) => {
@@ -74,20 +77,29 @@ const Cart = (props) => {
       <PopupContainer>
         <CartNav>
           <CartHeader>
+            {orderPage === 1 ? <CartHeading>Din varukorg</CartHeading> : null}
+            {orderPage === 2 ? <CartHeading>Dina uppgifter</CartHeading> : null}
+            {orderPage === 3 ? <CartHeading>Dina uppgifter</CartHeading> : null}
+            {orderPage === 4 ? <CartHeading>Sammanfattning</CartHeading> : null}
+            {orderPage === 5 ? <CartHeading>Bekräftelse</CartHeading> : null}
             <Link to={ROUTES.HOME}>
-              <ButtonRound text="x" />
+              <ButtonRoundNoMargin text="x" />
             </Link>
-            <CartHeading>Din varukorg</CartHeading>
           </CartHeader>
         </CartNav>
         <OrderSteps orderPage={orderPage} />
-        <ButtonRound text="<" onClick={() => previousPage()} />
-        <ButtonRound text=">" onClick={() => nextPage()} />
-
-        {/*   <ButtonGreen
-          text="Avsluta"
-          
-        /> */}
+        <BigButtonsContainer>
+          {orderPage > 1 ? (
+            <ButtonRoundWide text="Föregående" onClick={() => previousPage()} />
+          ) : null}
+          {orderPage < 5 ? (
+            <ButtonRoundWide text="Nästa" onClick={() => nextPage()} />
+          ) : (
+            <Link to={ROUTES.HOME}>
+              <ButtonRoundWide text="Avsluta" />
+            </Link>
+          )}
+        </BigButtonsContainer>
       </PopupContainer>
     </Popup>
   );

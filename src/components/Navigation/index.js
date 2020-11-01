@@ -8,7 +8,7 @@ import Logo from "./Logo";
 import Bowl from "./Bowl";
 import Hamburger from "./HamburgerIcon";
 import * as ROUTES from "../../constants/routes";
-import { AddressContext } from "../OnBoarding";
+import { CustomerDetailsContext } from "../OnBoarding";
 
 const Nav = styled.nav`
   position: fixed;
@@ -20,9 +20,8 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${props => props.address ? "var(--grey)" : "transparent"};
-`;
-
+  background-color: ${props => "props.customerDetails.address" ? "var(--grey)" : "transparent"};
+`;  
 const LogoContainer = styled.div`
   height: 10rem;
   padding: 5rem 2rem 2rem 2rem;
@@ -30,7 +29,7 @@ const LogoContainer = styled.div`
 
 const Navigation = () => {
   const [burger, setBurger] = useState(false);
-  const { address } = useContext(AddressContext);
+  const { customerDetails } = useContext(CustomerDetailsContext);
 
   const toggleBurger = () => {
     setBurger(!burger);
@@ -38,16 +37,16 @@ const Navigation = () => {
 
   return (
     <>
-      {address ? (
+      {customerDetails.address ? (
         <NavigationAddress
           burger={burger}
-          address={address}
+          customerDetails={customerDetails}
           toggleBurger={() => toggleBurger()}
         />
       ) : (
         <NavigationNoAddress
           burger={burger}
-          address={address}
+          customerDetails={customerDetails}
           toggleBurger={() => toggleBurger()}
         />
       )}
