@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { CustomerDetailsContext } from "../OnBoarding";
-import { StyledForm, StyledInput } from "../OnBoarding";
+import { StyledInput } from "../OnBoarding";
 import { Subheader, SubheadText } from "../Menu/MenuItemPop";
 import {
   OrderTitleContainer,
@@ -23,6 +23,7 @@ const Container = styled.section`
   align-items: center;
   margin-top: var(--topbottom);
   width: 100%;
+  height: auto;
 `;
 
 const PriceContainer = styled.section`
@@ -46,6 +47,16 @@ const Amounts = styled.h4`
 const Orders = styled.div`
   margin-bottom: var(--lineheight);
   width: 100%;
+`;
+
+export const StyledForm = styled.form`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  box-sizing: border-box;
 `;
 
 const OrderSteps = ({ orderPage }) => {

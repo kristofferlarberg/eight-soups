@@ -3,12 +3,7 @@ import styled from "styled-components";
 
 import Menu from "../Menu";
 import OnBoarding from "../OnBoarding";
-import { MainTemplate } from "../../styles/templates";
 import { CustomerDetailsContext } from "../OnBoarding";
-
-const Main = styled.main`
-  ${MainTemplate}
-`;
 
 const Container = styled.div`
   margin: 0;
@@ -17,16 +12,18 @@ const Container = styled.div`
 const Home = ({ menu }) => {
   const { customerDetails } = useContext(CustomerDetailsContext);
 
+  const { firstname, lastname, address } = customerDetails;
+
   return (
-    <Main>
-      {customerDetails.address ? (
+    <>
+      {address ? (
         <Menu menu={menu} />
       ) : (
         <Container>
           <OnBoarding />
         </Container>
       )}
-    </Main>
+    </>
   );
 };
 

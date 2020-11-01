@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { withFirebase } from "../Firebase";
-import { MainTemplate } from "../../styles/templates";
 
 import * as ROUTES from "../../constants/routes";
-
-const Main = styled.main`
-  ${MainTemplate}
-`;
 
 const PasswordForgetPage = () => (
   <div>
@@ -50,7 +45,7 @@ const PasswordForgetFormBase = (props) => {
   };
 
   return (
-    <Main>
+    <>
       <form onSubmit={onSubmit}>
         <input
           name="email"
@@ -65,7 +60,7 @@ const PasswordForgetFormBase = (props) => {
 
         {error && <p>{error.message}</p>}
       </form>
-    </Main>
+    </>
   );
 };
 

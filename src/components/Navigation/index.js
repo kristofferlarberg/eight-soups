@@ -20,8 +20,9 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${props => "props.customerDetails.address" ? "var(--grey)" : "transparent"};
+  background-color: ${props => props.address ? "var(--grey)" : "transparent"};
 `;  
+
 const LogoContainer = styled.div`
   height: 10rem;
   padding: 5rem 2rem 2rem 2rem;
@@ -30,6 +31,8 @@ const LogoContainer = styled.div`
 const Navigation = () => {
   const [burger, setBurger] = useState(false);
   const { customerDetails } = useContext(CustomerDetailsContext);
+
+    const { firstname, lastname, address } = customerDetails;
 
   const toggleBurger = () => {
     setBurger(!burger);
@@ -42,12 +45,14 @@ const Navigation = () => {
           burger={burger}
           customerDetails={customerDetails}
           toggleBurger={() => toggleBurger()}
+          address={address}
         />
       ) : (
         <NavigationNoAddress
           burger={burger}
           customerDetails={customerDetails}
           toggleBurger={() => toggleBurger()}
+          address={address}
         />
       )}
     </>

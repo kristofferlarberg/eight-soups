@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUp";
@@ -17,7 +18,14 @@ import { useLocalStorage } from "../functions/useLocalStorage";
 
 import * as ROUTES from "../../constants/routes";
 
+const Main = styled.main`
+  margin: ${(props) => (props.address ? "10rem 0 0 0" : "0")};
+  width: auto;
+  box-sizing: border-box;
+`;
+
 const App = () => {
+
   const INITIAL_STATE = {
     firstname: "",
     lastname: "",
@@ -31,6 +39,8 @@ const App = () => {
     "customerDetails",
     INITIAL_STATE
   );
+
+  const { address } = customerDetails;
 
   console.log("---------------------------------");
   console.log("CART STATE");
@@ -91,23 +101,25 @@ const App = () => {
           <GlobalStyle />
           <Router>
             <Navigation />
-            <Switch>
-              <Route
-                exact
-                path={ROUTES.HOME}
-                render={() => <Home menu={menu} />}
-              />
-              <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
-              <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
-              <Route
-                exact
-                path={ROUTES.PASSWORD_FORGET}
-                component={PasswordForgetPage}
-              />
-              <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
-              <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-              <Route exact path={ROUTES.CART} component={Cart} />
-            </Switch>
+            <Main address={address}>
+              <Switch>
+                <Route
+                  exact
+                  path={ROUTES.HOME}
+                  render={() => <Home menu={menu} />}
+                />
+                <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+                <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+                <Route
+                  exact
+                  path={ROUTES.PASSWORD_FORGET}
+                  component={PasswordForgetPage}
+                />
+                <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
+                <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+                <Route exact path={ROUTES.CART} component={Cart} />
+              </Switch>
+            </Main>
           </Router>
         </TotalContext.Provider>
       </CartContext.Provider>

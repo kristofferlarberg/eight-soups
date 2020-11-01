@@ -1,13 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { MainTemplate } from "../../styles/templates";
 
 import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
-
-const Main = styled.main`
-  ${MainTemplate}
-`;
 
 const Section = styled.section`
   margin: 0;
@@ -20,7 +15,7 @@ const Section = styled.section`
   background: url("eight-soups/images/green.jpg") no-repeat center/100%;
 `;
 
-export const StyledForm = styled.form`
+const StyledForm = styled.form`
   box-sizing: border-box;
   width: 80%;
   display: flex;
@@ -65,7 +60,7 @@ const OnBoarding = () => {
   };
 
   return (
-    <Main>
+    <>
       <Section>
         <StyledForm customerDetails={customerDetails} onSubmit={handleSubmit}>
           <StyledInput
@@ -77,7 +72,7 @@ const OnBoarding = () => {
           <ButtonGreen text="Fortsätt" type="submit" />
         </StyledForm>
       </Section>
-    </Main>
+    </>
   );
 };
 

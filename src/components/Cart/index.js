@@ -18,7 +18,7 @@ const Popup = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgb(232, 232, 232, 0.8);
-  overflow-y: scroll;
+  overflow-y: hidden;
 `;
 
 const PopupContainer = styled.div`
@@ -27,6 +27,7 @@ const PopupContainer = styled.div`
   padding: var(--lineheight) var(--leftright);
   background-color: white;
   overflow: auto;
+  overflow-y: scroll;
 `;
 
 const CartNav = styled.nav`
@@ -38,22 +39,22 @@ const CartNav = styled.nav`
 
 const CartHeader = styled.header`
   margin: 0;
-  display: inline-grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
   align-items: center;
-  justify-items: flex-end;
-  width: 90%;
+
+  width: 100%;
   box-sizing: border-box;
 `;
 
 const CartHeading = styled.h1`
-  margin: 0;
+  margin: 0 0 0 35px;
   color: var(--forestgreen);
-  width: 100%;
+  width: calc(100% - 35px);
+  text-align: center;
 `;
 
 const BigButtonsContainer = styled.div`
-  margin: var(--topbottom) 0 0 0;
+  margin: 0 0 var(--topbottom) 0;
   width: 100%;
   display: flex;
   justify-content: center;

@@ -1,14 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { MainTemplate } from "../../styles/templates";
 import { CustomerDetailsContext } from "../OnBoarding";
 
 import MenuItem from "./MenuItem";
 
-const Main = styled.main`
-  ${MainTemplate}
-  opacity: ${(loaded) => (loaded ? "1" : "0")};
-`;
 
 const Menu = ({ menu }) => {
   const { customerDetails } = useContext(CustomerDetailsContext);
@@ -30,9 +25,9 @@ const Menu = ({ menu }) => {
 
 
   return (
-    <Main>
+    <>
       {menu && menu.map((item) => <MenuItem key={item.id} {...item} />)}
-    </Main>
+    </>
   );
 };
 

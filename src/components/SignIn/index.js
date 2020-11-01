@@ -6,21 +6,16 @@ import styled from "styled-components";
 import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
 import { withFirebase } from "../Firebase";
-import { MainTemplate } from "../../styles/templates";
 
 import * as ROUTES from "../../constants/routes";
 
-const Main = styled.main`
-  ${MainTemplate}
-`;
-
 const SignInPage = () => (
-  <Main>
+  <>
     <h1>SignIn</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
-  </Main>
+  </>
 );
 
 const INITIAL_STATE = {
