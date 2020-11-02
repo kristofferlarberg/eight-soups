@@ -9,7 +9,11 @@ import {
   OrderTitleContainer,
   OrderItemTitle,
   OrderItemExtras,
+  OrderItemContainer,
 } from "./CartItem";
+
+import SubCategory from "../misc/SubCategory";
+import SubCategoryContent, { ItemSubtitle } from "../misc/SubCategoryContent";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -21,9 +25,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: var(--topbottom);
-  width: 100%;
-  height: auto;
+  box-sizing: border-box;
 `;
 
 const PriceContainer = styled.section`
@@ -36,6 +38,12 @@ const PriceContainer = styled.section`
 const AmountContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const Delivery = styled(AmountContainer)`
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const TotalAmount = styled.h4``;
@@ -57,6 +65,10 @@ export const StyledForm = styled.form`
   align-items: left;
   justify-content: center;
   box-sizing: border-box;
+`;
+
+const DeliveryTime = styled.h1`
+color: var(--green);
 `;
 
 const OrderSteps = ({ orderPage }) => {
@@ -186,28 +198,28 @@ const Summary = (props) => {
 
   return (
     <>
-      <Subheader>
-        <SubheadText>Din beställning</SubheadText>
-      </Subheader>
+      <SubCategory text="Din beställning" />
       {cart.map((item) => (
-        <OrderTitleContainer {...item} key={item.id}>
-          <OrderItemTitle>{item.name}</OrderItemTitle>
-          <OrderItemExtras>
-            {item.extra[0]}, {item.extra[1]}
-          </OrderItemExtras>
-        </OrderTitleContainer>
+        <SubCategoryContent
+          {...item}
+          key={item.id}
+          name={item.name}
+          subtitle1={item.extra[0]}
+          subtitle2={item.extra[1]}
+        />
       ))}
-      <Subheader>
-        <SubheadText>Levereras till</SubheadText>
-      </Subheader>
-      <h4>
-        {customerDetails.firstname} {customerDetails.lastname}
-      </h4>
-      <Amounts>{customerDetails.address}</Amounts>
-      <Subheader>
-        <SubheadText>Betalning</SubheadText>
-      </Subheader>
-      <Amounts>Kortnummer</Amounts><h4>{totalSum}kr</h4>
+      <SubCategory text="Levereras till" />
+      <Delivery>
+        <SubCategoryContent
+          name={`${customerDetails.firstname} ${customerDetails.lastname}`}
+          subtitle1={customerDetails.address}
+        />
+      </Delivery>
+      <SubCategory text="Betalning" />
+  
+       <SubCategoryContent
+          name={`${totalSum} kr`}
+        />
     </>
   );
 };
@@ -218,5 +230,10 @@ const Exit = (props) => {
 
   const totalSum = total.sum + 39;
 
-  return <></>;
+  return (
+    <>
+      <SubCategory text="Estimerad leveranstid" />
+      <DeliveryTime>12</DeliveryTime>
+    </>
+  );
 };

@@ -4,11 +4,13 @@ import { ButtonTemplate } from "../../styles/templates";
 
 const Green = styled.button`
   ${ButtonTemplate}
+  margin: 0;
   width: 100%;
   background-color: var(--green);
   color: white;
   border: 0;
   font-size: var(--default);
+  box-sizing: border-box;
 `;
 
 const Red = styled(Green)`
@@ -24,18 +26,13 @@ export const Round = styled.button`
   padding: 0.7rem 1rem 1rem 1rem;
   margin: var(--halfspace);
   font-size: var(--default);
-  background-color: var(--forestgreen);
-  color: white;
-  border: 0;
+  background-color: white;
+  color: var(--forestgreen);
+  border: 1px solid var(--forestgreen);
 `;
 
 const RoundNoMargin = styled(Round)`
   margin: 0;
-`;
-
-const RoundWide = styled(Green)`
-  width: 150px;
-  margin: var(--lineheight);
 `;
 
 const RoundSmall = styled(Round)`
@@ -72,10 +69,6 @@ export const ButtonRed = (props) => {
 
 export const ButtonRound = (props) => {
   return <Round onClick={props.onClick}>{props.text}</Round>;
-};
-
-export const ButtonRoundWide = (props) => {
-  return <RoundWide onClick={props.onClick}>{props.text}</RoundWide>;
 };
 
 export const ButtonRoundSmall = (props) => {

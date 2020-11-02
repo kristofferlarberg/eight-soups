@@ -7,7 +7,7 @@ import { ButtonGreen } from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0 0 var(--halfspace) 0;
+  margin: 0 0 3px 0;
   width: 100%;
   height: 50rem;
   box-sizing: border-box;
@@ -90,7 +90,6 @@ const MenuItem = (props) => {
         <h3>{props.price}kr</h3>
         <ButtonGreen onClick={togglePopup} text="Lägg till" />
       </FigCaption>
-
       {popup ? (
         <MenuItemPop {...props} togglePopup={() => togglePopup()} />
       ) : null}

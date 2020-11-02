@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { ButtonGreen, ButtonRound, ButtonRoundSmall } from "../misc/Button";
+import SubCategory from "../misc/SubCategory"
 import { CartContext } from "../Cart/context";
 
 const Popup = styled.div`
@@ -56,6 +57,7 @@ export const Subheader = styled(Header)`
   background-color: var(--grey);
   color: var(--darkgrey);
   width: 100%;
+  box-sizing: border-box;
 `;
 
 export const SubheadText = styled.h3`
@@ -167,9 +169,7 @@ const MenuItemPop = (props) => {
           <HeadText>{props.name}</HeadText>
           <Price>{props.price}kr</Price>
         </Header>
-        <Subheader>
-          <SubheadText>Välj bröd</SubheadText>
-        </Subheader>
+        <SubCategory text="Välj bröd" />
         <Selection>
           <label>
             <input
@@ -192,9 +192,7 @@ const MenuItemPop = (props) => {
             Focaccia
           </label>
         </Selection>
-        <Subheader>
-          <SubheadText>Välj dryck</SubheadText>
-        </Subheader>
+        <SubCategory text="Välj dryck" />
         <Selection>
           <label>
             <input

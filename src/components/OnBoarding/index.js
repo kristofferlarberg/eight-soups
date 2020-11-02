@@ -30,7 +30,6 @@ export const StyledInput = styled.input`
   border: 0;
   padding: var(--halfspace);
   margin-bottom: var(--halfspace);
-  width: 100%;
 `;
 
 const OnBoarding = () => {

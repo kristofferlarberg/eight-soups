@@ -6,7 +6,7 @@ import { CartContext, TotalContext } from "./context";
 import OrderSteps from "./OrderSteps";
 
 import * as ROUTES from "../../constants/routes";
-import { ButtonRoundWide, ButtonRoundNoMargin } from "../misc/Button";
+import { ButtonGreen, ButtonRoundNoMargin } from "../misc/Button";
 
 const Popup = styled.div`
   position: fixed;
@@ -24,7 +24,7 @@ const Popup = styled.div`
 const PopupContainer = styled.div`
   height: 100vh;
   margin: 0;
-  padding: var(--lineheight) var(--leftright);
+  padding: 0;
   background-color: white;
   overflow: auto;
   overflow-y: scroll;
@@ -35,6 +35,7 @@ const CartNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   justify-content: center;
+  margin: var(--lineheight) var(--leftright);
 `;
 
 const CartHeader = styled.header`
@@ -47,17 +48,22 @@ const CartHeader = styled.header`
 `;
 
 const CartHeading = styled.h1`
-  margin: 0 0 0 35px;
+  margin: 0 35px 0 0;
   color: var(--forestgreen);
   width: calc(100% - 35px);
   text-align: center;
 `;
 
 const BigButtonsContainer = styled.div`
-  margin: 0 0 var(--topbottom) 0;
+  margin: var(--topbottom) 0 var(--topbottom) 0;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+`;
+
+const ButtonDiv = styled.div`
+  width: 100%;
+  margin: var(--halfspace);
 `;
 
 const Cart = (props) => {
@@ -77,34 +83,57 @@ const Cart = (props) => {
     <Popup key={props.id}>
       <PopupContainer>
         <CartNav>
+          <Link to={ROUTES.HOME}>
+            <ButtonRoundNoMargin text="x" />
+          </Link>
           <CartHeader>
             {orderPage === 1 ? <CartHeading>Din varukorg</CartHeading> : null}
             {orderPage === 2 ? <CartHeading>Dina uppgifter</CartHeading> : null}
             {orderPage === 3 ? <CartHeading>Dina uppgifter</CartHeading> : null}
             {orderPage === 4 ? <CartHeading>Sammanfattning</CartHeading> : null}
             {orderPage === 5 ? <CartHeading>Bekräftelse</CartHeading> : null}
-            <Link to={ROUTES.HOME}>
-              <ButtonRoundNoMargin text="x" />
-            </Link>
           </CartHeader>
         </CartNav>
         <OrderSteps orderPage={orderPage} />
-        <BigButtonsContainer>
-          {orderPage > 1 ? (
-            <ButtonRoundWide text="Föregående" onClick={() => previousPage()} />
-          ) : null}
-          {orderPage < 5 ? (
-            <ButtonRoundWide text="Nästa" onClick={() => nextPage()} />
-          ) : (
-            <Link to={ROUTES.HOME}>
-              <ButtonRoundWide text="Avsluta" />
-            </Link>
-          )}
-        </BigButtonsContainer>
+        <DirectionButtons
+          orderPage={orderPage}
+          previousPage={() => previousPage()}
+          nextPage={() => nextPage()}
+        />
       </PopupContainer>
     </Popup>
   );
 };
+
+const DirectionButtons = ({ orderPage, previousPage, nextPage }) => (
+  <BigButtonsContainer>
+    {orderPage > 1 ? (
+      <ButtonDiv>
+        <ButtonGreen
+          text="Föregående"
+          orderPage={() => orderPage()}
+          onClick={() => previousPage()}
+        />
+      </ButtonDiv>
+    ) : null}
+
+    {orderPage < 5 ? (
+      <ButtonDiv>
+        <ButtonGreen
+          text="Nästa"
+          orderPage={orderPage}
+          onClick={() => nextPage()}
+        />
+      </ButtonDiv>
+    ) : (
+      <ButtonDiv>
+        <Link to={ROUTES.HOME}>
+          <ButtonGreen text="Avsluta" />
+        </Link>
+      </ButtonDiv>
+    )}
+  </BigButtonsContainer>
+);
 
 export default Cart;
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ButtonRound, ButtonRoundWide } from "../misc/Button";
+import { ButtonRound, ButtonGreen } from "../misc/Button";
 import Logo from "./Logo";
 import SignOutButton from "../SignOut";
 
@@ -129,7 +129,7 @@ const BurgerMenuNonAuth = (props) => (
         </li>
         <li>
           <Link to={ROUTES.SIGN_IN} onClick={() => props.toggleBurger()}>
-            <ButtonRoundWide text="Logga in"/>
+            <ButtonGreen text="Logga in" />
           </Link>
         </li>
       </ul>

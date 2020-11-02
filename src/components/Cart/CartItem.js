@@ -5,8 +5,11 @@ import { CartContext } from "./context";
 
 import { ButtonRoundSmall } from "../misc/Button";
 import MoreLess from "../misc/MoreLess";
+import SubCategoryContent, {
+  SubCategorySubtitle,
+} from "../misc/SubCategoryContent";
 
-const Container = styled.section`
+export const OrderItemContainer = styled.section`
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -20,24 +23,9 @@ const Info = styled.div`
   justify-content: space-between;
 `;
 
-export const OrderTitleContainer = styled.header`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const OrderItemTitle = styled.h4`
-  margin: 0;
-`;
-
-export const OrderItemExtras = styled.h4`
-  margin: 0;
-  font-weight: 400;
-`;
-
 const AdjustAmount = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: var(--lineheight);
 `;
 
 const CartItem = (props) => {
@@ -76,15 +64,14 @@ const CartItem = (props) => {
     });
 
   return (
-    <Container>
+    <OrderItemContainer>
       <Info>
-        <OrderTitleContainer>
-          <OrderItemTitle>{props.name}</OrderItemTitle>
-          <OrderItemExtras>
-            {props.extra[0]}, {props.extra[1]}
-          </OrderItemExtras>
-        </OrderTitleContainer>
-        <OrderItemExtras>{props.price}kr</OrderItemExtras>
+        <SubCategoryContent
+          name={props.name}
+          subtitle1={props.extra[0]}
+          subtitle2={props.extra[1]}
+        />
+        <SubCategorySubtitle>{props.price}kr</SubCategorySubtitle>
       </Info>
       <AdjustAmount>
         <MoreLess
@@ -94,7 +81,7 @@ const CartItem = (props) => {
         />
         <ButtonRoundSmall text="x" onClick={() => deleteItems()} cart={cart} />
       </AdjustAmount>
-    </Container>
+    </OrderItemContainer>
   );
 };
 
