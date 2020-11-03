@@ -57,29 +57,6 @@ const App = () => {
   console.log(customerDetails);
   console.log("---------------------------------");
 
-  /*   useEffect(() => {
-    setAddress(() => {
-      let address = localStorage.getItem("customerAddress");
-      if (address) {
-        JSON.parse(address);
-        return address;
-      } else {
-        return "";
-      }
-    });
-  }, []); */
-
-  /*   useEffect(() => {
-    let order = localStorage.getItem("order");
-    if (order) {
-      setCart(() => {
-        let parse = JSON.parse(localStorage.getItem("order"));
-        return parse
-      });
-    }
-    return;
-  }, []); */
-
   useEffect(() => {
     setTotal(() => {
       let totalItems = 0;

@@ -7,8 +7,7 @@ import { ButtonGreen } from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0 0 3px 0;
-  width: 100%;
+  margin: 0 var(--halfspace) var(--lineheight) var(--halfspace);
   height: 50rem;
   box-sizing: border-box;
   background: url(${(props) => props.image}) no-repeat center/100%;

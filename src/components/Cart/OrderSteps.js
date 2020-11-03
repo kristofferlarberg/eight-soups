@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CustomerDetailsContext } from "../OnBoarding";
 import { FormTemplate, InputTemplate } from "../../styles/templates";
 
-import card from "./master-card.svg"
+import card from "./master-card.svg";
 
 import SubCategory from "../misc/SubCategory";
 import SubCategoryContent from "../misc/SubCategoryContent";
@@ -19,6 +19,7 @@ import { ButtonGrey } from "../misc/Button";
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  margin-top: var(--topbottom);
 `;
 
 const PriceContainer = styled.section`
@@ -65,6 +66,16 @@ const SummaryItemContainer = styled.div`
 const SummaryItemContainerPayment = styled(SummaryItemContainer)`
   display: flex;
   justify-content: space-between;
+`;
+
+const SummaryItemContainerCenter = styled(SummaryItemContainer)`
+  display: flex;
+  justify-content: center;
+`;
+
+const CardImg = styled.img`
+  height: 25px;
+  width: auto;
 `;
 
 const OrderSteps = ({ orderPage }) => {
@@ -114,9 +125,11 @@ const Order = () => {
           <CartItem {...item} key={item.id} />
         ))}
       </Orders>
-      <Link to={ROUTES.HOME}>
-        <ButtonGrey text="Lägg till fler" />
-      </Link>
+      <SummaryItemContainerCenter>
+        <Link to={ROUTES.HOME}>
+          <ButtonGrey text="Lägg till fler" />
+        </Link>
+      </SummaryItemContainerCenter>
       <PriceContainer>
         <AmountContainer>
           <Amounts>Delsumma</Amounts>
@@ -215,7 +228,7 @@ const Summary = (props) => {
       </SummaryItemContainer>
       <SubCategory text="Betalning" />
       <SummaryItemContainerPayment>
-        <img src={card}></img>
+        <CardImg src={card}></CardImg>
         <SubCategoryContent name={`${totalSum} kr`} />
       </SummaryItemContainerPayment>
     </>
@@ -225,13 +238,20 @@ const Summary = (props) => {
 const Exit = (props) => {
   const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
-
-  const totalSum = total.sum + 39;
+  const { customerDetails, setCustomerDetails } = useContext(
+    CustomerDetailsContext
+  );
 
   return (
     <>
-      <SubCategory text="Estimerad leveranstid" />
-      <DeliveryTime>12</DeliveryTime>
+      <SubCategory text="Ordernummer" />
+      <SummaryItemContainer>
+        <SubCategoryContent name={customerDetails.ordernumber} />
+      </SummaryItemContainer>
+      <SubCategory text="Leveranstid" />
+      <SummaryItemContainerCenter>
+        <DeliveryTime>12:00</DeliveryTime>
+      </SummaryItemContainerCenter>
     </>
   );
 };

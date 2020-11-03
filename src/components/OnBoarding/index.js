@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { FormTemplate, InputTemplate } from "../../styles/templates";
 
+import { CartContext } from "../Cart/context";
 import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
 
@@ -30,6 +31,9 @@ const OnBoarding = () => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
+  const { cart, setCart } = useContext(CartContext);
+
+  const orderNumber = Math.floor(Math.random() * Math.floor(1000));
 
   const { firstname, lastname, address } = customerDetails;
 
@@ -46,7 +50,7 @@ const OnBoarding = () => {
     e.preventDefault();
     if (addressInput) {
       setCustomerDetails(() => {
-        return addressInput;
+   return {...addressInput, ordernumber: orderNumber};
       });
     }
   };
@@ -60,7 +64,7 @@ const OnBoarding = () => {
             onChange={handleInputChange}
             placeholder="Skriv in din adress"
           />
-          <ButtonGreen text="Fortsätt" type="submit" />
+          <ButtonGreen text="Fortsätt" type="submit"/>
         </AddressForm>
       </Section>
     </>
