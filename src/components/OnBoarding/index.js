@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
+import { FormTemplate, InputTemplate } from "../../styles/templates";
+
 import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
 
@@ -15,21 +17,12 @@ const Section = styled.section`
   background: url("eight-soups/images/green.jpg") no-repeat center/100%;
 `;
 
-const StyledForm = styled.form`
-  box-sizing: border-box;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const AddressForm = styled.form`
+  ${FormTemplate}
 `;
 
-export const StyledInput = styled.input`
-  background-color: rgb(232, 232, 232, 0.8);
-  border-radius: 25px;
-  border: 0;
-  padding: var(--halfspace);
-  margin-bottom: var(--halfspace);
+export const AddressInput = styled.input`
+  ${InputTemplate}
 `;
 
 const OnBoarding = () => {
@@ -61,15 +54,14 @@ const OnBoarding = () => {
   return (
     <>
       <Section>
-        <StyledForm customerDetails={customerDetails} onSubmit={handleSubmit}>
-          <StyledInput
+        <AddressForm customerDetails={customerDetails} onSubmit={handleSubmit}>
+          <AddressInput
             name="address"
-            /* value={address} */
             onChange={handleInputChange}
             placeholder="Skriv in din adress"
           />
           <ButtonGreen text="Fortsätt" type="submit" />
-        </StyledForm>
+        </AddressForm>
       </Section>
     </>
   );

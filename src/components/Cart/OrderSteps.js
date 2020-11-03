@@ -3,47 +3,36 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import { CustomerDetailsContext } from "../OnBoarding";
-import { StyledInput } from "../OnBoarding";
-import { Subheader, SubheadText } from "../Menu/MenuItemPop";
-import {
-  OrderTitleContainer,
-  OrderItemTitle,
-  OrderItemExtras,
-  OrderItemContainer,
-} from "./CartItem";
+import { FormTemplate, InputTemplate } from "../../styles/templates";
+
+import card from "./master-card.svg"
 
 import SubCategory from "../misc/SubCategory";
-import SubCategoryContent, { ItemSubtitle } from "../misc/SubCategoryContent";
+import SubCategoryContent from "../misc/SubCategoryContent";
 
 import * as ROUTES from "../../constants/routes";
 
 import { CartContext, TotalContext } from "../Cart/context";
 import CartItem from "./CartItem";
-import { ButtonRoundSmallWide } from "../misc/Button";
+import { ButtonGrey } from "../misc/Button";
 
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
 `;
 
 const PriceContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: var(--topbottom);
+  box-sizing: border-box;
+  margin: var(--topbottom) 0 0 0;
 `;
 
 const AmountContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const Delivery = styled(AmountContainer)`
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
+  margin: 0 var(--leftright);
 `;
 
 const TotalAmount = styled.h4``;
@@ -57,18 +46,25 @@ const Orders = styled.div`
   width: 100%;
 `;
 
-export const StyledForm = styled.form`
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  box-sizing: border-box;
+const ContactForm = styled.form`
+  ${FormTemplate}
+`;
+
+const ContactInput = styled.input`
+  ${InputTemplate}
 `;
 
 const DeliveryTime = styled.h1`
-color: var(--green);
+  color: var(--green);
+`;
+
+const SummaryItemContainer = styled.div`
+  margin: var(--lineheight) var(--leftright) 0 var(--leftright);
+`;
+
+const SummaryItemContainerPayment = styled(SummaryItemContainer)`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const OrderSteps = ({ orderPage }) => {
@@ -105,7 +101,7 @@ const OrderSteps = ({ orderPage }) => {
 
 export default OrderSteps;
 
-const Order = (props) => {
+const Order = () => {
   const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
 
@@ -119,7 +115,7 @@ const Order = (props) => {
         ))}
       </Orders>
       <Link to={ROUTES.HOME}>
-        <ButtonRoundSmallWide text="Lägg till fler" />
+        <ButtonGrey text="Lägg till fler" />
       </Link>
       <PriceContainer>
         <AmountContainer>
@@ -157,29 +153,29 @@ const Address = (props) => {
 
   return (
     <>
-      <StyledForm customerDetails={customerDetails}>
+      <ContactForm customerDetails={customerDetails}>
         <h4>Förnamn</h4>
-        <StyledInput
+        <ContactInput
           name="firstname"
           value={firstname}
           onChange={handleInputChange}
           placeholder={customerDetails.firstname}
         />
         <h4>Efternamn</h4>
-        <StyledInput
+        <ContactInput
           name="lastname"
           value={lastname}
           onChange={handleInputChange}
           placeholder={customerDetails.lastname}
         />
         <h4>Adress</h4>
-        <StyledInput
+        <ContactInput
           name="address"
           value={address}
           onChange={handleInputChange}
           placeholder={customerDetails.address}
         />
-      </StyledForm>
+      </ContactForm>
     </>
   );
 };
@@ -199,27 +195,29 @@ const Summary = (props) => {
   return (
     <>
       <SubCategory text="Din beställning" />
-      {cart.map((item) => (
-        <SubCategoryContent
-          {...item}
-          key={item.id}
-          name={item.name}
-          subtitle1={item.extra[0]}
-          subtitle2={item.extra[1]}
-        />
-      ))}
+      <SummaryItemContainer>
+        {cart.map((item) => (
+          <SubCategoryContent
+            {...item}
+            key={item.id}
+            name={item.name}
+            subtitle1={item.extra[0]}
+            subtitle2={item.extra[1]}
+          />
+        ))}
+      </SummaryItemContainer>
       <SubCategory text="Levereras till" />
-      <Delivery>
+      <SummaryItemContainer>
         <SubCategoryContent
           name={`${customerDetails.firstname} ${customerDetails.lastname}`}
           subtitle1={customerDetails.address}
         />
-      </Delivery>
+      </SummaryItemContainer>
       <SubCategory text="Betalning" />
-  
-       <SubCategoryContent
-          name={`${totalSum} kr`}
-        />
+      <SummaryItemContainerPayment>
+        <img src={card}></img>
+        <SubCategoryContent name={`${totalSum} kr`} />
+      </SummaryItemContainerPayment>
     </>
   );
 };

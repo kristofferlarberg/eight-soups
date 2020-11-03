@@ -52,18 +52,6 @@ const Price = styled.h3`
   color: var(--darkgrey);
 `;
 
-export const Subheader = styled(Header)`
-  padding: var(--halfspace) var(--leftright);
-  background-color: var(--grey);
-  color: var(--darkgrey);
-  width: 100%;
-  box-sizing: border-box;
-`;
-
-export const SubheadText = styled.h3`
-  margin: 0;
-`;
-
 const Selection = styled.section`
   padding: var(--lineheight) var(--leftright);
   display: flex;

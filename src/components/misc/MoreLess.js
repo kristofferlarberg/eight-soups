@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ButtonRoundSmall } from "./Button";
 
 const AmountContainer = styled.div`
-  margin: 0 var(--leftright) 0 0;
+  margin: var(--halfspace) var(--leftright) 0 0;
   height: auto;
   display: flex;
   align-items: center;

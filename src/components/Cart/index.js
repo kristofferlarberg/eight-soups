@@ -21,7 +21,7 @@ const Popup = styled.div`
   overflow-y: hidden;
 `;
 
-const PopupContainer = styled.div`
+const PopupContainer = styled.main`
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -55,8 +55,7 @@ const CartHeading = styled.h1`
 `;
 
 const BigButtonsContainer = styled.div`
-  margin: var(--topbottom) 0 var(--topbottom) 0;
-  width: 100%;
+  margin: var(--topbottom) var(--leftright);
   display: flex;
   justify-content: space-between;
 `;

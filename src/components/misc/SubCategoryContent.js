@@ -1,32 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { RegularH4Template } from "../../styles/templates";
 
 const SubCategoryHeader = styled.header`
   display: flex;
-  width: 100%;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-bottom: var(--lineheight);
+  margin: 0 0 var(--lineheight) 0;
 `;
 
-const SubCategoryTitle = styled.h4`
+const SubCategoryFirst = styled.h4`
   margin: 0;
 `;
 
-export const SubCategorySubtitle = styled.h4`
-  margin: 0;
-  font-weight: 400;
+const SubCategorySecond = styled.h4`
+  ${RegularH4Template}
 `;
 
 const SubCategoryContent = (props) => (
-    <SubCategoryHeader>
-      <SubCategoryTitle>{props.name}</SubCategoryTitle>
-      <SubCategorySubtitle>
-        {props.subtitle1}
-        <br />
-        {props.subtitle2}
-      </SubCategorySubtitle>
-    </SubCategoryHeader>
+  <SubCategoryHeader>
+    <SubCategoryFirst>{props.name}</SubCategoryFirst>
+    <SubCategorySecond>
+      {props.subtitle1}
+      <br />
+      {props.subtitle2}
+    </SubCategorySecond>
+  </SubCategoryHeader>
 );
 
 export default SubCategoryContent;

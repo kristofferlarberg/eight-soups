@@ -77,7 +77,7 @@ label {
   font-size: var(--default);
   line-height: var(--lineheight);
   font-weight: 400;
-  margin-bottom: var(--halfspace);
+  margin: var(--halfspace) 0;
 }
 
 `;

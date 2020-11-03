@@ -2,16 +2,16 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { CartContext } from "./context";
+import { RegularH4Template } from "../../styles/templates";
 
-import { ButtonRoundSmall } from "../misc/Button";
+import { ButtonRoundRed } from "../misc/Button";
 import MoreLess from "../misc/MoreLess";
 import SubCategoryContent, {
   SubCategorySubtitle,
 } from "../misc/SubCategoryContent";
 
-export const OrderItemContainer = styled.section`
-  width: 100%;
-  box-sizing: border-box;
+const OrderItemContainer = styled.section`
+  margin: 0 var(--leftright);
   display: flex;
   flex-direction: column;
   padding: var(--lineheight) 0;
@@ -21,6 +21,10 @@ export const OrderItemContainer = styled.section`
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const Price = styled.div`
+  ${RegularH4Template}
 `;
 
 const AdjustAmount = styled.div`
@@ -71,7 +75,7 @@ const CartItem = (props) => {
           subtitle1={props.extra[0]}
           subtitle2={props.extra[1]}
         />
-        <SubCategorySubtitle>{props.price}kr</SubCategorySubtitle>
+        <Price>{props.price}kr</Price>
       </Info>
       <AdjustAmount>
         <MoreLess
@@ -79,7 +83,7 @@ const CartItem = (props) => {
           onClickMore={() => moreItems()}
           amount={props.amount}
         />
-        <ButtonRoundSmall text="x" onClick={() => deleteItems()} cart={cart} />
+        <ButtonRoundRed text="x" onClick={() => deleteItems()} cart={cart} />
       </AdjustAmount>
     </OrderItemContainer>
   );

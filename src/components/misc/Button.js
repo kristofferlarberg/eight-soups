@@ -52,7 +52,12 @@ const RoundSmall = styled(Round)`
   color: var(--darkgrey);
 `;
 
-const RoundSmallWide = styled(RoundSmall)`
+const RoundSmallRed = styled(RoundSmall)`
+  border-color: var(--red);
+  color: red;
+`;
+
+const Grey = styled(RoundSmall)`
   width: 150px;
   background-color: var(--grey);
   border: 0;
@@ -71,14 +76,19 @@ export const ButtonRound = (props) => {
   return <Round onClick={props.onClick}>{props.text}</Round>;
 };
 
-export const ButtonRoundSmall = (props) => {
-  return <RoundSmall onClick={props.onClick}>{props.text}</RoundSmall>;
-};
-
-export const ButtonRoundSmallWide = (props) => {
-  return <RoundSmallWide onClick={props.onClick}>{props.text}</RoundSmallWide>;
+export const ButtonRoundRed = (props) => {
+  return <RoundSmallRed onClick={props.onClick}>{props.text}</RoundSmallRed>;
 };
 
 export const ButtonRoundNoMargin = (props) => {
   return <RoundNoMargin onClick={props.onClick}>{props.text}</RoundNoMargin>;
 };
+
+export const ButtonRoundSmall = (props) => {
+  return <RoundSmall onClick={props.onClick}>{props.text}</RoundSmall>;
+};
+
+export const ButtonGrey = (props) => {
+  return <Grey onClick={props.onClick}>{props.text}</Grey>;
+};
+
