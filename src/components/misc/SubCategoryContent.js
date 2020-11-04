@@ -25,6 +25,7 @@ const SubCategoryContent = (props) => (
     <SubCategorySecond>
       <SubCategorySecondContainer>{props.subtitle1}</SubCategorySecondContainer>
       <SubCategorySecondContainer>{props.subtitle2}</SubCategorySecondContainer>
+      <SubCategorySecondContainer>{props.subtitle3}</SubCategorySecondContainer>
     </SubCategorySecond>
   </SubCategoryHeader>
 );

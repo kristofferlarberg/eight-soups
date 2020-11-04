@@ -5,7 +5,7 @@ const Subheader = styled.header`
   padding: var(--halfspace) var(--leftright);
   margin: 0;
   background-color: var(--grey);
-  color: var(--darkgrey);
+  color: var(--forestgreen);
   width: 100%;
   box-sizing: border-box;
 `;

@@ -62,6 +62,7 @@ const Grey = styled(RoundSmall)`
   background-color: var(--grey);
   border: 0;
   border-radius: 5px;
+  color: var(--forestgreen);
 `;
 
 export const ButtonGreen = (props) => {

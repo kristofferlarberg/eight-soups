@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -55,12 +55,12 @@ const ContactInput = styled.input`
   ${InputTemplate}
 `;
 
-const DeliveryTime = styled.h1`
+const SummaryItemHighlight = styled.h1`
   color: var(--green);
 `;
 
 const SummaryItemContainer = styled.div`
-  margin: var(--lineheight) var(--leftright) 0 var(--leftright);
+  margin: var(--lineheight) var(--leftright);
 `;
 
 const SummaryItemContainerPayment = styled(SummaryItemContainer)`
@@ -78,41 +78,35 @@ const CardImg = styled.img`
   width: auto;
 `;
 
-const DeliveryButtonsContainer = styled.div`
-  margin: 0 var(--leftright) var(--lineheight) var(--leftright);
-  display: flex;
-  justify-content: space-between;
-`;
-
 const DeliveryButtonDiv = styled.div`
-  width: 100%;
+  width: 50%;
   margin: var(--halfspace);
 `;
 
-const OrderSteps = ({ orderPage }) => {
+const OrderSteps = (props) => {
   return (
     <Container>
-      {orderPage === 1 ? (
+      {props.orderPage === 1 ? (
         <>
           <Order />
         </>
       ) : null}
-      {orderPage === 2 ? (
+      {props.orderPage === 2 ? (
         <>
           <Address />
         </>
       ) : null}
-      {orderPage === 3 ? (
+      {props.orderPage === 3 ? (
         <>
-          <Payment />
+          <Payment nextPage={() => props.nextPage()} />
         </>
       ) : null}
-      {orderPage === 4 ? (
+      {props.orderPage === 4 ? (
         <>
           <Summary />
         </>
       ) : null}
-      {orderPage === 5 ? (
+      {props.orderPage === 5 ? (
         <>
           <Exit />
         </>
@@ -129,6 +123,21 @@ const Order = () => {
 
   const totalSum = total.sum + 39;
 
+  const deliveryTime = 20;
+  const totalOrderTime = [];
+
+  useEffect(() => {
+    const calculateTotalTime = () => {
+      let categoryTime = cart.map((item) => item.cookingtime * item.amount);
+      let totalTime = categoryTime.reduce((a, b) => a + b, 0);
+      let result = totalTime + deliveryTime;
+      return totalOrderTime.push(result);
+    };
+    calculateTotalTime();
+  }, [cart]);
+
+console.log(totalOrderTime[0]);  
+
   return (
     <>
       <Orders>
@@ -141,6 +150,9 @@ const Order = () => {
           <ButtonGrey text="Lägg till fler" />
         </Link>
       </SummaryItemContainerCenter>
+      <SummaryItemContainer>
+        <SubCategoryContent name={`Leveranstid: ${totalOrderTime[0]}`} />
+      </SummaryItemContainer>
       <PriceContainer>
         <AmountContainer>
           <Amounts>Delsumma</Amounts>
@@ -194,11 +206,11 @@ const Address = (props) => {
     <>
       {delivery ? (
         <>
-          <DeliveryButtonsContainer>
+          <SummaryItemContainerCenter>
             <DeliveryButtonDiv>
               <ButtonGrey text="Välj avhämtning" onClick={choosePickup} />
             </DeliveryButtonDiv>
-          </DeliveryButtonsContainer>
+          </SummaryItemContainerCenter>
           <ContactForm customerDetails={customerDetails}>
             <h4>Förnamn</h4>
             <ContactInput
@@ -225,11 +237,11 @@ const Address = (props) => {
         </>
       ) : (
         <>
-          <DeliveryButtonsContainer>
+          <SummaryItemContainerCenter>
             <DeliveryButtonDiv>
               <ButtonGrey text="Välj leverans" onClick={choosePickup} />
             </DeliveryButtonDiv>
-          </DeliveryButtonsContainer>
+          </SummaryItemContainerCenter>
           <SubCategory text="Avhämtning" />
           <SummaryItemContainer>
             <SubCategoryContent
@@ -245,7 +257,15 @@ const Address = (props) => {
 };
 
 const Payment = (props) => {
-  return <>Val av betalmetod, fyll i kortuppgifter</>;
+  return (
+    <>
+      <SummaryItemContainerCenter>
+        <DeliveryButtonDiv>
+          <ButtonGrey text="Kortbetalning" onClick={() => props.nextPage()} />
+        </DeliveryButtonDiv>
+      </SummaryItemContainerCenter>
+    </>
+  );
 };
 
 const Summary = (props) => {
@@ -254,6 +274,7 @@ const Summary = (props) => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
+
   const totalSum = total.sum + 39;
 
   return (
@@ -265,8 +286,9 @@ const Summary = (props) => {
             {...item}
             key={item.id}
             name={item.name}
-            subtitle1={item.extra[0]}
-            subtitle2={item.extra[1]}
+            subtitle1={`Antal: ${item.amount}`}
+            subtitle2={item.extra[0]}
+            subtitle3={item.extra[1]}
           />
         ))}
       </SummaryItemContainer>
@@ -296,12 +318,14 @@ const Exit = (props) => {
   return (
     <>
       <SubCategory text="Ordernummer" />
-      <SummaryItemContainer>
-        <SubCategoryContent name={customerDetails.ordernumber} />
-      </SummaryItemContainer>
+      <SummaryItemContainerCenter>
+        <SummaryItemHighlight>
+          {customerDetails.ordernumber}
+        </SummaryItemHighlight>
+      </SummaryItemContainerCenter>
       <SubCategory text="Leveranstid" />
       <SummaryItemContainerCenter>
-        <DeliveryTime>12:00</DeliveryTime>
+        <SummaryItemHighlight>12:00</SummaryItemHighlight>
       </SummaryItemContainerCenter>
     </>
   );

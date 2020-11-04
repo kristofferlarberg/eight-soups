@@ -31,24 +31,24 @@ const CartItem = (props) => {
   const { cart, setCart } = useContext(CartContext);
 
   const lessItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id === props.id)) {
-        if (currentCart.find((item) => item.id === props.id).amount > 0) {
-          currentCart.find((item) => item.id === props.id).amount -= 1;
+    setCart((items) => {
+      if (items.some((item) => item.id === props.id)) {
+        if (items.find((item) => item.id === props.id).amount > 0) {
+          items.find((item) => item.id === props.id).amount -= 1;
         }
-        return [...currentCart];
+        return [...items];
       } else {
-        return [...currentCart, item];
+        return [...items, item];
       }
     });
 
   const moreItems = (item) =>
-    setCart((currentCart) => {
-      if (currentCart.some((item) => item.id === props.id)) {
-        currentCart.find((item) => item.id === props.id).amount += 1;
-        return [...currentCart];
+    setCart((items) => {
+      if (items.some((item) => item.id === props.id)) {
+        items.find((item) => item.id === props.id).amount += 1;
+        return [...items];
       } else {
-        return [...currentCart, item];
+        return [...items, item];
       }
     });
 

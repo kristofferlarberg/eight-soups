@@ -10,7 +10,7 @@ const Figure = styled.figure`
   margin: 0 var(--halfspace) var(--lineheight) var(--halfspace);
   height: 50rem;
   box-sizing: border-box;
-  background: url(${(props) => props.image}) no-repeat center/100%;
+  background: url(${(props) => props.image}) no-repeat center/auto 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
