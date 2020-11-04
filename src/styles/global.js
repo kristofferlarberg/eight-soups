@@ -72,12 +72,4 @@ ul {
   margin: 0;
   padding: 0;
 }
-
-label {
-  font-size: var(--default);
-  line-height: var(--lineheight);
-  font-weight: 400;
-  margin: var(--halfspace) 0;
-}
-
 `;

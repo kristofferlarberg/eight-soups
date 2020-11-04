@@ -58,7 +58,7 @@ const RoundSmallRed = styled(RoundSmall)`
 `;
 
 const Grey = styled(RoundSmall)`
-  width: 150px;
+  width: 100%;
   background-color: var(--grey);
   border: 0;
   border-radius: 5px;

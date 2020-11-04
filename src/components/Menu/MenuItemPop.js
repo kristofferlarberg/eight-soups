@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { ButtonGreen, ButtonRound, ButtonRoundSmall } from "../misc/Button";
 import SubCategory from "../misc/SubCategory"
 import { CartContext } from "../Cart/context";
+import { InputTemplate, LabelTemplate } from "../../styles/templates";
 
 const Popup = styled.div`
   position: fixed;
-  width: auto;
+  width: auto; 
   height: auto;
   top: 0;
   left: 0;
@@ -49,7 +50,6 @@ const HeadText = styled.h2`
 
 const Price = styled.h3`
   margin: 0 var(--halfspace);
-  color: var(--darkgrey);
 `;
 
 const Selection = styled.section`
@@ -71,6 +71,14 @@ const AmountContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
+`;
+
+const StyledInput = styled.input`
+${InputTemplate}
+`;
+
+const StyledLabel = styled.label`
+  ${LabelTemplate}
 `;
 
 // todo: om tid finnes, destructura
@@ -159,49 +167,57 @@ const MenuItemPop = (props) => {
         </Header>
         <SubCategory text="Välj bröd" />
         <Selection>
-          <label>
-            <input
+          <StyledLabel>
+            <StyledInput
               type="checkbox"
               onChange={breadSelection}
               name="Surdegsbröd"
             />
             Surdegsbröd
-          </label>
-          <label>
-            <input
+          </StyledLabel>
+          <StyledLabel>
+            <StyledInput
               type="checkbox"
               onChange={breadSelection}
               name="Fullkornsbröd"
             />
             Fullkornsbröd
-          </label>
-          <label>
-            <input type="checkbox" onChange={breadSelection} name="Focaccia" />
+          </StyledLabel>
+          <StyledLabel>
+            <StyledInput
+              type="checkbox"
+              onChange={breadSelection}
+              name="Focaccia"
+            />
             Focaccia
-          </label>
+          </StyledLabel>
         </Selection>
         <SubCategory text="Välj dryck" />
         <Selection>
-          <label>
-            <input
+          <StyledLabel>
+            <StyledInput
               type="checkbox"
               onChange={beverageSelection}
               name="San Pellegrino"
             />
             San Pellegrino
-          </label>
-          <label>
-            <input
+          </StyledLabel>
+          <StyledLabel>
+            <StyledInput
               type="checkbox"
               onChange={beverageSelection}
               name="Ubuntu Cola"
             />
             Ubuntu Cola
-          </label>
-          <label>
-            <input type="checkbox" onChange={beverageSelection} name="Te" />
+          </StyledLabel>
+          <StyledLabel>
+            <StyledInput
+              type="checkbox"
+              onChange={beverageSelection}
+              name="Te"
+            />
             Te
-          </label>
+          </StyledLabel>
         </Selection>
         <AddContainer>
           <AmountContainer>

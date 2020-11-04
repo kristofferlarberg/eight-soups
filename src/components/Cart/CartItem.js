@@ -23,13 +23,8 @@ const Info = styled.div`
   justify-content: space-between;
 `;
 
-const Price = styled.div`
-  ${RegularH4Template}
-`;
-
-const AdjustAmount = styled.div`
-  display: flex;
-  justify-content: space-between;
+const Buttons = styled(Info)`
+  margin-top: var(--lineheight);
 `;
 
 const CartItem = (props) => {
@@ -75,16 +70,16 @@ const CartItem = (props) => {
           subtitle1={props.extra[0]}
           subtitle2={props.extra[1]}
         />
-        <Price>{props.price}kr</Price>
+        <SubCategoryContent name={`${props.price}kr`} />
       </Info>
-      <AdjustAmount>
+      <Buttons>
         <MoreLess
           onClickLess={() => lessItems()}
           onClickMore={() => moreItems()}
           amount={props.amount}
         />
         <ButtonRoundRed text="x" onClick={() => deleteItems()} cart={cart} />
-      </AdjustAmount>
+      </Buttons>
     </OrderItemContainer>
   );
 };

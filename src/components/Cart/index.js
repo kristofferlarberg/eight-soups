@@ -23,10 +23,9 @@ const Popup = styled.div`
 
 const PopupContainer = styled.main`
   height: 100vh;
-  margin: 0;
+  margin: var(--topbottom) var(--leftright);
   padding: 0;
   background-color: white;
-  overflow: auto;
   overflow-y: scroll;
 `;
 
@@ -35,14 +34,13 @@ const CartNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   justify-content: center;
-  margin: var(--lineheight) var(--leftright);
+  margin: var(--topbottom) var(--leftright);
 `;
 
 const CartHeader = styled.header`
   margin: 0;
   display: flex;
   align-items: center;
-
   width: 100%;
   box-sizing: border-box;
 `;

@@ -20,7 +20,14 @@ export const InputTemplate = css`
   background-color: rgb(232, 232, 232, 0.8);
   border-radius: 25px;
   border: 0;
+  margin-right: var(--halfspace);
   padding: var(--halfspace);
+`;
+
+export const LabelTemplate = css`
+  font-size: var(--default);
+  line-height: var(--lineheight);
+  font-weight: 400;
   margin-bottom: var(--halfspace);
 `;
 

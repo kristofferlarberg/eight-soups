@@ -78,6 +78,17 @@ const CardImg = styled.img`
   width: auto;
 `;
 
+const DeliveryButtonsContainer = styled.div`
+  margin: 0 var(--leftright) var(--lineheight) var(--leftright);
+  display: flex;
+  justify-content: space-between;
+`;
+
+const DeliveryButtonDiv = styled.div`
+  width: 100%;
+  margin: var(--halfspace);
+`;
+
 const OrderSteps = ({ orderPage }) => {
   return (
     <Container>
@@ -152,6 +163,7 @@ const Address = (props) => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
+  const [delivery, setDelivery] = useState(true);
 
   const { firstname, lastname, address } = customerDetails;
 
@@ -162,33 +174,72 @@ const Address = (props) => {
     });
   };
 
+  const choosePickup = () => {
+    setDelivery(!delivery);
+    if (delivery === false) {
+      setCustomerDetails({ ...customerDetails, ordermethod: "delivery" });
+    }
+    if (delivery === true) {
+      setCustomerDetails({
+        ...customerDetails,
+        address: "pickup",
+        ordermethod: "pickup",
+      });
+    }
+  };
+
   console.log(customerDetails);
 
   return (
     <>
-      <ContactForm customerDetails={customerDetails}>
-        <h4>Förnamn</h4>
-        <ContactInput
-          name="firstname"
-          value={firstname}
-          onChange={handleInputChange}
-          placeholder={customerDetails.firstname}
-        />
-        <h4>Efternamn</h4>
-        <ContactInput
-          name="lastname"
-          value={lastname}
-          onChange={handleInputChange}
-          placeholder={customerDetails.lastname}
-        />
-        <h4>Adress</h4>
-        <ContactInput
-          name="address"
-          value={address}
-          onChange={handleInputChange}
-          placeholder={customerDetails.address}
-        />
-      </ContactForm>
+      {delivery ? (
+        <>
+          <DeliveryButtonsContainer>
+            <DeliveryButtonDiv>
+              <ButtonGrey text="Välj avhämtning" onClick={choosePickup} />
+            </DeliveryButtonDiv>
+          </DeliveryButtonsContainer>
+          <ContactForm customerDetails={customerDetails}>
+            <h4>Förnamn</h4>
+            <ContactInput
+              name="firstname"
+              value={firstname}
+              onChange={handleInputChange}
+              placeholder={customerDetails.firstname}
+            />
+            <h4>Efternamn</h4>
+            <ContactInput
+              name="lastname"
+              value={lastname}
+              onChange={handleInputChange}
+              placeholder={customerDetails.lastname}
+            />
+            <h4>Adress</h4>
+            <ContactInput
+              name="address"
+              value={address}
+              onChange={handleInputChange}
+              placeholder={customerDetails.address}
+            />
+          </ContactForm>
+        </>
+      ) : (
+        <>
+          <DeliveryButtonsContainer>
+            <DeliveryButtonDiv>
+              <ButtonGrey text="Välj leverans" onClick={choosePickup} />
+            </DeliveryButtonDiv>
+          </DeliveryButtonsContainer>
+          <SubCategory text="Avhämtning" />
+          <SummaryItemContainer>
+            <SubCategoryContent
+              name="Åtta Soppor"
+              subtitle1="Gatanvägen 92"
+              subtitle2="123 45"
+            />
+          </SummaryItemContainer>
+        </>
+      )}
     </>
   );
 };
