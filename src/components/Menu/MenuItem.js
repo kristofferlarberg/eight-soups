@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { Gluten, Lactose } from "./icons";
 import MenuItemPop from "./MenuItemPop";
@@ -10,7 +10,7 @@ const Figure = styled.figure`
   margin: 0 var(--halfspace) var(--lineheight) var(--halfspace);
   height: 50rem;
   box-sizing: border-box;
-  background: url(${(props) => props.image}) no-repeat center/auto 100%;
+  background: url(${(props) => props.image}) no-repeat center/100% auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

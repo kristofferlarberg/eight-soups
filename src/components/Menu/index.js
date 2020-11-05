@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { CustomerDetailsContext } from "../OnBoarding";
 
 import MenuItem from "./MenuItem";

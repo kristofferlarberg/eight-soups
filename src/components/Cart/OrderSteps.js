@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 import { CustomerDetailsContext } from "../OnBoarding";
@@ -27,24 +27,13 @@ const PriceContainer = styled.section`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  margin: var(--topbottom) 0 0 0;
+  margin: 0;
 `;
 
-const AmountContainer = styled.div`
+const PriceSummaryContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 var(--leftright);
-`;
-
-const TotalAmount = styled.h4``;
-
-const Amounts = styled.h4`
-  font-weight: 400;
-`;
-
-const Orders = styled.div`
-  margin-bottom: var(--lineheight);
-  width: 100%;
 `;
 
 const ContactForm = styled.form`
@@ -60,12 +49,13 @@ const SummaryItemHighlight = styled.h1`
 `;
 
 const SummaryItemContainer = styled.div`
-  margin: var(--lineheight) var(--leftright);
+  margin: var(--halfspace) var(--leftright);
 `;
 
 const SummaryItemContainerPayment = styled(SummaryItemContainer)`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const SummaryItemContainerCenter = styled(SummaryItemContainer)`
@@ -73,22 +63,47 @@ const SummaryItemContainerCenter = styled(SummaryItemContainer)`
   justify-content: center;
 `;
 
+const SummaryItemContainerCenterTop = styled(SummaryItemContainerCenter)`
+  margin: 0 var(--leftright) var(--lineheight) var(--leftright);
+`;
+
+const Card = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const CardImg = styled.img`
   height: 25px;
   width: auto;
+  margin-right: 1rem;
 `;
 
-const DeliveryButtonDiv = styled.div`
+const NarrowButtonDiv = styled.div`
   width: 50%;
-  margin: var(--halfspace);
 `;
 
 const OrderSteps = (props) => {
+  const { cart } = useContext(CartContext);
+  const [totalOrderTime, setTotalOrderTime] = useState(0);
+  const deliveryTime = 20;
+
+  useEffect(() => {
+    setTotalOrderTime(() => {
+      let cookingTimes = [];
+      cart.map((item) => cookingTimes.push(item.cookingtime));
+      let totalCookingTime = cookingTimes.reduce((a, b) => a + b, 0);
+      let result = totalCookingTime + deliveryTime;
+      return result;
+    });
+  }, [cart]);
+
+  console.log(totalOrderTime);
+
   return (
     <Container>
       {props.orderPage === 1 ? (
         <>
-          <Order />
+          <Order totalOrderTime={totalOrderTime} />
         </>
       ) : null}
       {props.orderPage === 2 ? (
@@ -108,7 +123,7 @@ const OrderSteps = (props) => {
       ) : null}
       {props.orderPage === 5 ? (
         <>
-          <Exit />
+          <Exit totalOrderTime={totalOrderTime} />
         </>
       ) : null}
     </Container>
@@ -117,55 +132,38 @@ const OrderSteps = (props) => {
 
 export default OrderSteps;
 
-const Order = () => {
+const Order = ({ totalOrderTime }) => {
   const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
 
   const totalSum = total.sum + 39;
 
-  const deliveryTime = 20;
-  const totalOrderTime = [];
-
-  useEffect(() => {
-    const calculateTotalTime = () => {
-      let categoryTime = cart.map((item) => item.cookingtime * item.amount);
-      let totalTime = categoryTime.reduce((a, b) => a + b, 0);
-      let result = totalTime + deliveryTime;
-      return totalOrderTime.push(result);
-    };
-    calculateTotalTime();
-  }, [cart]);
-
-console.log(totalOrderTime[0]);  
-
   return (
     <>
-      <Orders>
-        {cart.map((item) => (
-          <CartItem {...item} key={item.id} />
-        ))}
-      </Orders>
+      {cart.map((item) => (
+        <CartItem {...item} key={item.id} />
+      ))}
       <SummaryItemContainerCenter>
         <Link to={ROUTES.HOME}>
           <ButtonGrey text="Lägg till fler" />
         </Link>
       </SummaryItemContainerCenter>
       <SummaryItemContainer>
-        <SubCategoryContent name={`Leveranstid: ${totalOrderTime[0]}`} />
+        <SubCategoryContent name={`Leveranstid: ${totalOrderTime}`} />
       </SummaryItemContainer>
       <PriceContainer>
-        <AmountContainer>
-          <Amounts>Delsumma</Amounts>
-          <Amounts>{total.sum}kr</Amounts>
-        </AmountContainer>
-        <AmountContainer>
-          <Amounts>Leveransavgift</Amounts>
-          <Amounts>39kr</Amounts>
-        </AmountContainer>
-        <AmountContainer>
-          <TotalAmount>Totalbelopp</TotalAmount>
-          <TotalAmount>{totalSum}kr</TotalAmount>
-        </AmountContainer>
+        <PriceSummaryContainer>
+          <SubCategoryContent subtitle1="Delsumma" />
+          <SubCategoryContent name={`${total.sum}kr`} />
+        </PriceSummaryContainer>
+        <PriceSummaryContainer>
+          <SubCategoryContent subtitle1="Leveransavgift" />
+          <SubCategoryContent name="39kr" />
+        </PriceSummaryContainer>
+        <PriceSummaryContainer>
+          <SubCategoryContent subtitle1="Totalbelopp" />
+          <SubCategoryContent name={`${totalSum}kr`} />
+        </PriceSummaryContainer>
       </PriceContainer>
     </>
   );
@@ -206,11 +204,11 @@ const Address = (props) => {
     <>
       {delivery ? (
         <>
-          <SummaryItemContainerCenter>
-            <DeliveryButtonDiv>
+          <SummaryItemContainerCenterTop>
+            <NarrowButtonDiv>
               <ButtonGrey text="Välj avhämtning" onClick={choosePickup} />
-            </DeliveryButtonDiv>
-          </SummaryItemContainerCenter>
+            </NarrowButtonDiv>
+          </SummaryItemContainerCenterTop>
           <ContactForm customerDetails={customerDetails}>
             <h4>Förnamn</h4>
             <ContactInput
@@ -237,11 +235,11 @@ const Address = (props) => {
         </>
       ) : (
         <>
-          <SummaryItemContainerCenter>
-            <DeliveryButtonDiv>
+          <SummaryItemContainerCenterTop>
+            <NarrowButtonDiv>
               <ButtonGrey text="Välj leverans" onClick={choosePickup} />
-            </DeliveryButtonDiv>
-          </SummaryItemContainerCenter>
+            </NarrowButtonDiv>
+          </SummaryItemContainerCenterTop>
           <SubCategory text="Avhämtning" />
           <SummaryItemContainer>
             <SubCategoryContent
@@ -260,9 +258,9 @@ const Payment = (props) => {
   return (
     <>
       <SummaryItemContainerCenter>
-        <DeliveryButtonDiv>
+        <NarrowButtonDiv>
           <ButtonGrey text="Kortbetalning" onClick={() => props.nextPage()} />
-        </DeliveryButtonDiv>
+        </NarrowButtonDiv>
       </SummaryItemContainerCenter>
     </>
   );
@@ -301,19 +299,44 @@ const Summary = (props) => {
       </SummaryItemContainer>
       <SubCategory text="Betalning" />
       <SummaryItemContainerPayment>
-        <CardImg src={card}></CardImg>
+        <Card>
+          <CardImg src={card}></CardImg>
+          <SubCategoryContent name="*** *** 123" />
+        </Card>
         <SubCategoryContent name={`${totalSum} kr`} />
       </SummaryItemContainerPayment>
     </>
   );
 };
 
-const Exit = (props) => {
-  const { cart } = useContext(CartContext);
-  const { total } = useContext(TotalContext);
+const Exit = ({ totalOrderTime }) => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
+
+  let arrivalTime = [];
+
+  useEffect(() => {
+    const setArrivalTime = () => {
+      var today = new Date();
+      const currentHours = today.getHours();
+      const currentMinutes = today.getMinutes();
+      let arrivalMinutes = currentMinutes + totalOrderTime;
+      let arrivalHours = currentHours;
+      if (arrivalMinutes >= 60) {
+        arrivalMinutes = arrivalMinutes % 60;
+        arrivalHours += Math.floor(arrivalMinutes / 60);
+        let push = arrivalTime.push(arrivalHours, arrivalMinutes);
+        return push;
+      } else {
+        let push = arrivalTime.push(arrivalHours, arrivalMinutes);
+        return push;
+      }
+    };
+    setArrivalTime();
+  });
+
+  console.log(arrivalTime[0]);
 
   return (
     <>
@@ -325,7 +348,9 @@ const Exit = (props) => {
       </SummaryItemContainerCenter>
       <SubCategory text="Leveranstid" />
       <SummaryItemContainerCenter>
-        <SummaryItemHighlight>12:00</SummaryItemHighlight>
+        <SummaryItemHighlight>
+          {arrivalTime[0]}:{arrivalTime[1]}
+        </SummaryItemHighlight>
       </SummaryItemContainerCenter>
     </>
   );

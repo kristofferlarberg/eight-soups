@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { CartContext } from "./context";
 import { RegularH4Template } from "../../styles/templates";
@@ -11,10 +11,10 @@ import SubCategoryContent, {
 } from "../misc/SubCategoryContent";
 
 const OrderItemContainer = styled.section`
-  margin: 0 var(--leftright);
+  margin: 0 var(--leftright) var(--lineheight) var(--leftright);
   display: flex;
   flex-direction: column;
-  padding: var(--lineheight) 0;
+  padding-bottom: var(--lineheight);
   border-bottom: 1px solid var(--grey);
 `;
 

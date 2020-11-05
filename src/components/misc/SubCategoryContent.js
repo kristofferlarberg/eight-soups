@@ -1,11 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { RegularH4Template } from "../../styles/templates";
 
-const SubCategoryHeader = styled.header`
+const SubCategory = styled.div`
   display: flex;
   flex-direction: column;
-  margin: var(--halfspace) 0;
+  margin: var(--lineheight) 0;
 `;
 
 const SubCategoryFirst = styled.h4`
@@ -20,14 +20,14 @@ const SubCategorySecondContainer = styled.div`
 `;
 
 const SubCategoryContent = (props) => (
-  <SubCategoryHeader>
+  <SubCategory>
     <SubCategoryFirst>{props.name}</SubCategoryFirst>
     <SubCategorySecond>
       <SubCategorySecondContainer>{props.subtitle1}</SubCategorySecondContainer>
       <SubCategorySecondContainer>{props.subtitle2}</SubCategorySecondContainer>
       <SubCategorySecondContainer>{props.subtitle3}</SubCategorySecondContainer>
     </SubCategorySecond>
-  </SubCategoryHeader>
+  </SubCategory>
 );
 
 export default SubCategoryContent;

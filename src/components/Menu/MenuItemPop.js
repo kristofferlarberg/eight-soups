@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { ButtonGreen, ButtonRound, ButtonRoundSmall } from "../misc/Button";
 import SubCategory from "../misc/SubCategory"
 import { CartContext } from "../Cart/context";

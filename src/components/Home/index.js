@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import Menu from "../Menu";
 import OnBoarding from "../OnBoarding";

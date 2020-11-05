@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const LogoStyle = styled.svg`
   fill: var(--forestgreen);

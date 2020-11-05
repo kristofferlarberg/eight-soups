@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { ButtonRound, ButtonGreen } from "../misc/Button";
 import Logo from "./Logo";

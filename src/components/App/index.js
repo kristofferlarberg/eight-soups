@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUp";

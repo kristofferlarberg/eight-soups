@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import BurgerMenu from "./BurgerMenu";
 import LogoText from "./LogoText";

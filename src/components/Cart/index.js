@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 import { CartContext, TotalContext } from "./context";
@@ -18,7 +18,7 @@ const Popup = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgb(0, 0, 0, 0.1);
-  overflow-y: hidden;
+  overflow-y: scroll;
 `;
 
 const PopupContainer = styled.main`
@@ -49,6 +49,8 @@ const CartHeading = styled.h1`
 `;
 
 const CloseButtonDiv = styled.div`
+  height: 35px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
 `;
@@ -82,9 +84,11 @@ const Cart = (props) => {
       <PopupContainer>
         <CartNav>
           <CloseButtonDiv>
-            <Link to={ROUTES.HOME}>
-              <ButtonRoundNoMargin text="x" />
-            </Link>
+            {orderPage < 5 ? (
+              <Link to={ROUTES.HOME}>
+                <ButtonRoundNoMargin text="x" />
+              </Link>
+            ) : null}
           </CloseButtonDiv>
           <CartHeader>
             {orderPage === 1 ? <CartHeading>Din varukorg</CartHeading> : null}

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import gluten from "./gluten.svg";
 import lactose from "./lactose.svg";
 
