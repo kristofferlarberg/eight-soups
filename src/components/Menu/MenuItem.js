@@ -7,14 +7,16 @@ import { ButtonGreen } from "../misc/Button";
 import clock from "./clock.svg";
 
 const Figure = styled.figure`
-  margin: 0 var(--halfspace) var(--lineheight) var(--halfspace);
-  height: 50rem;
-  box-sizing: border-box;
-  background: url(${(props) => props.image}) no-repeat center/100% auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+	margin: 0 var(--halfspace) var(--lineheight) var(--halfspace);
+	height: 50rem;
+	box-sizing: border-box;
+	background: url(${(props) => props.image});
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 `;
 
 const FigCaption = styled.figcaption`

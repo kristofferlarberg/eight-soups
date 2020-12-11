@@ -8,14 +8,15 @@ import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
 
 const Section = styled.section`
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url("eight-soups/images/green.jpg") no-repeat center/100%;
+	margin: 0;
+	width: 100%;
+	height: 100vh;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: url('eight-soups/images/green.jpg');
+	background-size: cover;
 `;
 
 const AddressForm = styled.form`
@@ -23,7 +24,9 @@ const AddressForm = styled.form`
 `;
 
 export const AddressInput = styled.input`
-  ${InputTemplate}
+	${InputTemplate}
+	margin-bottom: var(--lineheight);
+	margin-right: 0;
 `;
 
 const OnBoarding = () => {

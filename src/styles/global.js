@@ -9,7 +9,7 @@ html {
   --large: calc(var(--default) * 1.9);
   --medium: calc(var(--default) * 1.3);
   --small: var(--default);
-  --xsmall: calc(var(--default) * 0.8);
+  --xsmall: calc(var(--default) * 0.9);
   --lineheight: 2rem;
   --halfspace: calc(var(--lineheight) * 0.5);
   --topbottom: calc(var(--lineheight) * 2);

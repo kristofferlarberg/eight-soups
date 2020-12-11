@@ -34,7 +34,9 @@ const Figure = styled.figure`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  background: url(${(props) => props.image}) no-repeat center/100%;
+  background: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
 `;
 
 const Header = styled.header`
