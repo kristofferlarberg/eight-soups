@@ -313,11 +313,10 @@ const Exit = ({ totalOrderTime }) => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
-
-  let arrivalTime = [];
+  const [arrivalTime, setArrivalTime] = useState([]);
 
   useEffect(() => {
-    const setArrivalTime = () => {
+    setArrivalTime(() => {
       var today = new Date();
       const currentHours = today.getHours();
       const currentMinutes = today.getMinutes();
@@ -326,15 +325,11 @@ const Exit = ({ totalOrderTime }) => {
       if (arrivalMinutes >= 60) {
         arrivalMinutes = arrivalMinutes % 60;
         arrivalHours += Math.floor(arrivalMinutes / 60);
-        let push = arrivalTime.push(arrivalHours, arrivalMinutes);
-        return push;
-      } else {
-        let push = arrivalTime.push(arrivalHours, arrivalMinutes);
-        return push;
+        return [arrivalHours, arrivalMinutes];
       }
-    };
-    setArrivalTime();
-  });
+      return [arrivalHours, arrivalMinutes];
+    });
+  }, [totalOrderTime]);
 
   console.log(arrivalTime[0]);
 
