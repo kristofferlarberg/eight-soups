@@ -2,7 +2,7 @@
 
 An online delivery web app built with React and Firebase (work in progress). Front-end developer course assignment.
 
-![Image of website](https://github.com/kristofferlarberg/eight-soups/raw/master/public/img/eightsoups.png)
+![Image of website](https://github.com/kristofferlarberg/eight-soups/raw/main/public/img/eightsoups.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
