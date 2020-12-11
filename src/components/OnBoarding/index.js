@@ -47,8 +47,6 @@ const OnBoarding = () => {
     });
   };
 
-  console.log(addressInput);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (addressInput) {

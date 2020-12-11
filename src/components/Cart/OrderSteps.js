@@ -97,8 +97,6 @@ const OrderSteps = (props) => {
     });
   }, [cart]);
 
-  console.log(totalOrderTime);
-
   return (
     <Container>
       {props.orderPage === 1 ? (
@@ -197,8 +195,6 @@ const Address = (props) => {
       });
     }
   };
-
-  console.log(customerDetails);
 
   return (
     <>
@@ -330,8 +326,6 @@ const Exit = ({ totalOrderTime }) => {
       return [arrivalHours, arrivalMinutes];
     });
   }, [totalOrderTime]);
-
-  console.log(arrivalTime[0]);
 
   return (
     <>

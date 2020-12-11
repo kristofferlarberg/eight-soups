@@ -47,8 +47,6 @@ const Amount = styled.h4`
 const Bowl = () => {
   const { total } = useContext(TotalContext);
 
-  console.log(total)
-
   return (
     <>
       {total.amount > 0 ? (
