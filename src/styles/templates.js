@@ -7,7 +7,8 @@ export const ButtonTemplate = css`
 `;
 
 export const FormTemplate = css`
-  padding: 0 var(--leftright);
+  padding: 0;
+  margin: var(--topbottom) 0;
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -20,7 +21,6 @@ export const InputTemplate = css`
   background-color: rgb(232, 232, 232, 0.8);
   border-radius: 25px;
   border: 0;
-  margin-right: var(--halfspace);
   padding: var(--halfspace);
 `;
 

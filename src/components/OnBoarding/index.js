@@ -23,7 +23,7 @@ const AddressForm = styled.form`
   ${FormTemplate}
 `;
 
-export const AddressInput = styled.input`
+const AddressInput = styled.input`
 	${InputTemplate}
 	margin-bottom: var(--lineheight);
 	margin-right: 0;

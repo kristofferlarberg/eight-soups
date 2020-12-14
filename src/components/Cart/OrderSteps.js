@@ -37,11 +37,14 @@ const PriceSummaryContainer = styled.div`
 `;
 
 const ContactForm = styled.form`
-  ${FormTemplate}
+	${FormTemplate}
+	margin: 0;
+	padding: 0 var(--leftright);
 `;
 
 const ContactInput = styled.input`
-  ${InputTemplate}
+	${InputTemplate}
+	margin-right: var(--halfspace);
 `;
 
 const SummaryItemHighlight = styled.h1`
