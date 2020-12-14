@@ -15,7 +15,7 @@ const Section = styled.section`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: url('eight-soups/images/green.jpg');
+	background: url('images/green.jpg');
 	background-size: cover;
 `;
 
