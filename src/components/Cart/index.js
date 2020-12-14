@@ -124,7 +124,7 @@ const DirectionButtons = ({ orderPage, previousPage, nextPage }) => {
         </ButtonDiv>
       ) : null}
 
-      {orderPage < 3 || (orderPage > 3 && orderPage < 4) ? (
+      {cart.length > 0 && orderPage < 3 || (orderPage > 3 && orderPage < 4) ? (
         <ButtonDiv>
           <ButtonGreen
             text="Nästa"
