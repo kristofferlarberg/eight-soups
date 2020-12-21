@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "styled-components/macro";
-
 import { PasswordForgetForm } from "../PasswordForget";
 import PasswordChangeForm from "../PasswordChange";
 import { AuthUserContext, withAuthorization } from "../Session";

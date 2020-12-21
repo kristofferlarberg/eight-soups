@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import { compose } from 'recompose';
 import styled from 'styled-components/macro';
-
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';

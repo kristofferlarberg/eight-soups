@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
-
 import { CartContext, TotalContext } from "./context";
 import OrderSteps from "./OrderSteps";
-
 import * as ROUTES from "../../constants/routes";
 import { ButtonGreen, ButtonRoundNoMargin } from "../misc/Button";
 
@@ -124,7 +122,7 @@ const DirectionButtons = ({ orderPage, previousPage, nextPage }) => {
         </ButtonDiv>
       ) : null}
 
-      {cart.length > 0 && orderPage < 3 || (orderPage > 3 && orderPage < 4) ? (
+      {(cart.length > 0 && orderPage < 3) || (orderPage > 3 && orderPage < 4) ? (
         <ButtonDiv>
           <ButtonGreen
             text="Nästa"

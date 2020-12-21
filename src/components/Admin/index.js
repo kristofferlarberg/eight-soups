@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components/macro";
-
 import { withFirebase } from "../Firebase";
 import { withAuthorization } from "../Session";
 

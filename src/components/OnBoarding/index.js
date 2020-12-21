@@ -1,9 +1,6 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components/macro";
-
 import { FormTemplate, InputTemplate } from "../../styles/templates";
-
-import { CartContext } from "../Cart/context";
 import { CustomerDetailsContext } from "./context";
 import { ButtonGreen } from "../misc/Button";
 
@@ -34,11 +31,8 @@ const OnBoarding = () => {
   const { customerDetails, setCustomerDetails } = useContext(
     CustomerDetailsContext
   );
-  const { cart, setCart } = useContext(CartContext);
 
   const orderNumber = Math.floor(Math.random() * Math.floor(1000));
-
-  const { firstname, lastname, address } = customerDetails;
 
   const handleInputChange = (e) => {
     setAddressInput({

@@ -1,12 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components/macro";
-import { CustomerDetailsContext } from "../OnBoarding";
-
+import React from "react";
 import MenuItem from "./MenuItem";
 
 const Menu = ({ menu }) => {
-  const { customerDetails } = useContext(CustomerDetailsContext);
-
   return (
     <>{menu && menu.map((item) => <MenuItem key={item.id} {...item} />)}</>
   );

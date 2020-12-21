@@ -1,17 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
-
 import { CustomerDetailsContext } from "../OnBoarding";
 import { FormTemplate, InputTemplate } from "../../styles/templates";
-
 import card from "./master-card.svg";
-
 import SubCategory from "../misc/SubCategory";
 import SubCategoryContent from "../misc/SubCategoryContent";
-
 import * as ROUTES from "../../constants/routes";
-
 import { CartContext, TotalContext } from "../Cart/context";
 import CartItem from "./CartItem";
 import { ButtonGrey } from "../misc/Button";
@@ -268,7 +263,7 @@ const Payment = (props) => {
 const Summary = (props) => {
   const { cart } = useContext(CartContext);
   const { total } = useContext(TotalContext);
-  const { customerDetails, setCustomerDetails } = useContext(
+  const { customerDetails } = useContext(
     CustomerDetailsContext
   );
 
@@ -309,7 +304,7 @@ const Summary = (props) => {
 };
 
 const Exit = ({ totalOrderTime }) => {
-  const { customerDetails, setCustomerDetails } = useContext(
+  const { customerDetails } = useContext(
     CustomerDetailsContext
   );
   const [arrivalTime, setArrivalTime] = useState([]);

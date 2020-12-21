@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
-
 import { ButtonRound, ButtonGreen } from "../misc/Button";
 import Logo from "./Logo";
 import SignOutButton from "../SignOut";
-
 import * as ROUTES from "../../constants/routes";
-
 import { AuthUserContext } from "../Session";
 
 const BurgerMenuContainer = styled.div`

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
-
 import BurgerMenu from "./BurgerMenu";
 import LogoText from "./LogoText";
 import Logo from "./Logo";
@@ -32,7 +31,7 @@ const Navigation = () => {
   const [burger, setBurger] = useState(false);
   const { customerDetails } = useContext(CustomerDetailsContext);
 
-    const { firstname, lastname, address } = customerDetails;
+    const { address } = customerDetails;
 
   const toggleBurger = () => {
     setBurger(!burger);

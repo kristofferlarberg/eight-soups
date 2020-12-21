@@ -83,9 +83,8 @@ const StyledLabel = styled.label`
   ${LabelTemplate}
 `;
 
-// todo: om tid finnes, destructura
 const MenuItemPop = (props) => {
-  const {cart, setCart} = useContext(CartContext);
+  const {setCart} = useContext(CartContext);
   const [soupAmount, setSoupAmount] = useState(1);
   const [bread, setBread] = useState("Inget bröd");
   const [beverage, setBeverage] = useState("Ingen dryck");

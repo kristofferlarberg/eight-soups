@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components/macro";
-
 import SoupIcon from "./SoupIcon";
 import * as ROUTES from "../../constants/routes";
 import { TotalContext } from "../Cart/context";

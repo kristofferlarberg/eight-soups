@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
-
 import { Gluten, Lactose } from "./icons";
 import MenuItemPop from "./MenuItemPop";
 import { ButtonGreen } from "../misc/Button";

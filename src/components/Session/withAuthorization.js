@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, withRouter } from "react-router-dom";
 import { compose } from "recompose";
-
 import AuthUserContext from "./context";
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";

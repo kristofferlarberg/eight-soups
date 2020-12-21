@@ -1,14 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
-
 import { CartContext } from "./context";
-import { RegularH4Template } from "../../styles/templates";
-
 import { ButtonRoundRed } from "../misc/Button";
 import MoreLess from "../misc/MoreLess";
-import SubCategoryContent, {
-  SubCategorySubtitle,
-} from "../misc/SubCategoryContent";
+import SubCategoryContent from "../misc/SubCategoryContent";
 
 const OrderItemContainer = styled.section`
   margin: 0 var(--leftright) var(--lineheight) var(--leftright);

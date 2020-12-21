@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components/macro";
-
 import Navigation from "../Navigation";
 import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
@@ -15,7 +14,6 @@ import { withAuthentication } from "../Session";
 import { CustomerDetailsContext } from "../OnBoarding";
 import { GlobalStyle } from "../../styles/global";
 import { useLocalStorage } from "../functions/useLocalStorage";
-
 import * as ROUTES from "../../constants/routes";
 
 const Main = styled.main`
