@@ -1,6 +1,7 @@
 ## Eight Soups
 
 An online delivery web app built with React and Firebase (work in progress). Front-end developer course assignment.
+An online delivery web app built with React and Firebase. Front-end developer course assignment. Work remains to do with checkout procedure (especially integrating orders etc. with Firebase), notifications and UI responsiveness.
 
 ![Image of website](https://github.com/kristofferlarberg/eight-soups/raw/main/public/images/eightsoups.png)
 
